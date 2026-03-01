@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FEMA vs FERA — FEMA Act 1999</title>
+  <link rel="stylesheet" href="../css/common.css">
+  <style>
+    .vs-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      font-size: 0.85rem;
+    }
+    .vs-table th, .vs-table td {
+      padding: 0.8rem 1rem;
+      border: 1px solid var(--border);
+      text-align: left;
+      vertical-align: top;
+    }
+    .vs-table th {
+      background: rgba(88,166,255,0.05);
+      font-weight: 700;
+    }
+    .vs-table th:nth-child(2) { color: #f85149; }
+    .vs-table th:nth-child(3) { color: #3fb950; }
+    .vs-table tr:hover { background: rgba(88,166,255,0.03); }
+    .vs-table .param { font-weight: 700; color: var(--accent); }
+    .era-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin: 1.5rem 0;
+    }
+    @media(max-width:700px) { .era-cards { grid-template-columns: 1fr; } }
+    .era-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .era-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+    }
+    .era-card.fera::before { background: #f85149; }
+    .era-card.fema::before { background: #3fb950; }
+    .era-card h3 { margin-top: 0; }
+    .era-card p { font-size: 0.9rem; color: var(--text-muted); }
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+    .impact-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.2rem;
+      text-align: center;
+    }
+    .impact-item .imp-icon { font-size: 1.5rem; margin-bottom: 0.3rem; }
+    .impact-item h4 { margin: 0.3rem 0; font-size: 0.92rem; }
+    .impact-item p { margin: 0; font-size: 0.82rem; color: var(--text-muted); }
+  </style>
+</head>
+<body>
+  <div class="reading-progress"><div class="fill"></div></div>
+  <nav class="topnav">
+    <a href="../index.html" class="logo">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10A15.3 15.3 0 0 1 12 2z"/></svg>
+      FEMA Act 1999
+    </a>
+    <div class="nav-links">
+      <a href="../12-lrs/index.html">← Prev</a>
+      <a href="../14-amendments/index.html">Next →</a>
+      <button class="theme-toggle">☀️</button>
+    </div>
+  </nav>
+  <div style="height:60px;"></div>
+  <div class="container"><div class="breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><span>Chapter 13: FEMA vs FERA</span></div></div>
+
+  <section class="section">
+    <div class="container">
+      <div class="reveal">
+        <span class="tag tag-red" style="background:rgba(248,81,73,0.12);color:#f85149;">Chapter 13</span>
+        <h1>FEMA vs FERA — The Paradigm Shift</h1>
+        <p style="font-size:1.1rem;color:var(--text-muted);max-width:700px;">
+          Understanding the shift from FERA (1973) to FEMA (1999) is crucial — it represents India's transformation from a closed, suspicious, control-oriented economy to an open, facilitative, market-friendly one.
+        </p>
+      </div>
+
+      <!-- Era Cards -->
+      <div class="era-cards reveal">
+        <div class="era-card fera">
+          <h3 style="color:#f85149;">🔒 FERA 1973</h3>
+          <p><strong>Foreign Exchange Regulation Act</strong></p>
+          <p>Born in an era of forex scarcity (India had barely 2 weeks of import cover). Every rupee of forex was precious. The mindset: "Foreign exchange is a scarce national resource — conserve it, control it, restrict it."</p>
+          <p><strong>Philosophy:</strong> Everything is prohibited unless specifically permitted.</p>
+        </div>
+        <div class="era-card fema">
+          <h3 style="color:#3fb950;">✅ FEMA 1999</h3>
+          <p><strong>Foreign Exchange Management Act</strong></p>
+          <p>Born after 1991 liberalization, when India started building forex reserves and integrating with the global economy. The mindset: "Facilitate trade and payments, promote orderly development of the forex market."</p>
+          <p><strong>Philosophy:</strong> Everything is permitted unless specifically regulated.</p>
+        </div>
+      </div>
+
+      <!-- Detailed Comparison Table -->
+      <h2 class="reveal">Detailed Feature Comparison</h2>
+      <div style="overflow-x:auto;" class="reveal">
+        <table class="vs-table">
+          <thead>
+            <tr><th>Parameter</th><th>FERA 1973</th><th>FEMA 1999</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="param">Full Name</td>
+              <td>Foreign Exchange Regulation Act</td>
+              <td>Foreign Exchange Management Act</td>
+            </tr>
+            <tr>
+              <td class="param">Year</td>
+              <td>1973 (effective 1974)</td>
+              <td>1999 (effective 1 June 2000)</td>
+            </tr>
+            <tr>
+              <td class="param">Keyword</td>
+              <td>"Regulation" — control and restrict</td>
+              <td>"Management" — facilitate and manage</td>
+            </tr>
+            <tr>
+              <td class="param">Approach</td>
+              <td>Everything prohibited unless permitted (positive list)</td>
+              <td>Current account: free unless restricted; Capital account: permitted based on regulations</td>
+            </tr>
+            <tr>
+              <td class="param">Nature of Offence</td>
+              <td><strong>Criminal</strong> — violation is a criminal offence</td>
+              <td><strong>Civil</strong> — violation is a civil contravention</td>
+            </tr>
+            <tr>
+              <td class="param">Punishment</td>
+              <td>Imprisonment up to 7 years + unlimited fine</td>
+              <td>Monetary penalty up to 3× amount involved; No imprisonment</td>
+            </tr>
+            <tr>
+              <td class="param">Burden of Proof</td>
+              <td>On the accused (reverse burden — "guilty until proven innocent")</td>
+              <td>On the prosecution (normal civil standard — "preponderance of probability")</td>
+            </tr>
+            <tr>
+              <td class="param">Arrest Powers</td>
+              <td>ED could arrest without warrant; detained persons treated as criminal accused</td>
+              <td>No arrest powers for FEMA contraventions (but PMLA arrest powers exist if ML suspected)</td>
+            </tr>
+            <tr>
+              <td class="param">Bail</td>
+              <td>Non-bailable in many cases; stringent bail conditions</td>
+              <td>Not applicable — no imprisonment, so no bail question</td>
+            </tr>
+            <tr>
+              <td class="param">Current Account</td>
+              <td>Heavily restricted; RBI approval needed for most transactions</td>
+              <td>Free by default; only Schedule I-III exceptions</td>
+            </tr>
+            <tr>
+              <td class="param">Capital Account</td>
+              <td>Almost completely prohibited for residents</td>
+              <td>Progressively liberalized; LRS allows USD 250,000/year for individuals</td>
+            </tr>
+            <tr>
+              <td class="param">FDI</td>
+              <td>Severely restricted; most sectors prohibited; 40% cap in most cases</td>
+              <td>Most sectors 100% open under automatic route</td>
+            </tr>
+            <tr>
+              <td class="param">Adjudication</td>
+              <td>Criminal courts (Magistrate/Sessions court)</td>
+              <td>Quasi-judicial Adjudicating Authority → Special Director → Appellate Tribunal → HC</td>
+            </tr>
+            <tr>
+              <td class="param">Compounding</td>
+              <td>Not available (criminal offences can't be "compounded")</td>
+              <td>Section 15 allows voluntary compounding — settle and move on</td>
+            </tr>
+            <tr>
+              <td class="param">Sections</td>
+              <td>81 Sections</td>
+              <td>49 Sections (much simpler)</td>
+            </tr>
+            <tr>
+              <td class="param">Applicability</td>
+              <td>Applied to Indian citizens (citizenship-based approach)</td>
+              <td>Applied to persons based on residential status (residence-based approach)</td>
+            </tr>
+            <tr>
+              <td class="param">Forex Reserves Context</td>
+              <td>India had ~USD 1 billion (barely 2 weeks of import cover)</td>
+              <td>India has USD 600+ billion (10+ months of import cover)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Impact -->
+      <h2 class="reveal">Impact of the FERA → FEMA Transition</h2>
+      <div class="impact-grid reveal">
+        <div class="impact-item">
+          <div class="imp-icon">📈</div>
+          <h4>FDI Explosion</h4>
+          <p>FDI inflows went from ~USD 2 billion/year (1990s) to USD 80+ billion/year (2020s) after FEMA's liberalization</p>
+        </div>
+        <div class="impact-item">
+          <div class="imp-icon">💱</div>
+          <h4>Forex Reserves</h4>
+          <p>From USD 1 billion (1991 crisis) to USD 600+ billion today — one of the world's largest</p>
+        </div>
+        <div class="impact-item">
+          <div class="imp-icon">🧑‍💻</div>
+          <h4>IT Services Boom</h4>
+          <p>FEMA's facilitative framework enabled India's IT services industry to grow to a USD 190+ billion export powerhouse</p>
+        </div>
+        <div class="impact-item">
+          <div class="imp-icon">🤝</div>
+          <h4>Business Confidence</h4>
+          <p>Decriminalization of forex violations removed the "fear factor" — businesses could operate without threat of arrest for technical violations</p>
+        </div>
+        <div class="impact-item">
+          <div class="imp-icon">🌍</div>
+          <h4>Global Integration</h4>
+          <p>Indians can now invest abroad (LRS), NRIs invest in India freely, MNCs set up easily — all impossible under FERA</p>
+        </div>
+        <div class="impact-item">
+          <div class="imp-icon">⚖️</div>
+          <h4>Rule of Law</h4>
+          <p>Quasi-judicial proceedings with natural justice principles replaced arbitrary criminal proceedings of FERA era</p>
+        </div>
+      </div>
+
+      <div class="callout reveal">
+        <span class="callout-icon">📖</span>
+        <div class="callout-body">
+          <strong>The famous George Fernandes story:</strong> Under FERA, even Union Ministers were prosecuted for minor forex violations. Defence Minister George Fernandes was charged under FERA for accepting $5,000 from a foreign organization for a lecture. Under FEMA, this would have been a simple current account transaction — perfectly legal without any approval. This anecdote illustrates how draconian FERA was.
+        </div>
+      </div>
+
+      <!-- Quiz -->
+      <div class="quiz-box reveal">
+        <div class="quiz-q">🧠 Under FERA, the burden of proof was:</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" data-correct="true">On the accused (reverse burden)</button>
+          <button class="quiz-opt" data-correct="false">On the prosecution</button>
+          <button class="quiz-opt" data-correct="false">Shared equally</button>
+          <button class="quiz-opt" data-correct="false">No burden — automatic conviction</button>
+        </div>
+        <div class="quiz-feedback" 
+          data-correct="Correct! FERA operated on a reverse burden of proof — the accused had to prove their innocence. FEMA changed this to the normal civil standard where the prosecution must prove the contravention (preponderance of probability)." 
+          data-wrong="Under FERA, the burden was reversed — you were essentially 'guilty until proven innocent.' This was one of the most criticized aspects of FERA and one of the key improvements in FEMA.">
+        </div>
+      </div>
+
+      <div class="page-nav reveal">
+        <a href="../12-lrs/index.html"><span class="nav-dir">← Previous</span><span class="nav-title">Liberalised Remittance Scheme</span></a>
+        <a href="../14-amendments/index.html"><span class="nav-dir">Next →</span><span class="nav-title">Amendments & Recent Developments</span></a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer"><p>FEMA Act 1999 — Interactive Explainer · <a href="../index.html">Back to Home</a></p></footer>
+  <script src="../js/common.js"></script>
+</body>
+</html>

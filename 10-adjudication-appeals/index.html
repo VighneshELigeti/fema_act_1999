@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Adjudication & Appeals — FEMA Act 1999</title>
+  <link rel="stylesheet" href="../css/common.css">
+  <style>
+    .appeal-ladder {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin: 2rem auto;
+      max-width: 520px;
+    }
+    .ladder-rung {
+      background: var(--bg-card);
+      border: 2px solid var(--border);
+      padding: 1.2rem 1.5rem;
+      text-align: center;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+    .ladder-rung:first-child { border-radius: var(--radius) var(--radius) 0 0; }
+    .ladder-rung:last-child { border-radius: 0 0 var(--radius) var(--radius); }
+    .ladder-rung:hover, .ladder-rung.active { border-color: var(--accent); background: rgba(88,166,255,0.03); }
+    .ladder-rung .rung-level {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .ladder-rung h4 { margin: 0.2rem 0; }
+    .ladder-rung .rung-detail { font-size: 0.8rem; color: var(--text-muted); }
+    .ladder-connector {
+      text-align: center;
+      color: var(--accent);
+      font-size: 1.2rem;
+      line-height: 1;
+      padding: 0.2rem 0;
+    }
+    .detail-box {
+      background: var(--bg-card);
+      border: 1px solid var(--accent);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin: 1rem 0;
+      display: none;
+    }
+    .detail-box.visible { display: block; animation: fadeSlideIn 0.3s ease; }
+    @keyframes fadeSlideIn { from { opacity:0; transform: translateY(-8px); } to { opacity:1; transform: translateY(0); } }
+    .timeline-grid {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 0.5rem 1.5rem;
+      margin: 1.5rem 0;
+      font-size: 0.9rem;
+    }
+    .timeline-grid .tg-days {
+      font-weight: 700;
+      color: var(--accent);
+      text-align: right;
+    }
+    .timeline-grid .tg-desc { color: var(--text-muted); }
+    .powers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+    .power-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.2rem;
+    }
+    .power-item h4 { margin: 0 0 0.3rem; font-size: 0.92rem; }
+    .power-item p { margin: 0; font-size: 0.82rem; color: var(--text-muted); }
+  </style>
+</head>
+<body>
+  <div class="reading-progress"><div class="fill"></div></div>
+  <nav class="topnav">
+    <a href="../index.html" class="logo">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10A15.3 15.3 0 0 1 12 2z"/></svg>
+      FEMA Act 1999
+    </a>
+    <div class="nav-links">
+      <a href="../09-contraventions/index.html">← Prev</a>
+      <a href="../11-interfaces/index.html">Next →</a>
+      <button class="theme-toggle">☀️</button>
+    </div>
+  </nav>
+  <div style="height:60px;"></div>
+  <div class="container"><div class="breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><span>Chapter 10: Adjudication & Appeals</span></div></div>
+
+  <section class="section">
+    <div class="container">
+      <div class="reveal">
+        <span class="tag tag-purple">Chapter 10</span>
+        <h1>Adjudication & Appeals</h1>
+        <p style="font-size:1.1rem;color:var(--text-muted);max-width:700px;">
+          FEMA establishes a structured, multi-tier dispute resolution mechanism. Each level provides an opportunity for review, ensuring fairness and preventing arbitrary penalties.
+        </p>
+      </div>
+
+      <!-- Appeal Ladder -->
+      <h2 class="reveal">The Appeals Ladder — Click Any Level</h2>
+      <p class="reveal" style="color:var(--text-muted);font-size:0.9rem;">From bottom (first instance) to top (final appeal):</p>
+
+      <div class="appeal-ladder reveal">
+        <div class="ladder-rung" data-tier="hc">
+          <div class="rung-level">Level 4 — Final</div>
+          <h4>🏫 High Court</h4>
+          <div class="rung-detail">Section 35 · Questions of law only · 60 days to appeal</div>
+        </div>
+        <div class="ladder-connector">▲</div>
+        <div class="ladder-rung" data-tier="at">
+          <div class="rung-level">Level 3</div>
+          <h4>🏢 Appellate Tribunal (ATFE)</h4>
+          <div class="rung-detail">Section 18-19 · Full review · 45 days to appeal</div>
+        </div>
+        <div class="ladder-connector">▲</div>
+        <div class="ladder-rung" data-tier="sd">
+          <div class="rung-level">Level 2</div>
+          <h4>👨‍⚖️ Special Director (Appeals)</h4>
+          <div class="rung-detail">Section 17 · First appeal (≤ ₹5 lakh penalty) · 45 days</div>
+        </div>
+        <div class="ladder-connector">▲</div>
+        <div class="ladder-rung" data-tier="aa">
+          <div class="rung-level">Level 1 — First Instance</div>
+          <h4>⚖️ Adjudicating Authority</h4>
+          <div class="rung-detail">Section 16 · Original adjudication · Show cause → Hearing → Order</div>
+        </div>
+      </div>
+
+      <div class="detail-box" id="tierDetail">
+        <h3 id="td-title"></h3>
+        <div id="td-content"></div>
+      </div>
+
+      <!-- Adjudication Process -->
+      <h2 class="reveal">Adjudication Process — Step by Step</h2>
+      <div class="timeline-grid reveal">
+        <div class="tg-days">Day 0</div>
+        <div class="tg-desc"><strong>Show Cause Notice (SCN):</strong> The Adjudicating Authority issues SCN to the person, specifying the alleged contravention and demanding explanation.</div>
+        <div class="tg-days">30 days</div>
+        <div class="tg-desc"><strong>Written reply:</strong> The person must file a written reply to the SCN within 30 days (extendable).</div>
+        <div class="tg-days">Hearing</div>
+        <div class="tg-desc"><strong>Personal hearing:</strong> The person gets an opportunity to be heard — personally or through an authorized representative (lawyer/CA). This is a fundamental right of natural justice.</div>
+        <div class="tg-days">Evidence</div>
+        <div class="tg-desc"><strong>Evidence examination:</strong> The AA examines documents, statements, and evidence produced by both ED (prosecution) and the person (defence).</div>
+        <div class="tg-days">Order</div>
+        <div class="tg-desc"><strong>Adjudication order:</strong> The AA passes a reasoned order — either imposing penalty or discharging the person. Must record findings of fact and law.</div>
+        <div class="tg-days">45 days</div>
+        <div class="tg-desc"><strong>Appeal window:</strong> Aggrieved party can appeal within 45 days to Special Director (if penalty ≤ ₹5 lakh) or directly to Appellate Tribunal (if penalty > ₹5 lakh).</div>
+      </div>
+
+      <!-- Natural Justice -->
+      <h2 class="reveal">Principles of Natural Justice in FEMA Adjudication</h2>
+      <div class="powers-grid reveal">
+        <div class="power-item">
+          <h4>📜 Right to Notice</h4>
+          <p>No person can be penalized without first being given a show cause notice specifying the exact nature of the alleged contravention and the evidence against them.</p>
+        </div>
+        <div class="power-item">
+          <h4>🗣️ Right to be Heard</h4>
+          <p>Every person has the right to a personal hearing before the AA. They can appear personally, through a lawyer, CA, or authorized representative.</p>
+        </div>
+        <div class="power-item">
+          <h4>📝 Reasoned Order</h4>
+          <p>The AA must pass a reasoned order explaining the findings of fact, application of law, and justification for the penalty amount. Unreasoned orders can be set aside on appeal.</p>
+        </div>
+        <div class="power-item">
+          <h4>⚖️ Burden of Proof</h4>
+          <p>Unlike FERA (where accused had to prove innocence), under FEMA the burden is on the prosecution (ED/AA) to prove the contravention. Standard of proof: preponderance of probability (civil standard).</p>
+        </div>
+        <div class="power-item">
+          <h4>🔄 No Bias</h4>
+          <p>The AA must be impartial — "nemo judex in causa sua" (no one should be judge in their own cause). If bias is demonstrated, the order can be challenged.</p>
+        </div>
+        <div class="power-item">
+          <h4>📋 Cross-Examination</h4>
+          <p>The person can cross-examine witnesses produced by ED. Reliance on statements without providing opportunity for cross-examination has been held to vitiate proceedings.</p>
+        </div>
+      </div>
+
+      <!-- Key Timelines -->
+      <h2 class="reveal">Critical Time Limits</h2>
+      <div class="callout reveal">
+        <span class="callout-icon">⏰</span>
+        <div class="callout-body">
+          <ul style="margin:0;padding-left:1.2rem;font-size:0.9rem;">
+            <li><strong>Reply to SCN:</strong> 30 days from receipt (extendable)</li>
+            <li><strong>Appeal to Special Director:</strong> 45 days from date of order</li>
+            <li><strong>Appeal to Appellate Tribunal:</strong> 45 days from date of order</li>
+            <li><strong>Appeal to High Court:</strong> 60 days from date of Tribunal order</li>
+            <li><strong>Condonation of delay:</strong> All appellate authorities can condone delay if "sufficient cause" is shown</li>
+            <li><strong>Limitation for initiating proceedings:</strong> SCN must be issued within 2 years of contravention (though interpretation varies)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Quiz -->
+      <div class="quiz-box reveal">
+        <div class="quiz-q">🧠 An appeal to the High Court under FEMA Section 35 can be filed on:</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" data-correct="false">Questions of fact only</button>
+          <button class="quiz-opt" data-correct="true">Questions of law only</button>
+          <button class="quiz-opt" data-correct="false">Both fact and law</button>
+          <button class="quiz-opt" data-correct="false">No appeal to High Court is possible</button>
+        </div>
+        <div class="quiz-feedback" 
+          data-correct="Correct! Section 35 limits High Court appeals to questions of law only. The High Court won't re-examine facts — that's the Tribunal's job. This is important because many litigants try to challenge factual findings at the HC stage and get rejected." 
+          data-wrong="High Court appeals under FEMA are limited to questions of law only. This means the HC won't re-examine whether you actually committed the contravention (fact) — it only checks whether the law was correctly applied by the Tribunal.">
+        </div>
+      </div>
+
+      <div class="page-nav reveal">
+        <a href="../09-contraventions/index.html"><span class="nav-dir">← Previous</span><span class="nav-title">Contraventions & Penalties</span></a>
+        <a href="../11-interfaces/index.html"><span class="nav-dir">Next →</span><span class="nav-title">FEMA Interfaces</span></a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer"><p>FEMA Act 1999 — Interactive Explainer · <a href="../index.html">Back to Home</a></p></footer>
+  <script src="../js/common.js"></script>
+  <script>
+    const tierData = {
+      aa: {
+        title: '⚖️ Adjudicating Authority (Section 16)',
+        content: `<p>Officers appointed by the Central Government to adjudicate FEMA contraventions. Typically ED officers of the rank of Director or above. They hold quasi-judicial proceedings with full powers of a civil court.</p>
+        <ul style="font-size:0.88rem;color:var(--text-muted);">
+          <li>Issues Show Cause Notices</li>
+          <li>Conducts hearings</li>
+          <li>Examines evidence from both sides</li>
+          <li>Passes penalty orders (up to 3× the amount involved)</li>
+          <li>Can order confiscation of currency/property</li>
+          <li>Must follow principles of natural justice</li>
+        </ul>`
+      },
+      sd: {
+        title: '👨‍⚖️ Special Director (Appeals) — Section 17',
+        content: `<p>Hears first appeals against AA orders where penalty is ≤ ₹5 lakh. Appointed by the Central Government.</p>
+        <ul style="font-size:0.88rem;color:var(--text-muted);">
+          <li>Appeal must be filed within 45 days of AA order</li>
+          <li>Can confirm, modify, or set aside the AA's order</li>
+          <li>Has the power to condone delay in filing appeal</li>
+          <li>Must give opportunity of being heard</li>
+          <li>Order of Special Director is appealable to Appellate Tribunal</li>
+        </ul>`
+      },
+      at: {
+        title: '🏢 Appellate Tribunal for Foreign Exchange (ATFE) — Sections 18-19',
+        content: `<p>The primary appellate body under FEMA. Hears appeals against: (a) Special Director's orders, (b) AA orders where penalty exceeds ₹5 lakh. Also has jurisdiction under PMLA.</p>
+        <ul style="font-size:0.88rem;color:var(--text-muted);">
+          <li>Appeal within 45 days of the impugned order</li>
+          <li>Presided over by a Chairperson (retired/sitting HC judge or equivalent)</li>
+          <li>Has powers of a civil court — summon witnesses, require documents, etc.</li>
+          <li>Can confirm, modify, or set aside the order</li>
+          <li>Can also direct recovery of penalty amounts</li>
+          <li>Proceedings are held in Delhi (principal bench)</li>
+        </ul>`
+      },
+      hc: {
+        title: '🏫 High Court — Section 35',
+        content: `<p>The final appellate forum under FEMA. Jurisdiction is limited to questions of law arising from the Appellate Tribunal's order.</p>
+        <ul style="font-size:0.88rem;color:var(--text-muted);">
+          <li>Appeal within 60 days of Tribunal order</li>
+          <li>Only on questions of law — no re-examination of facts</li>
+          <li>Can also exercise writ jurisdiction under Article 226 of the Constitution</li>
+          <li>Can stay the impugned order pending hearing</li>
+          <li>From HC, further appeal to Supreme Court through SLP under Article 136</li>
+        </ul>`
+      }
+    };
+
+    document.querySelectorAll('.ladder-rung').forEach(rung => {
+      rung.addEventListener('click', () => {
+        const tier = rung.dataset.tier;
+        const data = tierData[tier];
+        if (!data) return;
+        document.querySelectorAll('.ladder-rung').forEach(r => r.classList.remove('active'));
+        rung.classList.add('active');
+        const box = document.getElementById('tierDetail');
+        document.getElementById('td-title').textContent = data.title;
+        document.getElementById('td-content').innerHTML = data.content;
+        box.classList.add('visible');
+        box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      });
+    });
+  </script>
+</body>
+</html>

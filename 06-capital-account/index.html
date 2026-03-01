@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Capital Account Transactions — FEMA Act 1999</title>
+  <link rel="stylesheet" href="../css/common.css">
+  <style>
+    .cap-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+    .cap-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      transition: all 0.3s;
+    }
+    .cap-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+    .cap-card .cap-icon { font-size: 1.8rem; margin-bottom: 0.5rem; }
+    .cap-card h4 { margin: 0.3rem 0; }
+    .cap-card .cap-regime {
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.15rem 0.6rem;
+      border-radius: 999px;
+      display: inline-block;
+      margin-bottom: 0.5rem;
+    }
+    .cap-card .cap-regime.auto { background: rgba(63,185,80,0.12); color: #3fb950; }
+    .cap-card .cap-regime.approval { background: rgba(210,153,34,0.12); color: #d29922; }
+    .cap-card .cap-regime.mixed { background: rgba(88,166,255,0.12); color: #58a6ff; }
+    .cap-card p { font-size: 0.88rem; color: var(--text-muted); margin: 0.3rem 0 0; }
+    .route-compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin: 1.5rem 0;
+    }
+    @media (max-width:700px) { .route-compare { grid-template-columns: 1fr; } }
+    .route-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .route-box::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+    }
+    .route-box.auto-route::before { background: #3fb950; }
+    .route-box.approval-route::before { background: #d29922; }
+    .route-box h3 { margin-top: 0; }
+    .route-box ul { font-size: 0.88rem; color: var(--text-muted); padding-left: 1.2rem; }
+    .fdi-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.85rem;
+    }
+    .fdi-table th, .fdi-table td {
+      padding: 0.6rem 0.8rem;
+      border: 1px solid var(--border);
+      text-align: left;
+    }
+    .fdi-table th {
+      background: rgba(88,166,255,0.05);
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .fdi-table tr:hover { background: rgba(88,166,255,0.03); }
+  </style>
+</head>
+<body>
+  <div class="reading-progress"><div class="fill"></div></div>
+  <nav class="topnav">
+    <a href="../index.html" class="logo">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10A15.3 15.3 0 0 1 12 2z"/></svg>
+      FEMA Act 1999
+    </a>
+    <div class="nav-links">
+      <a href="../05-current-account/index.html">← Prev</a>
+      <a href="../07-export-import/index.html">Next →</a>
+      <button class="theme-toggle">☀️</button>
+    </div>
+  </nav>
+  <div style="height:60px;"></div>
+  <div class="container"><div class="breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><span>Chapter 06: Capital Account Transactions</span></div></div>
+
+  <section class="section">
+    <div class="container">
+      <div class="reveal">
+        <span class="tag tag-accent">Chapter 06</span>
+        <h1>Capital Account Transactions</h1>
+        <p style="font-size:1.1rem;color:var(--text-muted);max-width:720px;">
+          Section 6 governs capital account transactions — the most regulated part of FEMA. Unlike current account (free by default), capital account operates on a <strong>"positive list" approach</strong>: only what RBI/Central Government specifically permits is allowed.
+        </p>
+      </div>
+
+      <div class="callout reveal">
+        <span class="callout-icon">🔐</span>
+        <div class="callout-body">
+          <strong>Section 6(2) & 6(3) — The Framework:</strong> The Central Government may, in consultation with RBI, prescribe classes of capital account transactions that are permissible, limits, and conditions. RBI may also specify permissible transactions with conditions. India follows <strong>progressive capital account liberalization</strong> — not full convertibility, but gradually opening up.
+        </div>
+      </div>
+
+      <!-- Major Capital Account Categories -->
+      <h2 class="reveal">Major Capital Account Transaction Types</h2>
+      <div class="cap-grid reveal">
+        <div class="cap-card">
+          <div class="cap-icon">🏢</div>
+          <span class="cap-regime mixed">Automatic + Approval</span>
+          <h4>Foreign Direct Investment (FDI)</h4>
+          <p>Investment by non-residents into Indian companies. Most sectors allow 100% FDI under automatic route. Sensitive sectors (defence, media, banking) need government approval. Governed by FEMA 20(R)/2017.</p>
+        </div>
+        <div class="cap-card">
+          <div class="cap-icon">🌍</div>
+          <span class="cap-regime mixed">Mixed Routes</span>
+          <h4>Overseas Direct Investment (ODI)</h4>
+          <p>Investment by Indian residents into foreign companies. Under FEMA (Overseas Investment) Rules, 2022. Can invest up to 400% of net worth under automatic route. Financial commitment includes equity, loan, and guarantee.</p>
+        </div>
+        <div class="cap-card">
+          <div class="cap-icon">📊</div>
+          <span class="cap-regime auto">SEBI Regulated</span>
+          <h4>Foreign Portfolio Investment (FPI)</h4>
+          <p>Short-term investment in Indian securities by registered FPIs. Governed by FEMA 20(R) and SEBI (FPI) Regulations, 2019. Subject to aggregate and individual limits for listed companies.</p>
+        </div>
+        <div class="cap-card">
+          <div class="cap-icon">💰</div>
+          <span class="cap-regime approval">RBI Approval Framework</span>
+          <h4>External Commercial Borrowings (ECB)</h4>
+          <p>Borrowing from foreign lenders. Automatic route up to USD 750 million per FY. Minimum average maturity requirements. All-in-cost ceiling linked to benchmark rates. FEMA 3R/2018.</p>
+        </div>
+        <div class="cap-card">
+          <div class="cap-icon">🏠</div>
+          <span class="cap-regime mixed">Specific Rules</span>
+          <h4>Immovable Property</h4>
+          <p>NRIs/PIOs can buy residential/commercial property in India (not agricultural). Indian residents can acquire immovable property outside India under certain conditions (inheritance, purchase under ODI/LRS). FEMA 21R/2018.</p>
+        </div>
+        <div class="cap-card">
+          <div class="cap-icon">🤝</div>
+          <span class="cap-regime auto">Automatic with Limits</span>
+          <h4>Guarantees</h4>
+          <p>Indian residents can give guarantees for foreign entities and vice versa. Subject to specific conditions. Corporate guarantees for overseas subsidiaries governed by ODI rules.</p>
+        </div>
+        <div class="cap-card">
+          <div class="cap-icon">💱</div>
+          <span class="cap-regime auto">RBI Directions</span>
+          <h4>Forex Derivatives</h4>
+          <p>Hedging contracts, forward covers, options, swaps. AD Category I banks can offer these. Users must have underlying exposure. Speculative derivatives trading generally not permitted.</p>
+        </div>
+        <div class="cap-card">
+          <div class="cap-icon">🏦</div>
+          <span class="cap-regime auto">NRI/PIO Specific</span>
+          <h4>NRI Deposits (NRE/NRO/FCNR)</h4>
+          <p>NRE: fully repatriable, tax-free interest. NRO: limited repatriation (up to USD 1 mn/FY), interest taxable. FCNR(B): foreign currency term deposits, fully repatriable. FEMA 5R/2017.</p>
+        </div>
+      </div>
+
+      <!-- FDI Routes -->
+      <h2 class="reveal">FDI — Automatic vs Approval Route</h2>
+      <div class="route-compare reveal">
+        <div class="route-box auto-route">
+          <h3 style="color:#3fb950;">✅ Automatic Route</h3>
+          <p style="font-size:0.9rem;color:var(--text-muted);">No prior government approval needed. Just inform RBI through AD bank within 30 days.</p>
+          <ul>
+            <li>Most manufacturing sectors — 100%</li>
+            <li>IT/ITES — 100%</li>
+            <li>E-commerce (marketplace model) — 100%</li>
+            <li>Construction development — 100%</li>
+            <li>Infrastructure — 100%</li>
+            <li>Mining — 100% (most minerals)</li>
+            <li>Services sector — 100%</li>
+            <li>Healthcare — 100%</li>
+            <li>Tourism & Hospitality — 100%</li>
+          </ul>
+        </div>
+        <div class="route-box approval-route">
+          <h3 style="color:#d29922;">⚠️ Government Approval Route</h3>
+          <p style="font-size:0.9rem;color:var(--text-muted);">Needs approval from concerned Ministry/Department. Proposals on Foreign Investment Facilitation Portal (FIFP).</p>
+          <ul>
+            <li>Multi-brand retail — 51% (with conditions)</li>
+            <li>Broadcasting (news) — 49%</li>
+            <li>Print media (news) — 26%</li>
+            <li>Mining & mineral separation of titanium — 100%</li>
+            <li>Core investment companies — Approval beyond 49%</li>
+            <li>Food products retail — 100% (with conditions)</li>
+            <li>Investment from countries sharing land border (China, etc.) — all sectors need approval</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Sectoral Caps Table -->
+      <h2 class="reveal">Key Sectoral FDI Caps</h2>
+      <div style="overflow-x:auto;" class="reveal">
+        <table class="fdi-table">
+          <thead>
+            <tr><th>Sector</th><th>Cap</th><th>Route</th><th>Key Conditions</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Defence</td><td>74% (up to 100% in some cases)</td><td>Auto up to 74%, Approval beyond</td><td>Modern technology / security clearance</td></tr>
+            <tr><td>Telecom</td><td>100%</td><td>Auto up to 49%, Approval beyond</td><td>Security conditions, DoT approval</td></tr>
+            <tr><td>Insurance</td><td>74%</td><td>Automatic</td><td>IRDAI conditions; Indian management control</td></tr>
+            <tr><td>Banking — Private</td><td>74%</td><td>Auto up to 49%, Approval 49-74%</td><td>RBI guidelines; 26% Indian ownership</td></tr>
+            <tr><td>Pharmaceuticals</td><td>100%</td><td>Auto (greenfield); Approval (brownfield)</td><td>Brownfield needs DPIIT approval</td></tr>
+            <tr><td>Aviation (scheduled)</td><td>100%</td><td>Auto up to 49%, Approval beyond</td><td>FDI + FII ≤ 49% by NRIs</td></tr>
+            <tr><td>Single-brand Retail</td><td>100%</td><td>Auto up to 49%, Approval beyond</td><td>30% local sourcing if FDI > 51%</td></tr>
+            <tr><td>Multi-brand Retail</td><td>51%</td><td>Government Approval</td><td>Minimum USD 100 mn; 50% in backend infra</td></tr>
+            <tr><td>Digital Media / News</td><td>26%</td><td>Government Approval</td><td>Strict editorial control conditions</td></tr>
+            <tr><td>Space</td><td>100%</td><td>Automatic</td><td>Sectoral guidelines; IN-SPACe approval</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ECB Framework -->
+      <h2 class="reveal">ECB Framework — Key Parameters</h2>
+      <div class="accordion reveal">
+        <div class="acc-item">
+          <button class="acc-trigger">Eligible Borrowers</button>
+          <div class="acc-content"><p>Companies, LLPs, SEZ units, SIDBI, EXIM Bank, port trusts, housing finance companies, NBFCs, microfinance institutions, registered entities. NOT: individuals, trusts, partnerships (other than LLPs), or government entities.</p></div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-trigger">Minimum Average Maturity (MAM)</button>
+          <div class="acc-content"><p>Track I (up to USD 50 mn): 3 years MAM. Track II (above USD 50 mn): 5 years MAM. Track III (INR denominated): 3-5 years depending on amount. Manufacturing sector sometimes gets relaxed MAM of 1 year for smaller amounts.</p></div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-trigger">All-in-Cost Ceiling</button>
+          <div class="acc-content"><p>The total cost of borrowing (interest + other charges) must not exceed benchmark rate + spread. For example, SOFR + 550 bps. This prevents Indian companies from borrowing at excessively high rates which could indicate round-tripping.</p></div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-trigger">End-Use Restrictions</button>
+          <div class="acc-content"><p>ECB proceeds CAN be used for: capital expenditure, working capital (with limits), repayment of Rupee loans, overseas investment. CANNOT be used for: real estate (except affordable housing), on-lending to related entities (unless permitted), equity investment in India, purchase of land.</p></div>
+        </div>
+      </div>
+
+      <div class="callout reveal">
+        <span class="callout-icon">📈</span>
+        <div class="callout-body">
+          <strong>India's Capital Account Liberalization Journey:</strong> India moved from near-zero capital account openness in 1991 to significant liberalization today. But full capital account convertibility (like the US or UK) is still a long-term goal. The Tarapore Committee (1997, 2006) laid the roadmap, but India deliberately maintains controls to prevent volatile capital flows from destabilizing the economy.
+        </div>
+      </div>
+
+      <!-- Quiz -->
+      <div class="quiz-box reveal">
+        <div class="quiz-q">🧠 Capital account transactions under FEMA follow which approach?</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" data-correct="false">Negative list — everything allowed unless prohibited</button>
+          <button class="quiz-opt" data-correct="true">Positive list — only what is permitted is allowed</button>
+          <button class="quiz-opt" data-correct="false">Complete freedom — no restrictions</button>
+          <button class="quiz-opt" data-correct="false">Complete prohibition — nothing allowed</button>
+        </div>
+        <div class="quiz-feedback" 
+          data-correct="Correct! Capital account follows a positive list approach. Only transactions that RBI/Central Government have specifically permitted (through regulations/rules) can be done. This is the opposite of current account's negative list approach." 
+          data-wrong="Capital account follows a positive list approach — only specifically permitted transactions are allowed. This contrasts with current account where everything is permitted unless specifically restricted (negative list).">
+        </div>
+      </div>
+
+      <div class="quiz-box reveal">
+        <div class="quiz-q">🧠 FDI from a Chinese company into an Indian startup requires:</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" data-correct="false">Automatic route — no approval needed</button>
+          <button class="quiz-opt" data-correct="true">Government approval — regardless of sector</button>
+          <button class="quiz-opt" data-correct="false">RBI approval only</button>
+          <button class="quiz-opt" data-correct="false">Not allowed under FEMA at all</button>
+        </div>
+        <div class="quiz-feedback" 
+          data-correct="Correct! Since April 2020, FDI from countries sharing a land border with India (including China) requires mandatory government approval in ALL sectors, even those that are otherwise on the automatic route." 
+          data-wrong="FDI from countries sharing a land border with India (China, Pakistan, Bangladesh, Nepal, Myanmar, Bhutan, Afghanistan) requires government approval in ALL sectors — this was introduced in April 2020. The Press Note 3 (2020) was primarily aimed at preventing opportunistic acquisitions.">
+        </div>
+      </div>
+
+      <div class="page-nav reveal">
+        <a href="../05-current-account/index.html"><span class="nav-dir">← Previous</span><span class="nav-title">Current Account Transactions</span></a>
+        <a href="../07-export-import/index.html"><span class="nav-dir">Next →</span><span class="nav-title">Export & Import Regulations</span></a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer"><p>FEMA Act 1999 — Interactive Explainer · <a href="../index.html">Back to Home</a></p></footer>
+  <script src="../js/common.js"></script>
+</body>
+</html>

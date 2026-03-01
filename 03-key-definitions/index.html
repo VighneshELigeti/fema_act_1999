@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Key Definitions — FEMA Act 1999</title>
+  <link rel="stylesheet" href="../css/common.css">
+  <style>
+    .def-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin: 1rem 0;
+      border-left: 4px solid var(--accent);
+      transition: all 0.3s;
+    }
+    .def-card:hover { border-left-color: var(--accent-hover); }
+    .def-card .def-term {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 0.25rem;
+    }
+    .def-card .def-section {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      margin-bottom: 0.5rem;
+    }
+    .def-card .def-legal {
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      border-left: 2px solid var(--border);
+      padding-left: 1rem;
+      margin: 0.75rem 0;
+    }
+    .def-card .def-plain {
+      font-size: 0.92rem;
+      background: rgba(88,166,255,0.04);
+      padding: 0.75rem 1rem;
+      border-radius: var(--radius-sm);
+      margin-top: 0.5rem;
+    }
+    .def-card .def-plain::before {
+      content: '💡 In Plain English: ';
+      font-weight: 700;
+      color: var(--accent3);
+    }
+    .def-filter {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin: 1rem 0;
+    }
+    .def-filter .filter-btn {
+      padding: 0.4rem 1rem;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      border-radius: 999px;
+      font-size: 0.82rem;
+      cursor: pointer;
+      color: var(--text-muted);
+      font-family: var(--font);
+      transition: all 0.2s;
+    }
+    .def-filter .filter-btn:hover, .def-filter .filter-btn.active {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(88,166,255,0.08);
+    }
+    .current-capital-visual {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    @media (max-width: 700px) { .current-capital-visual { grid-template-columns: 1fr; } }
+    .cc-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .cc-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+    }
+    .cc-card.current::before { background: var(--accent2); }
+    .cc-card.capital::before { background: var(--accent5); }
+    .cc-card h3 { margin-top: 0; }
+    .cc-card .examples { font-size: 0.88rem; color: var(--text-muted); }
+    .cc-card .examples li { margin: 0.3rem 0; }
+  </style>
+</head>
+<body>
+  <div class="reading-progress"><div class="fill"></div></div>
+  <nav class="topnav">
+    <a href="../index.html" class="logo">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10A15.3 15.3 0 0 1 12 2z"/></svg>
+      FEMA Act 1999
+    </a>
+    <div class="nav-links">
+      <a href="../02-scope-applicability/index.html">← Prev</a>
+      <a href="../04-regulatory-architecture/index.html">Next →</a>
+      <button class="theme-toggle">☀️</button>
+    </div>
+  </nav>
+  <div style="height: 60px;"></div>
+  <div class="container"><div class="breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><span>Chapter 03: Key Definitions</span></div></div>
+
+  <section class="section">
+    <div class="container">
+      <div class="reveal">
+        <span class="tag tag-blue">Chapter 03</span>
+        <h1>Key Definitions</h1>
+        <p style="font-size:1.1rem;color:var(--text-muted);max-width:680px;">
+          Section 2 of FEMA contains 28+ definitions. These are high-yield terms you must know — they determine how every provision of the Act applies.
+        </p>
+      </div>
+
+      <div class="callout reveal">
+        <span class="callout-icon">📌</span>
+        <div class="callout-body">
+          <strong>Why definitions matter so much:</strong> In law, a word means exactly what the Act says it means — not what you'd assume in everyday language. Getting a definition wrong can mean the difference between a perfectly legal transaction and a FEMA contravention.
+        </div>
+      </div>
+
+      <!-- Filter -->
+      <div class="def-filter reveal" id="defFilter">
+        <button class="filter-btn active" data-cat="all">All</button>
+        <button class="filter-btn" data-cat="persons">Persons & Status</button>
+        <button class="filter-btn" data-cat="forex">Forex & Currency</button>
+        <button class="filter-btn" data-cat="transactions">Transactions</button>
+        <button class="filter-btn" data-cat="regulatory">Regulatory</button>
+      </div>
+
+      <!-- Definitions -->
+      <div id="defList">
+        <!-- 1. Foreign Exchange -->
+        <div class="def-card reveal" data-cat="forex">
+          <div class="def-term">Foreign Exchange</div>
+          <div class="def-section">Section 2(n)</div>
+          <div class="def-legal">"Foreign exchange" means foreign currency and includes deposits, credits, balances payable in any foreign currency, drafts, travellers cheques, letters of credit or bills of exchange, expressed or drawn in Indian currency but payable in any foreign currency.</div>
+          <div class="def-plain">Any form of money that isn't Indian Rupees. This includes foreign cash (dollars, euros, etc.), foreign bank balances, foreign currency cheques, and even instruments drawn in INR but payable in foreign currency. Basically, if it involves non-INR money, it qualifies.</div>
+        </div>
+
+        <!-- 2. Foreign Currency -->
+        <div class="def-card reveal" data-cat="forex">
+          <div class="def-term">Foreign Currency</div>
+          <div class="def-section">Section 2(m)</div>
+          <div class="def-legal">"Foreign currency" means any currency other than Indian currency.</div>
+          <div class="def-plain">Simple — any currency that isn't the Indian Rupee. US Dollar, Euro, British Pound, Japanese Yen, Chinese Yuan... all are "foreign currency" under FEMA.</div>
+        </div>
+
+        <!-- 3. Foreign Security -->
+        <div class="def-card reveal" data-cat="forex">
+          <div class="def-term">Foreign Security</div>
+          <div class="def-section">Section 2(o)</div>
+          <div class="def-legal">"Foreign security" means any security, in the form of shares, stocks, bonds, debentures or any other instrument denominated or expressed in foreign currency and includes securities expressed in foreign currency, but where redemption or any form of return such as interest or dividends is payable in Indian currency.</div>
+          <div class="def-plain">Shares, bonds, or any financial instrument expressed in foreign currency. Even if your return/dividend is paid in INR, if the instrument is denominated in a foreign currency, it's a "foreign security." Think: shares listed on NYSE, bonds issued in USD.</div>
+        </div>
+
+        <!-- 4. Person Resident in India -->
+        <div class="def-card reveal" data-cat="persons">
+          <div class="def-term">Person Resident in India</div>
+          <div class="def-section">Section 2(v)</div>
+          <div class="def-legal">"Person resident in India" means a person residing in India for more than one hundred and eighty-two days during the course of the preceding financial year but does not include a person who has gone out of India or who stays outside India, for or on taking up employment outside India or for carrying on outside India a business or vocation or for any other purpose, in such circumstances as would indicate his intention to stay outside India for an uncertain period.</div>
+          <div class="def-plain">You're a "FEMA Resident" if: (1) You lived in India for &gt;182 days last FY, AND (2) You haven't gone abroad for employment/business/long-term stay. The key is INTENTION — if you intend to settle abroad, you become non-resident even if you were in India for 200+ days last year. For companies, Indian-incorporated = always resident.</div>
+        </div>
+
+        <!-- 5. Authorized Person -->
+        <div class="def-card reveal" data-cat="regulatory">
+          <div class="def-term">Authorized Person</div>
+          <div class="def-section">Section 2(c)</div>
+          <div class="def-legal">"Authorized person" means an authorized dealer, money changer, off-shore banking unit or any other person for the time being authorized under sub-section (1) of section 10 to deal in foreign exchange or foreign securities.</div>
+          <div class="def-plain">The licensed gatekeepers of forex in India. You can only buy/sell forex through them. They include: AD Category I banks (like SBI, HDFC), AD Category II (upgraded FFMCs), AD Category III (select financial institutions), Full Fledged Money Changers (for cash forex), and Offshore Banking Units in SEZs.</div>
+        </div>
+
+        <!-- 6. Capital Account Transaction -->
+        <div class="def-card reveal" data-cat="transactions">
+          <div class="def-term">Capital Account Transaction</div>
+          <div class="def-section">Section 2(e)</div>
+          <div class="def-legal">"Capital account transaction" means a transaction which alters the assets or liabilities, including contingent liabilities, outside India of persons resident in India or assets or liabilities in India of persons resident outside India.</div>
+          <div class="def-plain">Any transaction that changes your asset/liability position across borders. Think: investing in US stocks (creates an asset abroad), taking a foreign loan (creates a liability from abroad), buying property in London, a foreign company investing in an Indian startup. If it creates or changes a cross-border asset or liability → capital account.</div>
+        </div>
+
+        <!-- 7. Current Account Transaction -->
+        <div class="def-card reveal" data-cat="transactions">
+          <div class="def-term">Current Account Transaction</div>
+          <div class="def-section">Section 2(j)</div>
+          <div class="def-legal">"Current account transaction" means a transaction other than a capital account transaction and without prejudice to the generality of the foregoing such transaction includes — (i) payments due in connection with foreign trade, other current business, services, short-term banking and credit facilities; (ii) payments due as interest on loans and as net income from investments; (iii) remittances for living expenses of parents, spouse and children residing abroad; and (iv) expenses in connection with foreign travel, education and medical care of parents, spouse and children.</div>
+          <div class="def-plain">Everything that ISN'T a capital account transaction. It's the day-to-day cross-border payment stuff: paying your importer, receiving payment for export services, sending money for your child's education abroad, paying for a foreign trip, medical treatment abroad, paying interest on a loan, salary remittance, subscription fees. These are "current" because they don't create new cross-border assets/liabilities.</div>
+        </div>
+
+        <!-- 8. Indian Currency -->
+        <div class="def-card reveal" data-cat="forex">
+          <div class="def-term">Indian Currency</div>
+          <div class="def-section">Section 2(q)</div>
+          <div class="def-legal">"Indian currency" means currency which is expressed or drawn in Indian rupees but does not include special bank notes and special one rupee notes issued under section 28A of the Reserve Bank of India Act, 1934.</div>
+          <div class="def-plain">Indian Rupees (₹) — both coins and notes. But excludes some special collector notes issued under a specific RBI Act section.</div>
+        </div>
+
+        <!-- 9. Person -->
+        <div class="def-card reveal" data-cat="persons">
+          <div class="def-term">Person</div>
+          <div class="def-section">Section 2(u)</div>
+          <div class="def-legal">Includes an individual, a Hindu Undivided Family, a company, a firm, an association of persons or body of individuals whether incorporated or not, every artificial juridical person, not falling within any of the preceding sub-clauses, and any agency, office or branch owned or controlled by such person.</div>
+          <div class="def-plain">FEMA's definition of "person" is VERY wide. It covers individuals, HUFs, companies, firms, LLPs, trusts, associations, clubs, unregistered bodies — literally any entity or arrangement. And crucially, it includes branches/agencies/offices owned or controlled by such persons (so your overseas branch is covered too!).</div>
+        </div>
+
+        <!-- 10. Authorized Dealer -->
+        <div class="def-card reveal" data-cat="regulatory">
+          <div class="def-term">Authorized Dealer</div>
+          <div class="def-section">Section 2(b)</div>
+          <div class="def-legal">"Authorized dealer" means a person authorized as an authorized dealer under sub-section (1) of section 10.</div>
+          <div class="def-plain">A bank or financial institution that RBI has specifically licensed to deal in foreign exchange. There are 3 categories: AD-I (scheduled commercial banks — they can handle all forex transactions), AD-II (upgraded money changers — limited transactions), and AD-III (select FIs for specific purposes). Your regular bank is almost certainly an AD-I.</div>
+        </div>
+
+        <!-- 11. Export / Import -->
+        <div class="def-card reveal" data-cat="transactions">
+          <div class="def-term">Export & Import</div>
+          <div class="def-section">Section 2(l) & 2(p)</div>
+          <div class="def-legal">"Export" with its grammatical variations means the taking out of India to a place outside India any goods; "Import" with its grammatical variations means bringing into India any goods.</div>
+          <div class="def-plain">Export = sending goods OUT of India. Import = bringing goods INTO India. Note these definitions cover goods only — cross-border services are handled under current account transaction provisions.</div>
+        </div>
+
+        <!-- 12. Repatriate to India -->
+        <div class="def-card reveal" data-cat="transactions">
+          <div class="def-term">Repatriate to India</div>
+          <div class="def-section">Section 2(y)</div>
+          <div class="def-legal">"Repatriate to India" means bringing into India the realized foreign exchange and (i) the selling of such foreign exchange to an authorized person in India in exchange for rupees, or (ii) the holding of realized amount in an account with an authorized dealer in India to the extent notified by the Reserve Bank.</div>
+          <div class="def-plain">Bringing forex back to India — either by selling it to a bank for rupees, or depositing it in a foreign currency account with an Indian bank. This concept is critical for exporters who must "repatriate" their export earnings within prescribed timelines.</div>
+        </div>
+      </div>
+
+      <!-- Current vs Capital - Visual -->
+      <h2 class="reveal">Current vs Capital Account — The Critical Divide</h2>
+      <p class="reveal">This is perhaps the most exam-important and practically important distinction in FEMA:</p>
+
+      <div class="current-capital-visual reveal">
+        <div class="cc-card current">
+          <h3 style="color:var(--accent2);">💳 Current Account</h3>
+          <p style="font-size:0.88rem;color:var(--text-muted);">Day-to-day cross-border payments. <strong>Does NOT create cross-border assets/liabilities.</strong></p>
+          <p style="font-size:0.88rem;"><strong>Default: PERMITTED</strong> (negative list approach)</p>
+          <ul class="examples">
+            <li>✅ Import/export payments</li>
+            <li>✅ Travel expenses abroad</li>
+            <li>✅ Education fees abroad</li>
+            <li>✅ Medical expenses abroad</li>
+            <li>✅ Remittance for family living abroad</li>
+            <li>✅ Subscription/membership fees</li>
+            <li>✅ Interest payments on foreign loans</li>
+            <li>✅ Salary remittance</li>
+            <li>✅ Consultancy/service payments</li>
+          </ul>
+        </div>
+        <div class="cc-card capital">
+          <h3 style="color:var(--accent5);">📊 Capital Account</h3>
+          <p style="font-size:0.88rem;color:var(--text-muted);">Transactions that <strong>ALTER cross-border assets or liabilities.</strong></p>
+          <p style="font-size:0.88rem;"><strong>Default: REGULATED</strong> (positive list approach)</p>
+          <ul class="examples">
+            <li>📈 Foreign Direct Investment (FDI)</li>
+            <li>📈 Overseas Direct Investment (ODI)</li>
+            <li>📈 Portfolio investment (FPI)</li>
+            <li>💰 External Commercial Borrowings (ECB)</li>
+            <li>🏠 Buying property abroad</li>
+            <li>🏠 NRI buying property in India</li>
+            <li>📊 Buying foreign stocks/bonds</li>
+            <li>🤝 Giving guarantees for foreigners</li>
+            <li>💱 Forex derivatives/hedging</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout reveal">
+        <span class="callout-icon">🔑</span>
+        <div class="callout-body">
+          <strong>The easiest test:</strong> Ask yourself — "Does this transaction create or change an asset I own in another country, or a liability someone else has to me across borders?" If yes → Capital Account. If it's just a payment for goods/services with no lasting cross-border position → Current Account.
+        </div>
+      </div>
+
+      <!-- Quiz -->
+      <div class="quiz-box reveal">
+        <div class="quiz-q">🧠 Classify: An Indian company pays $50,000 to a US law firm for legal advisory services. Is this a current or capital account transaction?</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" data-correct="true">Current Account Transaction</button>
+          <button class="quiz-opt" data-correct="false">Capital Account Transaction</button>
+          <button class="quiz-opt" data-correct="false">Neither — it doesn't involve forex</button>
+          <button class="quiz-opt" data-correct="false">It depends on the amount involved</button>
+        </div>
+        <div class="quiz-feedback" 
+          data-correct="Correct! Paying for legal services is a payment for services — a current account transaction. No cross-border asset or liability is created. The Indian company doesn't own anything in the US after this payment." 
+          data-wrong="The correct answer is Current Account. Paying for legal services doesn't create a cross-border asset or liability — it's just a service payment (current account), regardless of the amount.">
+        </div>
+      </div>
+
+      <div class="quiz-box reveal">
+        <div class="quiz-q">🧠 Classify: An Indian resident invests $100,000 to buy shares of Apple Inc. on NASDAQ. Is this a current or capital account transaction?</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" data-correct="false">Current Account Transaction</button>
+          <button class="quiz-opt" data-correct="true">Capital Account Transaction</button>
+        </div>
+        <div class="quiz-feedback" 
+          data-correct="Correct! Buying shares in a foreign company creates an asset outside India for a person resident in India — that's a capital account transaction. It would typically be done under the LRS route." 
+          data-wrong="Buying foreign shares creates a new asset outside India for a resident — that alters assets outside India, making it a capital account transaction.">
+        </div>
+      </div>
+
+      <div class="page-nav reveal">
+        <a href="../02-scope-applicability/index.html"><span class="nav-dir">← Previous</span><span class="nav-title">Scope & Applicability</span></a>
+        <a href="../04-regulatory-architecture/index.html"><span class="nav-dir">Next →</span><span class="nav-title">Regulatory Architecture</span></a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer"><p>FEMA Act 1999 — Interactive Explainer · <a href="../index.html">Back to Home</a></p></footer>
+  <script src="../js/common.js"></script>
+  <script>
+    // Definition filter
+    document.querySelectorAll('#defFilter .filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('#defFilter .filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const cat = btn.dataset.cat;
+        document.querySelectorAll('#defList .def-card').forEach(card => {
+          if (cat === 'all' || card.dataset.cat === cat) {
+            card.style.display = '';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

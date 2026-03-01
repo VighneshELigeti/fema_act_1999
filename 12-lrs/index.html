@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Liberalised Remittance Scheme — FEMA Act 1999</title>
+  <link rel="stylesheet" href="../css/common.css">
+  <style>
+    .lrs-hero-stat {
+      background: var(--bg-card);
+      border: 2px solid var(--accent);
+      border-radius: var(--radius);
+      padding: 2rem;
+      text-align: center;
+      margin: 1.5rem auto;
+      max-width: 400px;
+    }
+    .lrs-hero-stat .big-num {
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .lrs-hero-stat .big-label {
+      font-size: 1rem;
+      color: var(--text-muted);
+    }
+    .lrs-uses-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+    .lrs-use {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.2rem;
+      text-align: center;
+      transition: all 0.3s;
+    }
+    .lrs-use:hover { border-color: var(--accent); }
+    .lrs-use .use-icon { font-size: 1.5rem; margin-bottom: 0.3rem; }
+    .lrs-use h4 { margin: 0.3rem 0; font-size: 0.9rem; }
+    .lrs-use p { margin: 0; font-size: 0.78rem; color: var(--text-muted); }
+    .lrs-use.cap { border-top: 3px solid var(--accent5); }
+    .lrs-use.cur { border-top: 3px solid var(--accent2); }
+    .excl-list {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin: 1rem 0;
+      border-left: 4px solid #f85149;
+    }
+    .excl-list h4 { margin-top: 0; color: #f85149; }
+    .excl-list ul { font-size: 0.88rem; color: var(--text-muted); padding-left: 1.2rem; }
+    .tcs-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      font-size: 0.85rem;
+    }
+    .tcs-table th, .tcs-table td {
+      padding: 0.6rem 0.8rem;
+      border: 1px solid var(--border);
+      text-align: left;
+    }
+    .tcs-table th { background: rgba(88,166,255,0.05); color: var(--accent); font-weight: 700; }
+    .process-steps {
+      display: flex;
+      gap: 0;
+      margin: 1.5rem 0;
+      flex-wrap: wrap;
+    }
+    .p-step {
+      flex: 1;
+      min-width: 130px;
+      padding: 1rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      text-align: center;
+      font-size: 0.82rem;
+    }
+    .p-step:first-child { border-radius: var(--radius) 0 0 var(--radius); }
+    .p-step:last-child { border-radius: 0 var(--radius) var(--radius) 0; }
+    .p-step .s-num {
+      display: inline-block;
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 700;
+      line-height: 24px;
+      font-size: 0.75rem;
+      margin-bottom: 0.3rem;
+    }
+    @media(max-width:600px) {
+      .process-steps { flex-direction: column; }
+      .p-step:first-child { border-radius: var(--radius) var(--radius) 0 0; }
+      .p-step:last-child { border-radius: 0 0 var(--radius) var(--radius); }
+    }
+  </style>
+</head>
+<body>
+  <div class="reading-progress"><div class="fill"></div></div>
+  <nav class="topnav">
+    <a href="../index.html" class="logo">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10A15.3 15.3 0 0 1 12 2z"/></svg>
+      FEMA Act 1999
+    </a>
+    <div class="nav-links">
+      <a href="../11-interfaces/index.html">← Prev</a>
+      <a href="../13-fema-vs-fera/index.html">Next →</a>
+      <button class="theme-toggle">☀️</button>
+    </div>
+  </nav>
+  <div style="height:60px;"></div>
+  <div class="container"><div class="breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><span>Chapter 12: Liberalised Remittance Scheme (LRS)</span></div></div>
+
+  <section class="section">
+    <div class="container">
+      <div class="reveal">
+        <span class="tag tag-green">Chapter 12</span>
+        <h1>Liberalised Remittance Scheme (LRS)</h1>
+        <p style="font-size:1.1rem;color:var(--text-muted);max-width:700px;">
+          LRS is arguably the most relevant FEMA provision for individual Indian residents. Introduced in 2004, it allows resident individuals to freely remit up to a specified limit per financial year for any permissible current or capital account transaction.
+        </p>
+      </div>
+
+      <div class="lrs-hero-stat reveal">
+        <div class="big-num">$250,000</div>
+        <div class="big-label">Per person per financial year (April–March)</div>
+        <p style="font-size:0.82rem;color:var(--text-dim);margin-top:0.5rem;">≈ ₹2.1 crore at current exchange rates</p>
+      </div>
+
+      <div class="callout reveal">
+        <span class="callout-icon">📜</span>
+        <div class="callout-body">
+          <strong>Legal basis:</strong> LRS was introduced by RBI under its regulation-making powers. The limit has been revised multiple times: USD 25,000 (2004) → USD 50,000 → USD 100,000 → USD 200,000 → USD 250,000 (current, since 2015). During the 2008 crisis, it was temporarily reduced to USD 50,000.
+        </div>
+      </div>
+
+      <!-- What Can LRS Be Used For -->
+      <h2 class="reveal">What Can LRS Be Used For?</h2>
+      <p class="reveal" style="color:var(--text-muted);">LRS covers both current account AND capital account transactions:</p>
+
+      <div class="lrs-uses-grid reveal">
+        <div class="lrs-use cur">
+          <div class="use-icon">✈️</div>
+          <h4>Private Travel</h4>
+          <p>Holiday, business travel, pilgrimage</p>
+        </div>
+        <div class="lrs-use cur">
+          <div class="use-icon">🎓</div>
+          <h4>Education</h4>
+          <p>Tuition, hostel, living expenses</p>
+        </div>
+        <div class="lrs-use cur">
+          <div class="use-icon">🏥</div>
+          <h4>Medical Treatment</h4>
+          <p>Treatment abroad + attendant expenses</p>
+        </div>
+        <div class="lrs-use cur">
+          <div class="use-icon">🎁</div>
+          <h4>Gifts & Donations</h4>
+          <p>To non-resident friends, NGOs</p>
+        </div>
+        <div class="lrs-use cur">
+          <div class="use-icon">👨‍👩‍👧</div>
+          <h4>Family Maintenance</h4>
+          <p>Living expenses of relatives abroad</p>
+        </div>
+        <div class="lrs-use cap">
+          <div class="use-icon">📊</div>
+          <h4>Foreign Stocks / MFs</h4>
+          <p>Buy Apple/Tesla shares, foreign ETFs</p>
+        </div>
+        <div class="lrs-use cap">
+          <div class="use-icon">🏠</div>
+          <h4>Immovable Property</h4>
+          <p>Buy property abroad</p>
+        </div>
+        <div class="lrs-use cap">
+          <div class="use-icon">🏦</div>
+          <h4>Foreign Deposits</h4>
+          <p>Open bank accounts abroad</p>
+        </div>
+        <div class="lrs-use cap">
+          <div class="use-icon">💰</div>
+          <h4>Lending</h4>
+          <p>Loans to NRI/non-resident relatives</p>
+        </div>
+        <div class="lrs-use cap">
+          <div class="use-icon">🤝</div>
+          <h4>Investment in JV/WOS</h4>
+          <p>Setting up a business abroad (within limit)</p>
+        </div>
+      </div>
+      <p class="reveal" style="font-size:0.82rem;color:var(--text-dim);">
+        <span style="display:inline-block;width:12px;height:12px;background:var(--accent2);border-radius:2px;margin-right:4px;vertical-align:middle;"></span> Current Account &nbsp;
+        <span style="display:inline-block;width:12px;height:12px;background:var(--accent5);border-radius:2px;margin-right:4px;vertical-align:middle;"></span> Capital Account
+      </p>
+
+      <!-- Exclusions -->
+      <div class="excl-list reveal">
+        <h4>🚫 What LRS CANNOT Be Used For</h4>
+        <ul>
+          <li>Remittance for purchase of <strong>lottery tickets, sweepstakes, banned magazines</strong> (Schedule I prohibition)</li>
+          <li>Remittance to countries identified as <strong>"non-cooperative"</strong> by FATF</li>
+          <li><strong>Trading in forex abroad</strong> (speculative forex trading overseas)</li>
+          <li>Remittance for <strong>margins or margin calls</strong> to overseas exchanges/counterparties</li>
+          <li>Remittance for buying <strong>FCCBs issued by Indian companies</strong> in secondary market abroad</li>
+          <li>Capital account remittances <strong>directly or indirectly to countries where FEMA restricts</strong> (e.g., Pakistan — different rules apply)</li>
+        </ul>
+      </div>
+
+      <!-- Process -->
+      <h2 class="reveal">How to Make an LRS Remittance — Step by Step</h2>
+      <div class="process-steps reveal">
+        <div class="p-step"><div class="s-num">1</div><div>Visit AD bank branch</div></div>
+        <div class="p-step"><div class="s-num">2</div><div>Fill Form A2 (purpose declaration)</div></div>
+        <div class="p-step"><div class="s-num">3</div><div>Submit PAN (mandatory for LRS)</div></div>
+        <div class="p-step"><div class="s-num">4</div><div>Bank verifies KYC + previous utilization</div></div>
+        <div class="p-step"><div class="s-num">5</div><div>Form 15CA/15CB (if TDS applicable)</div></div>
+        <div class="p-step"><div class="s-num">6</div><div>TCS collected by bank</div></div>
+        <div class="p-step"><div class="s-num">7</div><div>Remittance processed</div></div>
+      </div>
+
+      <!-- TCS Table -->
+      <h2 class="reveal">Tax Collected at Source (TCS) on LRS</h2>
+      <p class="reveal" style="color:var(--text-muted);font-size:0.9rem;">Since October 2023, TCS rates have been revised significantly:</p>
+      <div style="overflow-x:auto;" class="reveal">
+        <table class="tcs-table">
+          <thead>
+            <tr><th>Purpose</th><th>Up to ₹7 lakh/FY</th><th>Above ₹7 lakh/FY</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Education (funded by loan)</td><td>Nil</td><td>0.5%</td></tr>
+            <tr><td>Education (self-funded)</td><td>Nil</td><td>5%</td></tr>
+            <tr><td>Medical treatment</td><td>Nil</td><td>5%</td></tr>
+            <tr><td>All other purposes (travel, investment, gifts, etc.)</td><td>Nil</td><td>20%</td></tr>
+            <tr><td>Tour packages (any amount)</td><td colspan="2">5% (no ₹7 lakh threshold — TCS from Re. 1)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout reveal">
+        <span class="callout-icon">💡</span>
+        <div class="callout-body">
+          <strong>TCS is NOT a tax liability — it's an advance.</strong> TCS collected is adjustable against your total income tax liability when you file your ITR. If your total tax payable is less than TCS collected, you get a refund. But it does lock up your money until the ITR is processed — so factor this into your cash flow planning.
+        </div>
+      </div>
+
+      <!-- Minors & Others -->
+      <h2 class="reveal">Special Cases & FAQs</h2>
+      <div class="accordion reveal">
+        <div class="acc-item">
+          <button class="acc-trigger">Can minors use LRS?</button>
+          <div class="acc-content"><p>Yes. Minors get their own USD 250,000 limit. The LRS form is signed by the natural guardian (parent). This means a family of 4 can collectively remit up to USD 1 million per FY.</p></div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-trigger">Can NRIs use LRS?</button>
+          <div class="acc-content"><p>No. LRS is only for "persons resident in India" as defined under FEMA. NRIs have their own repatriation framework (NRE/FCNR accounts are already repatriable; NRO has its USD 1 million/FY limit).</p></div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-trigger">Can companies/firms use LRS?</button>
+          <div class="acc-content"><p>No. LRS is only for resident individuals. Companies must use ODI/ECB/trade routes for cross-border payments. Proprietorship firms — the individual proprietor can use LRS for personal purposes, but business payments should go through normal AD bank channels.</p></div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-trigger">Do credit card spends abroad count under LRS?</button>
+          <div class="acc-content"><p>Since Budget 2023-24, international credit card spends ARE included under LRS and subject to TCS at 20% above ₹7 lakh. However, this was later modified — currently, credit card payments for education and medical are exempt from TCS up to ₹7 lakh threshold. Check latest RBI/CBDT circulars for current position.</p></div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-trigger">What happens if I exceed USD 250,000?</button>
+          <div class="acc-content"><p>Your AD bank's system will block the transaction — they track cumulative LRS usage per PAN per FY. If you genuinely need to exceed the limit (e.g., for medical emergency), you'll need RBI's specific approval. Using multiple banks to circumvent the limit is a FEMA contravention.</p></div>
+        </div>
+      </div>
+
+      <!-- Quiz -->
+      <div class="quiz-box reveal">
+        <div class="quiz-q">🧠 The current annual LRS limit per resident individual is:</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" data-correct="false">USD 100,000</button>
+          <button class="quiz-opt" data-correct="false">USD 150,000</button>
+          <button class="quiz-opt" data-correct="true">USD 250,000</button>
+          <button class="quiz-opt" data-correct="false">USD 500,000</button>
+        </div>
+        <div class="quiz-feedback" 
+          data-correct="Correct! The LRS limit has been USD 250,000 per person per financial year since 2015. This covers both current and capital account permissible transactions." 
+          data-wrong="The current LRS limit is USD 250,000 per person per financial year. This has been unchanged since 2015. It covers both permitted current account and capital account transactions.">
+        </div>
+      </div>
+
+      <div class="page-nav reveal">
+        <a href="../11-interfaces/index.html"><span class="nav-dir">← Previous</span><span class="nav-title">FEMA Interfaces</span></a>
+        <a href="../13-fema-vs-fera/index.html"><span class="nav-dir">Next →</span><span class="nav-title">FEMA vs FERA</span></a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer"><p>FEMA Act 1999 — Interactive Explainer · <a href="../index.html">Back to Home</a></p></footer>
+  <script src="../js/common.js"></script>
+</body>
+</html>

@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Regulatory Architecture — FEMA Act 1999</title>
+  <link rel="stylesheet" href="../css/common.css">
+  <style>
+    .org-node {
+      background: var(--bg-card);
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.2rem 1.5rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-align: center;
+      position: relative;
+    }
+    .org-node:hover, .org-node.active {
+      border-color: var(--accent);
+      box-shadow: 0 0 20px rgba(88,166,255,0.15);
+    }
+    .org-node .node-icon { font-size: 1.5rem; margin-bottom: 0.25rem; }
+    .org-node .node-title { font-weight: 700; font-size: 0.92rem; }
+    .org-node .node-subtitle { color: var(--text-dim); font-size: 0.75rem; }
+    .org-grid {
+      display: grid;
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+    .org-level-1 { grid-template-columns: 1fr; max-width:320px; margin-left:auto;margin-right:auto; }
+    .org-level-2 { grid-template-columns: 1fr 1fr; max-width:500px; margin-left:auto;margin-right:auto; }
+    .org-level-3 { grid-template-columns: repeat(3, 1fr); }
+    .org-level-4 { grid-template-columns: repeat(3, 1fr); }
+    @media(max-width:700px){
+      .org-level-3, .org-level-4, .org-level-2 { grid-template-columns: 1fr; }
+    }
+    .org-connector {
+      text-align: center;
+      color: var(--accent);
+      font-size: 1.4rem;
+      line-height: 1.2;
+    }
+    .detail-panel {
+      background: var(--bg-card);
+      border: 1px solid var(--accent);
+      border-radius: var(--radius);
+      padding: 2rem;
+      margin: 1.5rem 0;
+      display: none;
+      animation: fadeSlideIn 0.3s ease;
+    }
+    .detail-panel.visible { display: block; }
+    @keyframes fadeSlideIn { from { opacity:0; transform: translateY(-10px); } to { opacity:1; transform: translateY(0); } }
+    .detail-panel h3 { margin-top: 0; color: var(--accent); }
+    .power-list { list-style: none; padding: 0; }
+    .power-list li { padding: 0.5rem 0; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
+    .power-list li:last-child { border: none; }
+    .power-list li::before { content: '⚡ '; }
+    .process-flow {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin: 1.5rem 0;
+    }
+    .process-step {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0.8rem 1.2rem;
+      font-size: 0.85rem;
+      text-align: center;
+      flex: 1;
+      min-width: 120px;
+    }
+    .process-step .step-num {
+      display: inline-block;
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.75rem;
+      line-height: 24px;
+      margin-bottom: 0.3rem;
+      font-weight: 700;
+    }
+    .process-arrow { color: var(--accent); font-size: 1.2rem; flex-shrink: 0; }
+    @media(max-width:600px) {
+      .process-flow { flex-direction: column; }
+      .process-arrow { transform: rotate(90deg); }
+    }
+    .ad-categories {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+    @media(max-width:700px) { .ad-categories { grid-template-columns: 1fr; } }
+    .ad-cat {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.2rem;
+      text-align: center;
+    }
+    .ad-cat .cat-label {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.15rem 0.6rem;
+      border-radius: 999px;
+      margin-bottom: 0.5rem;
+    }
+    .ad-cat h4 { margin: 0.5rem 0 0.3rem; }
+    .ad-cat .cat-desc { font-size: 0.82rem; color: var(--text-muted); }
+  </style>
+</head>
+<body>
+  <div class="reading-progress"><div class="fill"></div></div>
+  <nav class="topnav">
+    <a href="../index.html" class="logo">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10A15.3 15.3 0 0 1 12 2z"/></svg>
+      FEMA Act 1999
+    </a>
+    <div class="nav-links">
+      <a href="../03-key-definitions/index.html">← Prev</a>
+      <a href="../05-current-account/index.html">Next →</a>
+      <button class="theme-toggle">☀️</button>
+    </div>
+  </nav>
+  <div style="height:60px;"></div>
+  <div class="container"><div class="breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><span>Chapter 04: Regulatory Architecture</span></div></div>
+
+  <section class="section">
+    <div class="container">
+      <div class="reveal">
+        <span class="tag tag-purple">Chapter 04</span>
+        <h1>Regulatory Architecture</h1>
+        <p style="font-size:1.1rem;color:var(--text-muted);max-width:680px;">
+          FEMA creates a multi-layered institutional framework where Parliament legislates, the Central Government rulemaking, RBI regulates day-to-day, and enforcement is separated from adjudication.
+        </p>
+      </div>
+
+      <div class="callout reveal">
+        <span class="callout-icon">🏛️</span>
+        <div class="callout-body">
+          <strong>Key design principle:</strong> FEMA intentionally separates the power to make rules (RBI/Central Govt), the power to investigate (Enforcement Directorate), the power to adjudicate (Adjudicating Authority), and the power to hear appeals (Special Director/Appellate Tribunal/High Court). This separation prevents arbitrary action.
+        </div>
+      </div>
+
+      <!-- Interactive Org Chart -->
+      <h2 class="reveal">Interactive Hierarchy — Click Any Node</h2>
+      <p class="reveal" style="color:var(--text-muted);font-size:0.9rem;">Click a node to see its powers, composition, and FEMA sections.</p>
+
+      <div class="org-grid org-level-1 reveal">
+        <div class="org-node" data-info="parliament">
+          <div class="node-icon">🏛️</div>
+          <div class="node-title">Parliament of India</div>
+          <div class="node-subtitle">Enacts FEMA (primary legislation)</div>
+        </div>
+      </div>
+      <div class="org-connector reveal">▼</div>
+      <div class="org-grid org-level-2 reveal">
+        <div class="org-node" data-info="centgov">
+          <div class="node-icon">🇮🇳</div>
+          <div class="node-title">Central Government</div>
+          <div class="node-subtitle">Rules & Policy</div>
+        </div>
+        <div class="org-node" data-info="rbi">
+          <div class="node-icon">🏦</div>
+          <div class="node-title">Reserve Bank of India</div>
+          <div class="node-subtitle">Regulations & Day-to-day Administration</div>
+        </div>
+      </div>
+      <div class="org-connector reveal">▼</div>
+      <div class="org-grid org-level-3 reveal">
+        <div class="org-node" data-info="ed">
+          <div class="node-icon">🔍</div>
+          <div class="node-title">Enforcement Directorate</div>
+          <div class="node-subtitle">Investigation</div>
+        </div>
+        <div class="org-node" data-info="authperson">
+          <div class="node-icon">🏧</div>
+          <div class="node-title">Authorized Persons</div>
+          <div class="node-subtitle">AD Banks, FFMCs</div>
+        </div>
+        <div class="org-node" data-info="adjauth">
+          <div class="node-icon">⚖️</div>
+          <div class="node-title">Adjudicating Authority</div>
+          <div class="node-subtitle">Decides Contraventions</div>
+        </div>
+      </div>
+      <div class="org-connector reveal">▼</div>
+      <div class="org-grid org-level-4 reveal">
+        <div class="org-node" data-info="specdir">
+          <div class="node-icon">👨‍⚖️</div>
+          <div class="node-title">Special Director (Appeals)</div>
+          <div class="node-subtitle">First appeal</div>
+        </div>
+        <div class="org-node" data-info="tribunal">
+          <div class="node-icon">🏢</div>
+          <div class="node-title">Appellate Tribunal</div>
+          <div class="node-subtitle">FEMA Section 18</div>
+        </div>
+        <div class="org-node" data-info="hc">
+          <div class="node-icon">🏫</div>
+          <div class="node-title">High Court</div>
+          <div class="node-subtitle">Final Appeal (Section 35)</div>
+        </div>
+      </div>
+
+      <!-- Detail Panel -->
+      <div class="detail-panel" id="detailPanel">
+        <h3 id="dp-title"></h3>
+        <p id="dp-desc"></p>
+        <h4 style="margin-top:1rem;">Key Powers & Functions</h4>
+        <ul class="power-list" id="dp-powers"></ul>
+        <p id="dp-sections" style="font-size:0.82rem;color:var(--text-dim);margin-top:1rem;"></p>
+      </div>
+
+      <!-- RBI's Powers -->
+      <h2 class="reveal">RBI — The Principal Regulator</h2>
+      <p class="reveal">RBI is the most important day-to-day regulator under FEMA. Here's what it does:</p>
+
+      <div class="accordion reveal">
+        <div class="acc-item">
+          <button class="acc-trigger">Section 10 — Authorize Persons to Deal in Forex</button>
+          <div class="acc-content"><p>RBI authorizes banks and financial institutions to deal in forex (Authorized Dealers), money changers, and OBUs. It can revoke authorization for non-compliance. Without RBI's license, no entity can deal in foreign exchange.</p></div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-trigger">Section 11 — Regulate & Direct Authorized Persons</button>
+          <div class="acc-content"><p>RBI can issue directions to authorized persons regarding forex dealings, require information/documents, inspect books/accounts, and generally ensure APs comply with FEMA. This is the backbone of operational control — RBI issues circulars to AD banks who then enforce limits at the ground level.</p></div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-trigger">Section 47 — Power to Make Regulations</button>
+          <div class="acc-content"><p>RBI can make regulations for all matters under FEMA that Parliament has delegated to it. These regulations (like FEMA 20 for FDI, FEMA 7/8 for current/capital account) have the force of law. They're published in the Official Gazette. Most practical FEMA compliance revolves around these regulations.</p></div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-trigger">Section 12 — Power to Inspect AD Banks</button>
+          <div class="acc-content"><p>RBI can cause an inspection of any authorized person, its books, accounts, and other documents. RBI can appoint inspectors who have powers similar to a civil court. This ensures authorized persons properly follow FEMA requirements.</p></div>
+        </div>
+      </div>
+
+      <!-- Authorized Persons Categories -->
+      <h2 class="reveal">Authorized Person Categories</h2>
+      <p class="reveal">Under Section 10, RBI creates a tiered system of authorized persons:</p>
+      <div class="ad-categories reveal">
+        <div class="ad-cat">
+          <div class="cat-label">AD Category I</div>
+          <h4>Commercial Banks</h4>
+          <p class="cat-desc">All scheduled commercial banks (SBI, HDFC, ICICI etc.). Can handle ALL forex transactions — trade, remittances, capital account, LRS, ECBs, FDI, everything. They're the primary forex interface for most people and businesses.</p>
+        </div>
+        <div class="ad-cat">
+          <div class="cat-label">AD Category II</div>
+          <h4>Upgraded FFMCs</h4>
+          <p class="cat-desc">Full Fledged Money Changers upgraded to AD-II. Limited transactions: non-trade current account (travel, education, medical), release of forex for private visits, and certain trade-related transactions up to specified limits.</p>
+        </div>
+        <div class="ad-cat">
+          <div class="cat-label">AD Category III</div>
+          <h4>Select Financial Institutions</h4>
+          <p class="cat-desc">Certain FIs authorized for specific purposes (e.g., NABARD, EXIM Bank, SIDBI). Very limited scope — only specific transactions they're authorized for. Not general-purpose forex dealers.</p>
+        </div>
+      </div>
+
+      <!-- Enforcement Process -->
+      <h2 class="reveal">Enforcement & Adjudication Process</h2>
+      <p class="reveal">When FEMA is violated, here's the step-by-step process:</p>
+
+      <div class="process-flow reveal">
+        <div class="process-step"><div class="step-num">1</div><div>Detection<br><small>By RBI, ED, or reported by AD bank</small></div></div>
+        <div class="process-arrow">→</div>
+        <div class="process-step"><div class="step-num">2</div><div>Investigation<br><small>ED investigates, summons documents</small></div></div>
+        <div class="process-arrow">→</div>
+        <div class="process-step"><div class="step-num">3</div><div>Show Cause Notice<br><small>Issued by Adjudicating Authority</small></div></div>
+        <div class="process-arrow">→</div>
+        <div class="process-step"><div class="step-num">4</div><div>Adjudication<br><small>Hearing, evidence, penalty order</small></div></div>
+      </div>
+      <div class="process-flow reveal">
+        <div class="process-step"><div class="step-num">5</div><div>Penalty Order<br><small>Up to 3× the sum involved</small></div></div>
+        <div class="process-arrow">→</div>
+        <div class="process-step"><div class="step-num">6</div><div>Appeal to Special Director<br><small>Within 45 days</small></div></div>
+        <div class="process-arrow">→</div>
+        <div class="process-step"><div class="step-num">7</div><div>Appeal to Appellate Tribunal<br><small>Within 45 days</small></div></div>
+        <div class="process-arrow">→</div>
+        <div class="process-step"><div class="step-num">8</div><div>High Court<br><small>On questions of law only</small></div></div>
+      </div>
+
+      <div class="callout reveal">
+        <span class="callout-icon">⚖️</span>
+        <div class="callout-body">
+          <strong>FEMA is civil, not criminal:</strong> Unlike FERA (which was criminal), FEMA contraventions attract only civil penalties — monetary fines, not imprisonment. However, if the violation also amounts to an offence under other laws (like Prevention of Money Laundering Act), criminal consequences can follow through those separate laws.
+        </div>
+      </div>
+
+      <!-- Quiz -->
+      <div class="quiz-box reveal">
+        <div class="quiz-q">🧠 Which entity is responsible for day-to-day regulation and administration of FEMA?</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" data-correct="false">Central Government</button>
+          <button class="quiz-opt" data-correct="true">Reserve Bank of India</button>
+          <button class="quiz-opt" data-correct="false">Enforcement Directorate</button>
+          <button class="quiz-opt" data-correct="false">SEBI</button>
+        </div>
+        <div class="quiz-feedback" 
+          data-correct="Correct! RBI is the principal regulator under FEMA. It authorizes ADs, makes regulations, inspects, and controls day-to-day forex operations." 
+          data-wrong="It's RBI. While the Central Government makes some rules and the ED handles investigations, the Reserve Bank handles day-to-day regulation — authorizing dealers, issuing regulations, and supervising operations.">
+        </div>
+      </div>
+
+      <div class="quiz-box reveal">
+        <div class="quiz-q">🧠 What is the nature of contraventions under FEMA?</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" data-correct="false">Criminal — can lead to imprisonment</button>
+          <button class="quiz-opt" data-correct="true">Civil — monetary penalties only</button>
+          <button class="quiz-opt" data-correct="false">Both criminal and civil</button>
+          <button class="quiz-opt" data-correct="false">None — FEMA has no penalties</button>
+        </div>
+        <div class="quiz-feedback" 
+          data-correct="Correct! FEMA contraventions are civil. Penalties are monetary (up to 3× the amount involved). This was a major shift from FERA which treated violations as criminal offences." 
+          data-wrong="FEMA treats violations as civil matters — the maximum penalty is monetary (up to 3× the sum involved). This was one of the biggest changes from FERA, which made forex violations criminal offences punishable with imprisonment.">
+        </div>
+      </div>
+
+      <div class="page-nav reveal">
+        <a href="../03-key-definitions/index.html"><span class="nav-dir">← Previous</span><span class="nav-title">Key Definitions</span></a>
+        <a href="../05-current-account/index.html"><span class="nav-dir">Next →</span><span class="nav-title">Current Account Transactions</span></a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer"><p>FEMA Act 1999 — Interactive Explainer · <a href="../index.html">Back to Home</a></p></footer>
+  <script src="../js/common.js"></script>
+  <script>
+    const nodeData = {
+      parliament: {
+        title: 'Parliament of India',
+        desc: 'The sovereign legislature that enacted FEMA in 1999, replacing FERA 1973. Parliament can amend FEMA and has delegated rule-making powers to the Central Government and RBI.',
+        powers: ['Enacted FEMA, 1999 (Act No. 42 of 1999)', 'Power to amend the Act', 'Delegated rule-making to Central Govt (Section 46)', 'Delegated regulation-making to RBI (Section 47)', 'Parliamentary oversight through tabled Rules/Regulations'],
+        sections: 'FEMA is organized into 7 Chapters, 49 Sections.'
+      },
+      centgov: {
+        title: 'Central Government (Ministry of Finance)',
+        desc: 'Makes rules under Section 46 and exercises specific powers like appointing Adjudicating Authorities, establishing the Appellate Tribunal, and setting capital account transaction rules.',
+        powers: ['Make rules under Section 46 for carrying out FEMA', 'Appoint Adjudicating Authorities (Section 16)', 'Establish Appellate Tribunal (Section 18)', 'Impose restrictions on capital account transactions (Section 6)', 'FDI policy through DPIIT (Department for Promotion of Industry)', 'Compounding of contraventions (delegated to RBI for most cases)'],
+        sections: 'Key sections: 6(2), 6(3), 16, 18, 46'
+      },
+      rbi: {
+        title: 'Reserve Bank of India',
+        desc: 'The principal day-to-day regulator of FEMA. RBI makes regulations, authorizes dealers, inspects compliance, controls capital and current account transactions, and issues Master Directions.',
+        powers: ['Authorize dealers/money changers under Section 10', 'Make regulations under Section 47', 'Issue Master Directions and Circulars', 'Inspect authorized persons (Section 12)', 'Direct authorized persons (Section 11)', 'Regulate current account transactions (Section 5)', 'Regulate capital account transactions with Central Govt (Section 6)', 'Compounding of contraventions (Section 15)'],
+        sections: 'Key sections: 5, 6, 10, 11, 12, 15, 47'
+      },
+      ed: {
+        title: 'Enforcement Directorate (ED)',
+        desc: 'The investigative arm. ED investigates FEMA contraventions, searches premises, seizes documents, and initiates adjudication proceedings. Works under the Department of Revenue, Ministry of Finance.',
+        powers: ['Investigate suspected FEMA contraventions', 'Search and seizure powers (Section 37)', 'Issue summons for documents and testimony', 'File complaints before Adjudicating Authority', 'Assist in prosecution under Section 13(1)', 'Cross-border law enforcement cooperation'],
+        sections: 'Key sections: 13, 36, 37, 38'
+      },
+      authperson: {
+        title: 'Authorized Persons (AD Banks, FFMCs)',
+        desc: 'The ground-level gatekeepers. Every forex transaction must go through them. They verify compliance, collect documentation, report to RBI, and refuse non-compliant transactions.',
+        powers: ['Deal in foreign exchange on behalf of clients', 'Verify KYC and transaction compliance', 'Report suspicious transactions to RBI/FIU', 'Refuse transactions that violate FEMA/RBI directions', 'Maintain records of all forex transactions', 'Submit periodic returns to RBI'],
+        sections: 'Key sections: 10, 11'
+      },
+      adjauth: {
+        title: 'Adjudicating Authority',
+        desc: 'Special officers appointed by Central Government to adjudicate FEMA contraventions. They conduct hearings, evaluate evidence, and impose penalties. Typically officers of ED with rank of Director or above.',
+        powers: ['Hear contravention cases (Section 16)', 'Issue show cause notices', 'Conduct hearings and evaluate evidence', 'Impose penalties up to 3× amount involved (Section 13)', 'Order confiscation of currency/property (Section 13)', 'Additional daily penalty for continuing contravention'],
+        sections: 'Key sections: 13, 16'
+      },
+      specdir: {
+        title: 'Special Director (Appeals)',
+        desc: 'Hears first appeals against orders of Adjudicating Authority where the penalty amount is up to ₹5 lakh. Appointed by Central Government.',
+        powers: ['Hear appeals against Adjudicating Authority orders (Section 17)', 'Appeal must be filed within 45 days', 'Can confirm, modify or set aside the order', 'Power to condone delay in filing appeal'],
+        sections: 'Key section: 17'
+      },
+      tribunal: {
+        title: 'Appellate Tribunal for Foreign Exchange (ATFE)',
+        desc: 'Second appellate authority. Hears appeals against Special Director orders and against Adjudicating Authority orders where penalty exceeds ₹5 lakh. Also hears matters under Prevention of Money Laundering Act.',
+        powers: ['Hear appeals under Section 18 and 19', 'Appeal within 45 days of impugned order', 'Powers of a civil court (summons, evidence, etc.)', 'Can confirm, modify, or set aside orders', 'Direct recovery of penalty amounts'],
+        sections: 'Key sections: 18, 19, 20, 28-34'
+      },
+      hc: {
+        title: 'High Court',
+        desc: 'Final appeal lies to the High Court under Section 35, but ONLY on questions of law. The High Court will not re-examine facts — only whether the law was correctly applied.',
+        powers: ['Hear appeals on questions of law only (Section 35)', 'Appeal within 60 days of Appellate Tribunal order', 'Writ jurisdiction under Article 226 of Constitution', 'Can stay impugned orders pending hearing'],
+        sections: 'Key section: 35'
+      }
+    };
+
+    document.querySelectorAll('.org-node').forEach(node => {
+      node.addEventListener('click', () => {
+        const key = node.dataset.info;
+        const data = nodeData[key];
+        if (!data) return;
+        document.querySelectorAll('.org-node').forEach(n => n.classList.remove('active'));
+        node.classList.add('active');
+        const panel = document.getElementById('detailPanel');
+        document.getElementById('dp-title').textContent = data.title;
+        document.getElementById('dp-desc').textContent = data.desc;
+        const ul = document.getElementById('dp-powers');
+        ul.innerHTML = data.powers.map(p => `<li>${p}</li>`).join('');
+        document.getElementById('dp-sections').textContent = data.sections;
+        panel.classList.add('visible');
+        panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      });
+    });
+  </script>
+</body>
+</html>

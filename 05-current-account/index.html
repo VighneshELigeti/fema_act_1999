@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Current Account Transactions — FEMA Act 1999</title>
+  <link rel="stylesheet" href="../css/common.css">
+  <style>
+    .rule-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin: 1rem 0;
+    }
+    .rule-card.prohibited { border-left: 4px solid #f85149; }
+    .rule-card.prior-approval { border-left: 4px solid #d29922; }
+    .rule-card.capped { border-left: 4px solid #58a6ff; }
+    .rule-card.free { border-left: 4px solid #3fb950; }
+    .rule-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 0.15rem 0.6rem;
+      border-radius: 999px;
+      margin-bottom: 0.5rem;
+    }
+    .rule-label.prohibited { background: rgba(248,81,73,0.12); color: #f85149; }
+    .rule-label.prior-approval { background: rgba(210,153,34,0.12); color: #d29922; }
+    .rule-label.capped { background: rgba(88,166,255,0.12); color: #58a6ff; }
+    .rule-label.free { background: rgba(63,185,80,0.12); color: #3fb950; }
+    .rule-card h4 { margin: 0.3rem 0 0.5rem; }
+    .rule-card p { font-size: 0.9rem; color: var(--text-muted); margin: 0; }
+    .bucket-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+    .bucket {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.2rem;
+    }
+    .bucket .bucket-icon { font-size: 1.5rem; margin-bottom: 0.3rem; }
+    .bucket h4 { margin: 0.3rem 0; }
+    .bucket .bucket-limit {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--accent2);
+      margin: 0.3rem 0;
+    }
+    .bucket ul { font-size: 0.85rem; color: var(--text-muted); padding-left: 1.2rem; margin: 0.3rem 0 0; }
+    .schedule-tabs { margin: 1.5rem 0; }
+    .schedule-tab-btns {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+    .schedule-tab-btns button {
+      padding: 0.5rem 1.2rem;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-family: var(--font);
+      color: var(--text-muted);
+      transition: all 0.2s;
+    }
+    .schedule-tab-btns button:hover, .schedule-tab-btns button.active {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(88,166,255,0.05);
+    }
+    .schedule-panel { display: none; }
+    .schedule-panel.active { display: block; }
+  </style>
+</head>
+<body>
+  <div class="reading-progress"><div class="fill"></div></div>
+  <nav class="topnav">
+    <a href="../index.html" class="logo">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10A15.3 15.3 0 0 1 12 2z"/></svg>
+      FEMA Act 1999
+    </a>
+    <div class="nav-links">
+      <a href="../04-regulatory-architecture/index.html">← Prev</a>
+      <a href="../06-capital-account/index.html">Next →</a>
+      <button class="theme-toggle">☀️</button>
+    </div>
+  </nav>
+  <div style="height:60px;"></div>
+  <div class="container"><div class="breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><span>Chapter 05: Current Account Transactions</span></div></div>
+
+  <section class="section">
+    <div class="container">
+      <div class="reveal">
+        <span class="tag tag-green">Chapter 05</span>
+        <h1>Current Account Transactions</h1>
+        <p style="font-size:1.1rem;color:var(--text-muted);max-width:680px;">
+          Section 5 of FEMA is the gateway provision for current account transactions. The default rule is <strong>freedom</strong> — any person may sell or draw foreign exchange for a current account transaction, unless specifically restricted by the Central Government.
+        </p>
+      </div>
+
+      <div class="callout reveal">
+        <span class="callout-icon">✅</span>
+        <div class="callout-body">
+          <strong>The Golden Rule of Section 5:</strong> "Any person may sell or draw foreign exchange to or from an authorised person if such sale or drawal is a current account transaction." This is FEMA's most liberalizing provision — current account is FREE by default. Only specific carved-out transactions need approval or are prohibited.
+        </div>
+      </div>
+
+      <!-- The Three Schedules -->
+      <h2 class="reveal">The Three Schedules — Classification of Restrictions</h2>
+      <p class="reveal">The Foreign Exchange Management (Current Account Transactions) Rules, 2000 classify restricted transactions into three schedules:</p>
+
+      <div class="schedule-tabs reveal">
+        <div class="schedule-tab-btns">
+          <button class="active" data-panel="sched1">Schedule I — Prohibited</button>
+          <button data-panel="sched2">Schedule II — Central Govt Approval</button>
+          <button data-panel="sched3">Schedule III — RBI Approval</button>
+        </div>
+
+        <div class="schedule-panel active" id="sched1">
+          <div class="rule-card prohibited">
+            <span class="rule-label prohibited">Prohibited</span>
+            <h4>Schedule I — Transactions That Are Totally Prohibited</h4>
+            <p>These transactions can <strong>NEVER</strong> be done, no matter what.</p>
+          </div>
+          <ul style="color:var(--text-muted);font-size:0.9rem;">
+            <li><strong>Remittance for lottery/sweepstakes winnings</strong> — Can't send money abroad to buy lottery tickets or receive lottery prizes</li>
+            <li><strong>Remittance of income from racing/riding</strong> — Income from horse racing, sports gambling etc.</li>
+            <li><strong>Remittance for purchase of lottery tickets, banned magazines, football pools, sweepstakes</strong></li>
+            <li><strong>Payment of commission on exports under Rupee State Credit Route</strong> (except to Nepal/Bhutan)</li>
+            <li><strong>Remittance for travel to Nepal/Bhutan</strong> — Uses INR, not forex (special bilateral arrangement)</li>
+            <li><strong>Transactions with persons or entities in countries listed by FATF as non-cooperative</strong></li>
+          </ul>
+        </div>
+
+        <div class="schedule-panel" id="sched2">
+          <div class="rule-card prior-approval">
+            <span class="rule-label prior-approval">Prior Approval Required — Central Govt</span>
+            <h4>Schedule II — Requires Central Government Permission</h4>
+            <p>These are allowed but only with prior approval of the relevant Ministry.</p>
+          </div>
+          <ul style="color:var(--text-muted);font-size:0.9rem;">
+            <li><strong>Cultural tours</strong> — Ministry of Human Resources Development approval</li>
+            <li><strong>Advertisement in foreign print media for purposes other than promotion of tourism, FDI, and international bidding</strong> (exceeding USD 10,000) — Needs approval</li>
+            <li><strong>Remittance of freight by vessel chartered from a person resident outside India</strong></li>
+            <li><strong>Payment of import licenses fee</strong> — As per DGFT guidelines</li>
+            <li><strong>Multi-modal transport operators' payments</strong> — If above threshold</li>
+          </ul>
+        </div>
+
+        <div class="schedule-panel" id="sched3">
+          <div class="rule-card capped">
+            <span class="rule-label capped">RBI Approval / Capped</span>
+            <h4>Schedule III — Requires RBI Approval Beyond Limits</h4>
+            <p>These can be done freely up to certain limits. RBI approval needed only for amounts beyond those limits.</p>
+          </div>
+          <ul style="color:var(--text-muted);font-size:0.9rem;">
+            <li><strong>Private visits abroad</strong> — Up to USD 250,000 per FY under LRS; beyond = RBI approval</li>
+            <li><strong>Gift / Donation remittance</strong> — Up to USD 250,000 per FY under LRS</li>
+            <li><strong>Going abroad for employment</strong> — Up to USD 250,000 per FY</li>
+            <li><strong>Emigration expenses</strong> — Up to USD 250,000 per FY</li>
+            <li><strong>Maintenance of close relatives abroad</strong> — Up to USD 250,000 per FY</li>
+            <li><strong>Business travel</strong> — Up to USD 250,000 per FY</li>
+            <li><strong>Medical treatment abroad</strong> — Up to USD 250,000 (plus additional USD 250,000 against estimate from doctor/hospital)</li>
+            <li><strong>Studies abroad</strong> — Up to USD 250,000 per academic year (or estimate from institution, whichever is higher)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Common Buckets -->
+      <h2 class="reveal">Common Transaction Buckets</h2>
+      <div class="bucket-grid reveal">
+        <div class="bucket">
+          <div class="bucket-icon">✈️</div>
+          <h4>Foreign Travel</h4>
+          <div class="bucket-limit">Up to USD 250,000/FY under LRS</div>
+          <ul>
+            <li>Can buy forex from AD-I or AD-II</li>
+            <li>Forex for Nepal/Bhutan in INR only</li>
+            <li>International debit/credit card usage counts separately (up to USD 250,000 under LRS for card usage too from 2023-24)</li>
+          </ul>
+        </div>
+        <div class="bucket">
+          <div class="bucket-icon">🎓</div>
+          <h4>Education Abroad</h4>
+          <div class="bucket-limit">USD 250,000/academic year or actual estimate</div>
+          <ul>
+            <li>AD bank can release without RBI approval up to limit</li>
+            <li>Beyond limit: release against estimate from institution</li>
+            <li>Covers tuition, hostel, living expenses</li>
+            <li>Education loan remittances also covered</li>
+          </ul>
+        </div>
+        <div class="bucket">
+          <div class="bucket-icon">🏥</div>
+          <h4>Medical Treatment Abroad</h4>
+          <div class="bucket-limit">USD 250,000 + additional estimate-based</div>
+          <ul>
+            <li>Base USD 250,000 under LRS</li>
+            <li>Additional: against estimate from hospital/doctor</li>
+            <li>Covers treatment, boarding, travel of patient + attendant</li>
+          </ul>
+        </div>
+        <div class="bucket">
+          <div class="bucket-icon">📦</div>
+          <h4>Imports</h4>
+          <div class="bucket-limit">As per trade limit / LC terms</div>
+          <ul>
+            <li>Payment through AD bank against shipping documents</li>
+            <li>Advance remittance for imports allowed with conditions</li>
+            <li>Must ensure goods are received</li>
+            <li>Imports must comply with DGFT/Customs rules</li>
+          </ul>
+        </div>
+        <div class="bucket">
+          <div class="bucket-icon">👨‍👩‍👧</div>
+          <h4>Family Maintenance</h4>
+          <div class="bucket-limit">Up to USD 250,000/FY under LRS</div>
+          <ul>
+            <li>Remittance for living expenses of spouse, children, parents abroad</li>
+            <li>No RBI approval if within LRS limit</li>
+            <li>AD bank processes against KYC documents</li>
+          </ul>
+        </div>
+        <div class="bucket">
+          <div class="bucket-icon">🎁</div>
+          <h4>Gifts & Donations</h4>
+          <div class="bucket-limit">Up to USD 250,000/FY under LRS</div>
+          <ul>
+            <li>Can remit gifts to non-residents</li>
+            <li>Donations to foreign organizations allowed within limit</li>
+            <li>Beyond limit requires RBI approval</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout reveal">
+        <span class="callout-icon">💡</span>
+        <div class="callout-body">
+          <strong>Everything else is FREE:</strong> Remember, Schedules I–III cover only the EXCEPTIONS. Any current account transaction NOT listed in these schedules is completely free — you can simply approach your AD bank and transact. This is the "negative list" approach: only what's listed is restricted; everything else is permitted.
+        </div>
+      </div>
+
+      <!-- Quiz -->
+      <div class="quiz-box reveal">
+        <div class="quiz-q">🧠 Under Section 5, current account transactions are:</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" data-correct="false">Generally prohibited unless specifically allowed</button>
+          <button class="quiz-opt" data-correct="true">Generally permitted unless specifically restricted</button>
+          <button class="quiz-opt" data-correct="false">Always require RBI approval</button>
+          <button class="quiz-opt" data-correct="false">Always require Central Government approval</button>
+        </div>
+        <div class="quiz-feedback" 
+          data-correct="Correct! FEMA follows a 'negative list' approach for current account. Everything is permitted by default — only specific transactions listed in Schedules I-III are restricted or prohibited." 
+          data-wrong="The correct answer is 'generally permitted unless specifically restricted.' Section 5 allows anyone to buy forex for current account transactions unless the Central Govt has specifically restricted them via Rules/Schedules.">
+        </div>
+      </div>
+
+      <div class="quiz-box reveal">
+        <div class="quiz-q">🧠 Remittance for purchase of lottery tickets abroad falls under which Schedule?</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" data-correct="true">Schedule I — Totally Prohibited</button>
+          <button class="quiz-opt" data-correct="false">Schedule II — Central Govt Approval</button>
+          <button class="quiz-opt" data-correct="false">Schedule III — RBI Approval beyond limits</button>
+          <button class="quiz-opt" data-correct="false">Not restricted at all</button>
+        </div>
+        <div class="quiz-feedback" 
+          data-correct="Correct! Lottery remittances are in Schedule I — completely prohibited. No amount of approvals can make this legal under FEMA." 
+          data-wrong="Lottery remittances are in Schedule I — totally prohibited, not just restricted. This is one of the very few absolute prohibitions in FEMA's current account framework.">
+        </div>
+      </div>
+
+      <div class="page-nav reveal">
+        <a href="../04-regulatory-architecture/index.html"><span class="nav-dir">← Previous</span><span class="nav-title">Regulatory Architecture</span></a>
+        <a href="../06-capital-account/index.html"><span class="nav-dir">Next →</span><span class="nav-title">Capital Account Transactions</span></a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer"><p>FEMA Act 1999 — Interactive Explainer · <a href="../index.html">Back to Home</a></p></footer>
+  <script src="../js/common.js"></script>
+  <script>
+    // Schedule tabs
+    document.querySelectorAll('.schedule-tab-btns button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.schedule-tab-btns button').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.schedule-panel').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById(btn.dataset.panel).classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>

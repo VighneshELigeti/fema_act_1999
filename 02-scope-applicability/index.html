@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scope & Applicability — FEMA Act 1999</title>
+  <link rel="stylesheet" href="../css/common.css">
+  <style>
+    .residency-tester {
+      background: var(--bg-interactive);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      margin: 2rem 0;
+    }
+    .residency-tester .question { font-weight: 600; margin-bottom: 1rem; }
+    .residency-tester .options { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem; }
+    .residency-tester .opt-btn {
+      padding: 0.75rem 1rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      text-align: left;
+      font-size: 0.9rem;
+      color: var(--text);
+      transition: all 0.2s;
+      font-family: var(--font);
+    }
+    .residency-tester .opt-btn:hover { border-color: var(--accent); }
+    .residency-tester .opt-btn.selected { border-color: var(--accent); background: rgba(88,166,255,0.08); }
+    .residency-tester .result-box {
+      padding: 1rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      display: none;
+      margin-top: 1rem;
+    }
+    .residency-tester .result-box.show { display: block; }
+    
+    /* Venn diagram */
+    .venn-container {
+      display: flex;
+      justify-content: center;
+      padding: 2rem 0;
+    }
+    
+    /* Scenario cards */
+    .scenario-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+    .scenario-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .scenario-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .scenario-card .scenario-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+    .scenario-card h4 { margin: 0 0 0.3rem; font-size: 0.95rem; }
+    .scenario-card p { font-size: 0.82rem; color: var(--text-muted); margin: 0; }
+    .scenario-card .scenario-status {
+      display: inline-block;
+      margin-top: 0.5rem;
+      padding: 0.15rem 0.6rem;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+    .scenario-card .resident { background: rgba(63,185,80,0.15); color: var(--accent2); }
+    .scenario-card .non-resident { background: rgba(88,166,255,0.15); color: var(--accent); }
+  </style>
+</head>
+<body>
+  <div class="reading-progress"><div class="fill"></div></div>
+  <nav class="topnav">
+    <a href="../index.html" class="logo">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10A15.3 15.3 0 0 1 12 2z"/></svg>
+      FEMA Act 1999
+    </a>
+    <div class="nav-links">
+      <a href="../01-objectives-approach/index.html">← Prev</a>
+      <a href="../03-key-definitions/index.html">Next →</a>
+      <button class="theme-toggle">☀️</button>
+    </div>
+  </nav>
+
+  <div style="height: 60px;"></div>
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../index.html">Home</a><span class="sep">/</span>
+      <span>Chapter 02: Scope & Applicability</span>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="reveal">
+        <span class="tag tag-blue">Chapter 02</span>
+        <h1>Scope & Applicability</h1>
+        <p style="font-size: 1.1rem; color: var(--text-muted); max-width: 680px;">
+          Who does FEMA apply to? What transactions does it cover? And why "residential status" 
+          is the most important concept in FEMA.
+        </p>
+      </div>
+
+      <!-- Territorial Scope -->
+      <h2 class="reveal">Territorial Scope</h2>
+      <p class="reveal">FEMA extends to the <strong>whole of India</strong>. But here's the catch — it also applies to:</p>
+      
+      <div class="stat-row reveal">
+        <div class="stat-item">
+          <div class="stat-num">🇮🇳</div>
+          <div class="stat-label">All of India<br>(including J&K)</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">🏢</div>
+          <div class="stat-label">Offices / Branches<br>outside India owned by Indian residents</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">🌍</div>
+          <div class="stat-label">Any person<br>outside India who contravenes FEMA</div>
+        </div>
+      </div>
+
+      <div class="callout reveal">
+        <span class="callout-icon">💡</span>
+        <div class="callout-body">
+          <strong>Extra-territorial reach:</strong> If you're an Indian resident with a branch in London, 
+          FEMA applies to that branch's forex transactions too. And if a person sitting in Dubai contravenes 
+          FEMA provisions, they can be penalized under FEMA when they come to India or through their assets in India.
+        </div>
+      </div>
+
+      <!-- Who Does FEMA Apply To -->
+      <h2 class="reveal">Who Does FEMA Apply To?</h2>
+      <p class="reveal">
+        FEMA doesn't just regulate "citizens" — it regulates based on <strong>residential status</strong>. 
+        This is fundamentally different from income tax residency. Under FEMA, your status as "resident" or 
+        "non-resident" determines what forex transactions you can do.
+      </p>
+
+      <div class="diagram-container reveal">
+        <div class="diagram-title">🎯 FEMA covers these categories of persons</div>
+        <svg viewBox="0 0 700 400" class="diagram-svg">
+          <!-- Center circle - FEMA -->
+          <circle cx="350" cy="200" r="60" fill="none" stroke="#58a6ff" stroke-width="3"/>
+          <text x="350" y="195" text-anchor="middle" fill="#58a6ff" font-size="16" font-weight="700">FEMA</text>
+          <text x="350" y="215" text-anchor="middle" fill="#8b949e" font-size="11">Applies to</text>
+          
+          <!-- Spokes -->
+          <!-- Individuals -->
+          <line x1="300" y1="160" x2="140" y2="80" stroke="#30363d" stroke-width="1.5"/>
+          <rect x="40" y="50" width="160" height="60" rx="8" fill="#1c2333" stroke="#3fb950" stroke-width="2"/>
+          <text x="120" y="75" text-anchor="middle" fill="#3fb950" font-size="12" font-weight="600">👤 Individuals</text>
+          <text x="120" y="95" text-anchor="middle" fill="#8b949e" font-size="10">Residents & Non-Residents</text>
+          
+          <!-- Companies -->
+          <line x1="400" y1="160" x2="560" y2="80" stroke="#30363d" stroke-width="1.5"/>
+          <rect x="460" y="50" width="180" height="60" rx="8" fill="#1c2333" stroke="#d29922" stroke-width="2"/>
+          <text x="550" y="75" text-anchor="middle" fill="#d29922" font-size="12" font-weight="600">🏢 Companies</text>
+          <text x="550" y="95" text-anchor="middle" fill="#8b949e" font-size="10">Indian & Foreign Companies</text>
+          
+          <!-- Firms/LLPs -->
+          <line x1="410" y1="200" x2="570" y2="200" stroke="#30363d" stroke-width="1.5"/>
+          <rect x="470" y="175" width="180" height="50" rx="8" fill="#1c2333" stroke="#bc8cff" stroke-width="2"/>
+          <text x="560" y="205" text-anchor="middle" fill="#bc8cff" font-size="12" font-weight="600">🤝 Firms & LLPs</text>
+          
+          <!-- Trusts -->
+          <line x1="400" y1="240" x2="560" y2="320" stroke="#30363d" stroke-width="1.5"/>
+          <rect x="460" y="295" width="180" height="50" rx="8" fill="#1c2333" stroke="#f85149" stroke-width="2"/>
+          <text x="550" y="325" text-anchor="middle" fill="#f85149" font-size="12" font-weight="600">🏦 Trusts & Funds</text>
+          
+          <!-- Govt / RBI -->
+          <line x1="300" y1="240" x2="140" y2="320" stroke="#30363d" stroke-width="1.5"/>
+          <rect x="40" y="295" width="160" height="50" rx="8" fill="#1c2333" stroke="#58a6ff" stroke-width="2"/>
+          <text x="120" y="325" text-anchor="middle" fill="#58a6ff" font-size="12" font-weight="600">🏛️ Govt / Bodies</text>
+          
+          <!-- APs -->
+          <line x1="290" y1="200" x2="130" y2="200" stroke="#30363d" stroke-width="1.5"/>
+          <rect x="20" y="175" width="170" height="50" rx="8" fill="#1c2333" stroke="#39d353" stroke-width="2"/>
+          <text x="105" y="205" text-anchor="middle" fill="#39d353" font-size="12" font-weight="600">🏧 Authorized Persons</text>
+        </svg>
+      </div>
+
+      <!-- Residential Status - The Critical Concept -->
+      <h2 class="reveal">Residential Status — The Trigger</h2>
+      
+      <div class="callout reveal">
+        <span class="callout-icon">🔑</span>
+        <div class="callout-body">
+          <strong>This is THE most important concept in FEMA.</strong> Your residential status under FEMA determines 
+          which rules apply to you. And it's <strong>different</strong> from income tax residency — don't mix them up!
+        </div>
+      </div>
+
+      <h3 class="reveal">Person Resident in India (Section 2(v))</h3>
+      <p class="reveal">You are a <strong>"person resident in India"</strong> if you have lived in India for <strong>more than 182 days</strong> during the preceding financial year AND are not a person who has gone out to stay outside India for purposes like:</p>
+      <ul class="reveal">
+        <li>Employment outside India</li>
+        <li>Carrying on business or vocation outside India</li>
+        <li>Any other purpose indicating intention to stay outside India for an uncertain period</li>
+      </ul>
+
+      <h3 class="reveal">Person Resident Outside India (Section 2(w))</h3>
+      <p class="reveal">Anyone who is NOT a person resident in India is a <strong>"person resident outside India"</strong> (commonly called NRI / Non-Resident).</p>
+
+      <!-- Key Differences Table -->
+      <h3 class="reveal">FEMA Residency vs. Income Tax Residency</h3>
+      <table class="comparison-table reveal">
+        <thead>
+          <tr>
+            <th>Parameter</th>
+            <th>FEMA Residency</th>
+            <th>Income Tax Residency</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Legal basis</strong></td>
+            <td>FEMA Section 2(v) & 2(w)</td>
+            <td>Income Tax Act Section 6</td>
+          </tr>
+          <tr>
+            <td><strong>Day count</strong></td>
+            <td>182 days in preceding FY</td>
+            <td>Multiple tests: 182 days in current FY OR 60 days in current FY + 365 in 4 preceding FYs</td>
+          </tr>
+          <tr>
+            <td><strong>Intention matters?</strong></td>
+            <td><strong>Yes</strong> — purpose of going abroad matters (employment, business, uncertain period)</td>
+            <td>No — purely mathematical day-count</td>
+          </tr>
+          <tr>
+            <td><strong>Citizenship relevance</strong></td>
+            <td>Not directly relevant — based on residence</td>
+            <td>Special rules for Indian citizens leaving India</td>
+          </tr>
+          <tr>
+            <td><strong>Can person be resident under one and non-resident under the other?</strong></td>
+            <td colspan="2" style="text-align: center; color: var(--accent3);"><strong>Yes!</strong> This happens frequently and creates practical compliance complexity.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Interactive Residency Checker -->
+      <div class="residency-tester reveal" id="residencyChecker">
+        <div class="diagram-title">🔍 Interactive: Check Your FEMA Residency Status</div>
+        <p style="font-size:0.88rem; color: var(--text-muted);">Answer the questions below to determine your FEMA residential status.</p>
+        
+        <div id="step1">
+          <div class="question">Step 1: Did you live in India for more than 182 days in the preceding financial year?</div>
+          <div class="options">
+            <button class="opt-btn" onclick="checkResidency(1, 'yes')">✅ Yes, more than 182 days</button>
+            <button class="opt-btn" onclick="checkResidency(1, 'no')">❌ No, 182 days or less</button>
+          </div>
+        </div>
+        
+        <div id="step2" style="display:none;">
+          <div class="question">Step 2: Have you gone outside India (or do you stay outside India) for any of these purposes?</div>
+          <div class="options">
+            <button class="opt-btn" onclick="checkResidency(2, 'employment')">💼 Employment outside India</button>
+            <button class="opt-btn" onclick="checkResidency(2, 'business')">🏢 Business/vocation outside India</button>
+            <button class="opt-btn" onclick="checkResidency(2, 'uncertain')">✈️ Any purpose indicating intent to stay abroad for uncertain period</button>
+            <button class="opt-btn" onclick="checkResidency(2, 'none')">🇮🇳 None — I'm just here temporarily or came to India</button>
+          </div>
+        </div>
+        
+        <div id="step3" style="display:none;">
+          <div class="question">Step 3: Have you come TO India for any of these purposes?</div>
+          <div class="options">
+            <button class="opt-btn" onclick="checkResidency(3, 'employment')">💼 Employment in India</button>
+            <button class="opt-btn" onclick="checkResidency(3, 'business')">🏢 Business in India</button>
+            <button class="opt-btn" onclick="checkResidency(3, 'uncertain')">🏠 Intent to stay in India for uncertain period</button>
+            <button class="opt-btn" onclick="checkResidency(3, 'visit')">✈️ Just visiting (tourism, short trip)</button>
+          </div>
+        </div>
+        
+        <div id="residencyResult" class="result-box"></div>
+      </div>
+
+      <!-- Common Scenarios -->
+      <h2 class="reveal">Common Scenarios — Who is Resident?</h2>
+      
+      <div class="scenario-grid reveal">
+        <div class="scenario-card">
+          <div class="scenario-icon">👩‍💻</div>
+          <h4>IT Professional in Bangalore</h4>
+          <p>Works in India full-time. Lives in India throughout the year.</p>
+          <span class="scenario-status resident">✓ Resident in India</span>
+        </div>
+        <div class="scenario-card">
+          <div class="scenario-icon">👨‍⚕️</div>
+          <h4>Doctor Working in Dubai</h4>
+          <p>Indian citizen, but moved to Dubai 3 years ago for employment. Visits India for 30 days/year.</p>
+          <span class="scenario-status non-resident">↗ Non-Resident (PROI)</span>
+        </div>
+        <div class="scenario-card">
+          <div class="scenario-icon">🎓</div>
+          <h4>Student Studying Abroad</h4>
+          <p>Indian student doing a 2-year MBA in USA. Left India 8 months ago.</p>
+          <span class="scenario-status non-resident">↗ Non-Resident (PROI)</span>
+        </div>
+        <div class="scenario-card">
+          <div class="scenario-icon">🏢</div>
+          <h4>MNC with India Office</h4>
+          <p>US company with a registered branch office in Mumbai. The branch itself is treated as:</p>
+          <span class="scenario-status resident">✓ Resident in India</span>
+        </div>
+        <div class="scenario-card">
+          <div class="scenario-icon">🇬🇧</div>
+          <h4>British Citizen Working in India</h4>
+          <p>UK national, posted to India for a 3-year assignment. Has been in India for 200 days this FY.</p>
+          <span class="scenario-status resident">✓ Resident in India</span>
+        </div>
+        <div class="scenario-card">
+          <div class="scenario-icon">💼</div>
+          <h4>Indian Businessman — Frequent Traveller</h4>
+          <p>Indian citizen running an export business. Travels 200 days/year but comes back to India base.</p>
+          <span class="scenario-status resident">✓ Resident in India (base is in India)</span>
+        </div>
+      </div>
+
+      <div class="callout warn reveal">
+        <span class="callout-icon">⚠️</span>
+        <div class="callout-body">
+          <strong>Companies have their own rules:</strong> An Indian company (incorporated in India under Companies Act) 
+          is ALWAYS a person resident in India under FEMA, regardless of who owns it or where its directors sit. 
+          A company incorporated outside India is a person resident outside India — even if 100% of its revenue 
+          comes from India.
+        </div>
+      </div>
+
+      <!-- What Transactions Does FEMA Cover -->
+      <h2 class="reveal">What Transactions Does FEMA Cover?</h2>
+      <p class="reveal">FEMA regulates any transaction that involves:</p>
+      
+      <div class="flowchart-h reveal" style="justify-content: center; flex-wrap: wrap; gap: 1rem;">
+        <div class="flow-node" style="border-color: var(--accent);">
+          <div class="node-label">💱 Foreign Exchange</div>
+          <div class="node-desc">Any currency other than INR, traveller's cheques, drafts denominated in forex</div>
+        </div>
+        <div class="flow-node" style="border-color: var(--accent3);">
+          <div class="node-label">📄 Foreign Security</div>
+          <div class="node-desc">Shares, bonds, debentures, GDRs issued outside India or in foreign currency</div>
+        </div>
+        <div class="flow-node" style="border-color: var(--accent5);">
+          <div class="node-label">🏠 Immovable Property</div>
+          <div class="node-desc">Acquisition/transfer of property outside India by residents (or in India by non-residents)</div>
+        </div>
+        <div class="flow-node" style="border-color: var(--accent2);">
+          <div class="node-label">💳 Cross-Border Payments</div>
+          <div class="node-desc">Any payment to or from a person outside India, in rupees or forex</div>
+        </div>
+      </div>
+
+      <!-- Section 3 - The Heart -->
+      <h2 class="reveal">Section 3 — The Heart of FEMA</h2>
+      <div class="callout reveal">
+        <span class="callout-icon">📌</span>
+        <div class="callout-body">
+          <strong>Section 3</strong> is the foundation provision. It says: <em>"No person shall deal in or transfer any 
+          foreign exchange or foreign security to any person not being an authorized person... no person shall make 
+          any payment to or for the credit of any person resident outside India in any manner... except through an 
+          authorized person."</em>
+          <br><br>
+          In plain English: <strong>All forex transactions must go through authorized channels (banks)</strong>. 
+          You cannot deal in forex informally — no hawala, no cash forex with unauthorized dealers.
+        </div>
+      </div>
+
+      <!-- Quiz -->
+      <div class="quiz-box reveal">
+        <div class="quiz-q">🧠 Quick Check: An Indian company's wholly-owned subsidiary incorporated in Singapore — what is its FEMA residency status?</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" data-correct="false">Resident in India (because parent is Indian)</button>
+          <button class="quiz-opt" data-correct="true">Non-Resident (Person Resident Outside India)</button>
+          <button class="quiz-opt" data-correct="false">Depends on where the directors are located</button>
+          <button class="quiz-opt" data-correct="false">Depends on the 182-day test for the company</button>
+        </div>
+        <div class="quiz-feedback" 
+          data-correct="Correct! Under FEMA, a company's residency is determined by its place of incorporation, not ownership. Incorporated in Singapore = Non-Resident." 
+          data-wrong="Under FEMA, a company incorporated outside India is always a 'person resident outside India' — regardless of who owns it. Place of incorporation is the determining factor for companies.">
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <div class="page-nav reveal">
+        <a href="../01-objectives-approach/index.html">
+          <span class="nav-dir">← Previous</span>
+          <span class="nav-title">Objectives & Approach</span>
+        </a>
+        <a href="../03-key-definitions/index.html">
+          <span class="nav-dir">Next →</span>
+          <span class="nav-title">Key Definitions</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <p>FEMA Act 1999 — Interactive Explainer · <a href="../index.html">Back to Home</a></p>
+  </footer>
+
+  <script src="../js/common.js"></script>
+  <script>
+    // Residency checker logic
+    let residencyState = {};
+    
+    function checkResidency(step, answer) {
+      residencyState[step] = answer;
+      
+      // Highlight selected
+      document.querySelectorAll(`#step${step} .opt-btn`).forEach(b => b.classList.remove('selected'));
+      event.target.classList.add('selected');
+      
+      const result = document.getElementById('residencyResult');
+      
+      if (step === 1) {
+        if (answer === 'yes') {
+          document.getElementById('step2').style.display = 'block';
+          document.getElementById('step3').style.display = 'none';
+          result.classList.remove('show');
+        } else {
+          document.getElementById('step2').style.display = 'none';
+          document.getElementById('step3').style.display = 'block';
+          result.classList.remove('show');
+        }
+      }
+      
+      if (step === 2) {
+        if (answer === 'none') {
+          showResult('resident', 'You are a <strong>Person Resident in India</strong> under FEMA. You lived in India for >182 days and have not gone abroad for employment/business/uncertain period. FEMA resident rules apply to you — you can do current account transactions freely, and capital account transactions as per regulations.');
+        } else {
+          showResult('non-resident', 'You are likely a <strong>Person Resident Outside India</strong> under FEMA, even though you were in India for >182 days in the preceding FY. Since you\'ve gone abroad for ' + (answer === 'employment' ? 'employment' : answer === 'business' ? 'business/vocation' : 'a purpose indicating uncertain-period stay') + ', FEMA treats you as non-resident. NRI/PROI rules apply to your transactions.');
+        }
+      }
+      
+      if (step === 3) {
+        if (answer === 'visit') {
+          showResult('non-resident', 'You are a <strong>Person Resident Outside India</strong> under FEMA. You were in India for ≤182 days and came to India just for a visit. Non-resident rules apply to you.');
+        } else {
+          showResult('resident', 'Even though you were in India for ≤182 days in the preceding FY, you could become a <strong>Person Resident in India</strong> once you\'ve been in India for >182 days (for ' + (answer === 'employment' ? 'employment' : answer === 'business' ? 'business/vocation' : 'settling in India') + '). Your status changes when the 182-day threshold is crossed in the subsequent FY.');
+        }
+      }
+    }
+    
+    function showResult(type, html) {
+      const result = document.getElementById('residencyResult');
+      result.innerHTML = (type === 'resident' ? '🟢 ' : '🔵 ') + html;
+      result.style.borderColor = type === 'resident' ? 'var(--accent2)' : 'var(--accent)';
+      result.style.background = type === 'resident' ? 'rgba(63,185,80,0.05)' : 'rgba(88,166,255,0.05)';
+      result.classList.add('show');
+    }
+  </script>
+</body>
+</html>

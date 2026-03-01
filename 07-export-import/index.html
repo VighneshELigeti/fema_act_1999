@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Export & Import Regulations — FEMA Act 1999</title>
+  <link rel="stylesheet" href="../css/common.css">
+  <style>
+    .exim-flow {
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+      margin: 1.5rem 0;
+      flex-wrap: wrap;
+    }
+    .exim-step {
+      flex: 1;
+      min-width: 140px;
+      padding: 1rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      position: relative;
+      text-align: center;
+      font-size: 0.85rem;
+    }
+    .exim-step:first-child { border-radius: var(--radius) 0 0 var(--radius); }
+    .exim-step:last-child { border-radius: 0 var(--radius) var(--radius) 0; }
+    .exim-step .step-num {
+      display: inline-block;
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 700;
+      line-height: 28px;
+      font-size: 0.8rem;
+      margin-bottom: 0.3rem;
+    }
+    .exim-step h5 { margin: 0.3rem 0; font-size: 0.85rem; }
+    .exim-step p { margin: 0; color: var(--text-muted); font-size: 0.78rem; }
+    @media(max-width:700px) {
+      .exim-flow { flex-direction: column; }
+      .exim-step:first-child { border-radius: var(--radius) var(--radius) 0 0; }
+      .exim-step:last-child { border-radius: 0 0 var(--radius) var(--radius); }
+    }
+    .penalty-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin: 1rem 0;
+      border-left: 4px solid #f85149;
+    }
+    .penalty-card h4 { margin-top: 0; color: #f85149; }
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin: 1.5rem 0;
+    }
+    @media(max-width:700px) { .two-col { grid-template-columns: 1fr; } }
+    .info-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+    }
+    .info-box h3 { margin-top: 0; }
+    .info-box ul { font-size: 0.88rem; color: var(--text-muted); padding-left: 1.2rem; }
+  </style>
+</head>
+<body>
+  <div class="reading-progress"><div class="fill"></div></div>
+  <nav class="topnav">
+    <a href="../index.html" class="logo">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10A15.3 15.3 0 0 1 12 2z"/></svg>
+      FEMA Act 1999
+    </a>
+    <div class="nav-links">
+      <a href="../06-capital-account/index.html">← Prev</a>
+      <a href="../08-compliance/index.html">Next →</a>
+      <button class="theme-toggle">☀️</button>
+    </div>
+  </nav>
+  <div style="height:60px;"></div>
+  <div class="container"><div class="breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><span>Chapter 07: Export & Import Regulations</span></div></div>
+
+  <section class="section">
+    <div class="container">
+      <div class="reveal">
+        <span class="tag tag-blue">Chapter 07</span>
+        <h1>Export & Import Regulations</h1>
+        <p style="font-size:1.1rem;color:var(--text-muted);max-width:700px;">
+          Sections 7 & 8 of FEMA deal with export and import of goods & services. The core mandate: <strong>every exporter must bring forex back to India</strong>, and every importer must ensure they actually receive what they paid for.
+        </p>
+      </div>
+
+      <div class="callout reveal">
+        <span class="callout-icon">📦</span>
+        <div class="callout-body">
+          <strong>Why FEMA cares about trade:</strong> India's forex reserves come primarily from trade earnings. If exporters don't repatriate their earnings, the country loses precious forex. And if importers over-invoice or make payments without receiving goods, it's a potential channel for illegal capital flight. FEMA's trade provisions exist to protect India's forex integrity.
+        </div>
+      </div>
+
+      <!-- Export Flow -->
+      <h2 class="reveal">Export of Goods — The Complete Flow</h2>
+      <p class="reveal">Section 7 mandates that every exporter must receive and repatriate the full export value. Here's how it works:</p>
+
+      <div class="exim-flow reveal">
+        <div class="exim-step"><div class="step-num">1</div><h5>Export Order</h5><p>Exporter receives order from foreign buyer</p></div>
+        <div class="exim-step"><div class="step-num">2</div><h5>GR/SDF Form</h5><p>File declaration with AD bank (form GR for physical exports)</p></div>
+        <div class="exim-step"><div class="step-num">3</div><h5>Customs Clearance</h5><p>Goods cleared by customs; shipping bill filed via ICEGATE</p></div>
+        <div class="exim-step"><div class="step-num">4</div><h5>Ship/Dispatch</h5><p>Goods leave India</p></div>
+        <div class="exim-step"><div class="step-num">5</div><h5>Realize Payment</h5><p>Receive forex from buyer (LC/TT/DP/DA)</p></div>
+        <div class="exim-step"><div class="step-num">6</div><h5>Repatriate</h5><p>Bring forex to India within 9 months</p></div>
+      </div>
+
+      <div class="two-col reveal">
+        <div class="info-box">
+          <h3>📋 Key Export Compliance Points</h3>
+          <ul>
+            <li><strong>Declaration mandatory:</strong> Every export must be declared on GR/SDF/PP/SOFTEX form</li>
+            <li><strong>Repatriation deadline:</strong> Full export value must be received within <strong>9 months</strong> from date of export (for goods); extendable by AD bank</li>
+            <li><strong>For services:</strong> SOFTEX form for software exports; other services follow general current account norms</li>
+            <li><strong>Export proceeds:</strong> Must be in freely convertible currency or Indian Rupees (for ACU/bilateral arrangements)</li>
+            <li><strong>Write-off:</strong> AD bank can write off unrealized export bills up to 5% of total export at discretion; beyond needs RBI</li>
+            <li><strong>Advance payment:</strong> Must be adjusted against future exports or refunded within timelines</li>
+          </ul>
+        </div>
+        <div class="info-box">
+          <h3>⚠️ Export Don'ts</h3>
+          <ul>
+            <li>❌ Never export without filing declaration to AD/customs</li>
+            <li>❌ Never give commission to agents exceeding prescribed limits</li>
+            <li>❌ Never under-invoice exports (declaring lower value than actual)</li>
+            <li>❌ Never delay repatriation beyond 9 months without extension</li>
+            <li>❌ Never receive payment in non-convertible currencies without permission</li>
+            <li>❌ Never accept payment in modes other than normal banking channels (cash, crypto etc.)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Import Flow -->
+      <h2 class="reveal">Import of Goods — The Complete Flow</h2>
+
+      <div class="exim-flow reveal">
+        <div class="exim-step"><div class="step-num">1</div><h5>Import Order</h5><p>Place order with foreign supplier</p></div>
+        <div class="exim-step"><div class="step-num">2</div><h5>Open LC / Remit</h5><p>AD bank opens Letter of Credit or makes advance payment</p></div>
+        <div class="exim-step"><div class="step-num">3</div><h5>Goods Arrive</h5><p>Goods reach Indian port/airport</p></div>
+        <div class="exim-step"><div class="step-num">4</div><h5>Customs Clearance</h5><p>File Bill of Entry, pay customs duty, clear goods</p></div>
+        <div class="exim-step"><div class="step-num">5</div><h5>Payment</h5><p>Settle payment through AD bank within 6 months</p></div>
+        <div class="exim-step"><div class="step-num">6</div><h5>Evidence</h5><p>Submit Bill of Entry as evidence of import</p></div>
+      </div>
+
+      <div class="two-col reveal">
+        <div class="info-box">
+          <h3>📋 Key Import Rules</h3>
+          <ul>
+            <li><strong>Evidence required:</strong> AD bank must obtain Bill of Entry or customs document as evidence that goods were imported</li>
+            <li><strong>Payment timeline:</strong> Import payment within <strong>6 months</strong> from date of shipment (extendable)</li>
+            <li><strong>Advance payment:</strong> Allowed with conditions (security like bank guarantee for large amounts)</li>
+            <li><strong>Imports for personal use:</strong> Generally free, subject to customs duty</li>
+            <li><strong>Import against forex earned:</strong> EEFCs (Exchange Earners Foreign Currency) accounts can be used to pay for imports</li>
+            <li><strong>Gold/silver import:</strong> Special rules — only nominated agencies/banks can import</li>
+          </ul>
+        </div>
+        <div class="info-box">
+          <h3>💳 Payment Methods</h3>
+          <ul>
+            <li><strong>Letter of Credit (LC):</strong> Most secure; bank guarantees payment</li>
+            <li><strong>Documents against Payment (DP):</strong> Pay on receipt of documents</li>
+            <li><strong>Documents against Acceptance (DA):</strong> Accept bill of exchange, pay later</li>
+            <li><strong>Open Account / TT:</strong> Direct wire transfer (riskier for seller)</li>
+            <li><strong>Advance payment:</strong> Pay before goods shipped</li>
+            <li><strong>Buyer's Credit:</strong> Foreign bank finances the import payment</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Export of Services -->
+      <h2 class="reveal">Export of Services — The IT Industry Backbone</h2>
+      <div class="info-box reveal" style="margin:1rem 0;">
+        <p style="font-size:0.9rem;color:var(--text-muted);">India's IT services exports are a massive forex earner (USD 190+ billion annually). SOFTEX form is the key compliance document.</p>
+        <ul style="font-size:0.88rem;color:var(--text-muted);">
+          <li><strong>SOFTEX Form:</strong> Filed with STPI/SEZ for software exports. Contains contract details, invoice value, customer info.</li>
+          <li><strong>Realization:</strong> Same 9-month rule applies for services. But services often have ongoing contracts, so AD banks manage the tracking.</li>
+          <li><strong>Mode 1-4 of service export:</strong> Cross-border supply (Mode 1, most IT exports), consumption abroad (Mode 2), commercial presence (Mode 3), movement of natural persons (Mode 4).</li>
+          <li><strong>BPO/KPO:</strong> Back-office services, knowledge process outsourcing — all classified as service exports. Massive contributors to India's current account balance.</li>
+        </ul>
+      </div>
+
+      <!-- Penalties -->
+      <div class="penalty-card reveal">
+        <h4>🚨 Consequences of Non-Compliance</h4>
+        <p style="font-size:0.88rem;color:var(--text-muted);">Non-realization of export proceeds or irregular import payments can lead to:</p>
+        <ul style="font-size:0.88rem;color:var(--text-muted);">
+          <li>Action by Enforcement Directorate under Section 13 — penalty up to 3× the amount involved</li>
+          <li>Additional daily penalty of ₹5,000 for continuing contravention</li>
+          <li>Debarment from future trade — AD banks may refuse to process your transactions</li>
+          <li>RBI's EDPMS/IDPMS system flags overdue export/import bills automatically</li>
+          <li>Company directors can be held personally liable if default is attributable to their negligence</li>
+        </ul>
+      </div>
+
+      <!-- Quiz -->
+      <div class="quiz-box reveal">
+        <div class="quiz-q">🧠 Within how many months must an exporter repatriate export proceeds to India?</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" data-correct="false">3 months</button>
+          <button class="quiz-opt" data-correct="false">6 months</button>
+          <button class="quiz-opt" data-correct="true">9 months</button>
+          <button class="quiz-opt" data-correct="false">12 months</button>
+        </div>
+        <div class="quiz-feedback" 
+          data-correct="Correct! Export proceeds must be repatriated within 9 months from the date of export. This can be extended by the AD bank in genuine cases." 
+          data-wrong="The answer is 9 months. This is the standard repatriation period for export proceeds under FEMA, counted from the date of export. AD banks can grant extensions for genuine delays.">
+        </div>
+      </div>
+
+      <div class="page-nav reveal">
+        <a href="../06-capital-account/index.html"><span class="nav-dir">← Previous</span><span class="nav-title">Capital Account Transactions</span></a>
+        <a href="../08-compliance/index.html"><span class="nav-dir">Next →</span><span class="nav-title">Compliance Framework</span></a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer"><p>FEMA Act 1999 — Interactive Explainer · <a href="../index.html">Back to Home</a></p></footer>
+  <script src="../js/common.js"></script>
+</body>
+</html>

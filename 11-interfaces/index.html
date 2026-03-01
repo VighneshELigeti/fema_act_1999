@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FEMA Interfaces — FEMA Act 1999</title>
+  <link rel="stylesheet" href="../css/common.css">
+  <style>
+    .interface-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin: 1rem 0;
+      border-left: 4px solid var(--accent);
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .interface-card:hover { border-left-color: var(--accent-hover); transform: translateX(4px); }
+    .interface-card .if-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .interface-card h3 { margin: 0; font-size: 1rem; }
+    .interface-card .if-arrow { color: var(--accent); transition: transform 0.3s; }
+    .interface-card.open .if-arrow { transform: rotate(90deg); }
+    .interface-card .if-body {
+      display: none;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+    .interface-card.open .if-body { display: block; }
+    .overlap-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+      margin: 1.5rem 0;
+    }
+    .overlap-table th, .overlap-table td {
+      padding: 0.6rem 0.8rem;
+      border: 1px solid var(--border);
+      text-align: left;
+    }
+    .overlap-table th {
+      background: rgba(88,166,255,0.05);
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .overlap-table tr:hover { background: rgba(88,166,255,0.03); }
+  </style>
+</head>
+<body>
+  <div class="reading-progress"><div class="fill"></div></div>
+  <nav class="topnav">
+    <a href="../index.html" class="logo">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10A15.3 15.3 0 0 1 12 2z"/></svg>
+      FEMA Act 1999
+    </a>
+    <div class="nav-links">
+      <a href="../10-adjudication-appeals/index.html">← Prev</a>
+      <a href="../12-lrs/index.html">Next →</a>
+      <button class="theme-toggle">☀️</button>
+    </div>
+  </nav>
+  <div style="height:60px;"></div>
+  <div class="container"><div class="breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><span>Chapter 11: FEMA Interfaces</span></div></div>
+
+  <section class="section">
+    <div class="container">
+      <div class="reveal">
+        <span class="tag tag-blue">Chapter 11</span>
+        <h1>FEMA Interfaces with Other Laws</h1>
+        <p style="font-size:1.1rem;color:var(--text-muted);max-width:700px;">
+          FEMA doesn't operate in isolation. It intersects with income tax, company law, PMLA, SEBI regulations, customs, and more. Understanding these interfaces is crucial for complete compliance.
+        </p>
+      </div>
+
+      <!-- Interface Cards (expandable) -->
+      <div class="interface-card reveal" data-open="false">
+        <div class="if-header">
+          <h3>🏦 FEMA × Income Tax Act</h3>
+          <span class="if-arrow">→</span>
+        </div>
+        <div class="if-body">
+          <p><strong>The most critical interface.</strong> Key overlaps:</p>
+          <ul>
+            <li><strong>Residential status divergence:</strong> FEMA and IT Act have DIFFERENT tests for "resident." You can be a FEMA non-resident but IT resident (or vice versa). FEMA focuses on 182 days + intention; IT focuses on days of physical presence with different counting rules.</li>
+            <li><strong>Transfer pricing:</strong> FDI/ODI transactions must comply with both FEMA pricing guidelines (fair value via DCF etc.) AND IT Act's transfer pricing rules (arm's length price). The two may give different values — creating compliance risk.</li>
+            <li><strong>TDS on forex payments:</strong> Payments to non-residents require TDS under Section 195 of IT Act. AD banks may require Form 15CA/15CB (CA certificate + online declaration) before remitting forex.</li>
+            <li><strong>Foreign asset reporting:</strong> Black Money Act 2015 requires Indian tax residents to disclose foreign assets — overlaps with FEMA's foreign investment reporting.</li>
+            <li><strong>DTAA benefits:</strong> Double Tax Avoidance Agreements affect withholding rates on cross-border payments, which interact with FEMA remittance processes.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="interface-card reveal" data-open="false">
+        <div class="if-header">
+          <h3>🔒 FEMA × Prevention of Money Laundering Act (PMLA)</h3>
+          <span class="if-arrow">→</span>
+        </div>
+        <div class="if-body">
+          <p><strong>The most feared interface.</strong> PMLA is criminal law — violation means arrest and imprisonment.</p>
+          <ul>
+            <li><strong>Scheduled offence:</strong> FEMA contraventions involving an amount > ₹30 lakh are designated as "scheduled offences" under PMLA. This means ED can investigate under both FEMA (civil) and PMLA (criminal) simultaneously.</li>
+            <li><strong>Proceeds of crime:</strong> If FEMA violation generates "proceeds of crime" (money derived from the illegal activity), PMLA attachment and confiscation provisions apply.</li>
+            <li><strong>Same investigator:</strong> ED handles both FEMA and PMLA investigations. A FEMA inquiry can easily escalate to PMLA if money laundering is suspected.</li>
+            <li><strong>Bail provisions:</strong> PMLA has strict bail provisions — the accused must demonstrate that they are not guilty AND not likely to commit the offence. This is opposite of normal criminal law where bail is the rule.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="interface-card reveal" data-open="false">
+        <div class="if-header">
+          <h3>🏢 FEMA × Companies Act 2013</h3>
+          <span class="if-arrow">→</span>
+        </div>
+        <div class="if-body">
+          <ul>
+            <li><strong>Share issuance:</strong> Allotment of shares to non-residents must comply with both Companies Act (statutory requirements, board/shareholder resolutions, ROC filings) AND FEMA (FC-GPR, pricing, sectoral caps).</li>
+            <li><strong>Annual compliance:</strong> Companies with foreign investment must file Annual Return with ROC AND FLA Return with RBI.</li>
+            <li><strong>Significant Beneficial Ownership:</strong> Companies Act SBO provisions interact with FEMA's beneficial ownership tracking for FDI.</li>
+            <li><strong>Director appointments:</strong> Non-resident directors require DIN and must comply with both Companies Act requirements and FEMA regulations regarding remuneration/payments.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="interface-card reveal" data-open="false">
+        <div class="if-header">
+          <h3>📈 FEMA × SEBI Regulations</h3>
+          <span class="if-arrow">→</span>
+        </div>
+        <div class="if-body">
+          <ul>
+            <li><strong>FPI Regulations:</strong> Foreign Portfolio Investors must register with SEBI AND comply with FEMA 20(R) limits. SEBI regulates registration and conduct; FEMA regulates the investment caps.</li>
+            <li><strong>Takeover Code:</strong> SEBI's Takeover Code applies when FDI crosses certain thresholds in listed companies — creates additional compliance layers beyond FEMA.</li>
+            <li><strong>Listing regulations:</strong> Companies with FDI/FPI must comply with SEBI LODR for continuous disclosure, alongside FEMA reporting.</li>
+            <li><strong>P-Notes:</strong> Participatory Notes issued by FPIs are regulated by both SEBI and FEMA — separate compliance requirements apply.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="interface-card reveal" data-open="false">
+        <div class="if-header">
+          <h3>📦 FEMA × Customs Act / DGFT</h3>
+          <span class="if-arrow">→</span>
+        </div>
+        <div class="if-body">
+          <ul>
+            <li><strong>Export-import:</strong> Every export/import involves FEMA (forex flow) + Customs Act (duty, clearance) + DGFT (licensing, policy). GR/SDF forms are filed with customs AND AD bank.</li>
+            <li><strong>Gold import:</strong> Customs duty + FEMA restrictions — only nominated agencies can import gold.</li>
+            <li><strong>EDPMS/IDPMS:</strong> RBI's electronic monitoring system links customs data (shipping bills/bills of entry) with banking data (forex transactions) to track trade compliance.</li>
+            <li><strong>Free Trade Agreements:</strong> DGFT issues licenses; FEMA ensures forex flows correctly; Customs verifies origin and applies duty rates.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="interface-card reveal" data-open="false">
+        <div class="if-header">
+          <h3>🏠 FEMA × RERA / State Laws</h3>
+          <span class="if-arrow">→</span>
+        </div>
+        <div class="if-body">
+          <ul>
+            <li><strong>NRI property:</strong> NRIs buying property in India must comply with FEMA 21R (immovable property rules) AND state-level RERA registration, stamp duty, and registration laws.</li>
+            <li><strong>Agricultural land:</strong> FEMA generally prohibits non-residents from buying agricultural land, farmhouse, or plantation property. State laws may have additional restrictions for non-residents.</li>
+            <li><strong>Repatriation of sale proceeds:</strong> When NRIs sell property, FEMA limits repatriation (e.g., max 2 residential properties, original investment must have been in forex).</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Quick Comparison Table -->
+      <h2 class="reveal">Quick Reference — Who Regulates What?</h2>
+      <div style="overflow-x:auto;" class="reveal">
+        <table class="overlap-table">
+          <thead>
+            <tr><th>Transaction Type</th><th>FEMA Compliance</th><th>Other Law</th><th>Additional Compliance</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>FDI into Indian company</td><td>FC-GPR, pricing, sectoral cap</td><td>Companies Act</td><td>ROC filing, board resolution, SH approval (if needed)</td></tr>
+            <tr><td>Payment to non-resident</td><td>Current/capital account rules</td><td>Income Tax Act</td><td>15CA/15CB, TDS u/s 195</td></tr>
+            <tr><td>Foreign portfolio investment</td><td>FEMA 20(R) limits</td><td>SEBI</td><td>FPI registration, SEBI reporting</td></tr>
+            <tr><td>Export of goods</td><td>GR/SDF, repatriation in 9 months</td><td>Customs Act + DGFT</td><td>Shipping bill, IEC, export license</td></tr>
+            <tr><td>Hawala / unauthorized forex</td><td>Section 3 contravention</td><td>PMLA</td><td>Criminal investigation, attachment</td></tr>
+            <tr><td>NRI buying property</td><td>FEMA 21R compliance</td><td>State RERA + Registration Act</td><td>Stamp duty, registration, RERA</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="quiz-box reveal">
+        <div class="quiz-q">🧠 A FEMA contravention exceeding ₹30 lakh can additionally trigger investigation under:</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" data-correct="false">Companies Act only</button>
+          <button class="quiz-opt" data-correct="true">Prevention of Money Laundering Act (PMLA)</button>
+          <button class="quiz-opt" data-correct="false">Consumer Protection Act</button>
+          <button class="quiz-opt" data-correct="false">No other law — FEMA is self-contained</button>
+        </div>
+        <div class="quiz-feedback" 
+          data-correct="Correct! FEMA contraventions involving > ₹30 lakh are scheduled offences under PMLA. This means ED can pursue criminal money laundering charges in addition to civil FEMA proceedings." 
+          data-wrong="FEMA violations over ₹30 lakh qualify as scheduled offences under PMLA. This is the most serious escalation — from civil penalties under FEMA to criminal prosecution under PMLA with possible imprisonment.">
+        </div>
+      </div>
+
+      <div class="page-nav reveal">
+        <a href="../10-adjudication-appeals/index.html"><span class="nav-dir">← Previous</span><span class="nav-title">Adjudication & Appeals</span></a>
+        <a href="../12-lrs/index.html"><span class="nav-dir">Next →</span><span class="nav-title">Liberalised Remittance Scheme</span></a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer"><p>FEMA Act 1999 — Interactive Explainer · <a href="../index.html">Back to Home</a></p></footer>
+  <script src="../js/common.js"></script>
+  <script>
+    document.querySelectorAll('.interface-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const wasOpen = card.classList.contains('open');
+        document.querySelectorAll('.interface-card').forEach(c => c.classList.remove('open'));
+        if (!wasOpen) card.classList.add('open');
+      });
+    });
+  </script>
+</body>
+</html>

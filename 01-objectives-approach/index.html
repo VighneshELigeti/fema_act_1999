@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Objectives & Approach — FEMA Act 1999</title>
+  <link rel="stylesheet" href="../css/common.css">
+  <style>
+    .philosophy-compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+    @media (max-width: 700px) { .philosophy-compare { grid-template-columns: 1fr; } }
+    .philosophy-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .philosophy-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+    }
+    .philosophy-card.restrictive::before { background: var(--accent4); }
+    .philosophy-card.facilitative::before { background: var(--accent2); }
+    .philosophy-card h3 { margin-top: 0; }
+    
+    /* Animated balance scale */
+    .balance-visual {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      min-height: 280px;
+    }
+    .scale-container {
+      position: relative;
+      width: 400px;
+      max-width: 100%;
+    }
+    .scale-base {
+      width: 4px;
+      height: 120px;
+      background: var(--border);
+      margin: 0 auto;
+    }
+    .scale-beam {
+      width: 100%;
+      height: 4px;
+      background: var(--accent);
+      position: relative;
+      transition: transform 0.8s var(--ease-spring);
+      border-radius: 2px;
+    }
+    .scale-pan {
+      position: absolute;
+      top: 10px;
+      width: 140px;
+      min-height: 80px;
+      background: var(--bg-card);
+      border: 2px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 0.75rem;
+      font-size: 0.8rem;
+      text-align: center;
+      transition: transform 0.8s var(--ease-spring);
+    }
+    .scale-pan.left { left: -20px; }
+    .scale-pan.right { right: -20px; }
+    
+    /* Objective cards */
+    .objective-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+    .obj-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 1.25rem;
+      transition: all 0.3s;
+      border-left: 3px solid var(--accent);
+    }
+    .obj-card:hover { border-color: var(--accent); transform: translateX(4px); }
+    .obj-card .obj-icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+    .obj-card h4 { color: var(--accent); margin: 0 0 0.25rem; font-size: 0.95rem; }
+    .obj-card p { font-size: 0.85rem; color: var(--text-muted); margin: 0; }
+    
+    /* Interactive spectrum */
+    .spectrum-container {
+      background: var(--bg-interactive);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      margin: 2rem 0;
+    }
+    .spectrum-bar {
+      height: 40px;
+      border-radius: 20px;
+      background: linear-gradient(90deg, var(--accent4) 0%, var(--accent3) 50%, var(--accent2) 100%);
+      position: relative;
+      margin: 1rem 0;
+    }
+    .spectrum-marker {
+      position: absolute;
+      top: -8px;
+      width: 24px;
+      height: 56px;
+      background: var(--text);
+      border-radius: 12px;
+      cursor: grab;
+      transition: left 0.5s var(--ease-out);
+      z-index: 2;
+    }
+    .spectrum-label-left, .spectrum-label-right {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+    }
+    .spectrum-output {
+      text-align: center;
+      padding: 1rem;
+      font-weight: 600;
+      font-size: 1rem;
+      margin-top: 1rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--bg-card);
+    }
+  </style>
+</head>
+<body>
+  <div class="reading-progress"><div class="fill"></div></div>
+
+  <nav class="topnav">
+    <a href="../index.html" class="logo">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10A15.3 15.3 0 0 1 12 2z"/></svg>
+      FEMA Act 1999
+    </a>
+    <div class="nav-links">
+      <a href="../index.html">Home</a>
+      <a href="../02-scope-applicability/index.html">Next →</a>
+      <button class="theme-toggle">☀️</button>
+    </div>
+  </nav>
+
+  <div style="height: 60px;"></div>
+  
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../index.html">Home</a>
+      <span class="sep">/</span>
+      <span>Chapter 01: Objectives & Approach</span>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="reveal">
+        <span class="tag tag-blue">Chapter 01</span>
+        <h1>Objectives & Approach</h1>
+        <p style="font-size: 1.1rem; color: var(--text-muted); max-width: 680px;">
+          Understanding why India shifted from a restrictive forex regime to a 
+          facilitative one — and what FEMA aims to achieve.
+        </p>
+      </div>
+
+      <!-- The Big Picture -->
+      <h2 class="reveal">The Big Picture</h2>
+      <p class="reveal">
+        Imagine you're running a country that just became independent in 1947. Foreign exchange (forex) is 
+        <strong>extremely scarce</strong>. Every dollar, pound, and yen coming in or going out needs to be carefully controlled. 
+        You can't afford to let people freely move money across borders — your economy depends on conserving every bit of forex.
+      </p>
+      <p class="reveal">
+        That's exactly the mindset behind <strong>FERA (Foreign Exchange Regulation Act, 1973)</strong>. It was built on 
+        <em>fear and scarcity</em>. The philosophy was: <strong>"Foreign exchange is scarce. We must conserve it. 
+        Anyone who violates the rules is a criminal."</strong>
+      </p>
+      <p class="reveal">
+        Fast-forward to 1991. India opens its economy. Foreign investment starts pouring in. India's forex 
+        reserves grow from almost zero to billions of dollars. Suddenly, the old "scarcity" mindset doesn't 
+        make sense anymore. The world has changed, and India needs a law that <em>facilitates</em> forex transactions, 
+        not one that <em>criminalizes</em> them.
+      </p>
+
+      <div class="callout reveal">
+        <span class="callout-icon">🔑</span>
+        <div class="callout-body">
+          <strong>The Core Shift:</strong> FEMA moved India from a regime of <strong>"conservation"</strong> 
+          of foreign exchange to one of <strong>"management"</strong> — from strict control to smart regulation.
+        </div>
+      </div>
+
+      <!-- Philosophy Comparison -->
+      <h2 class="reveal">Two Philosophies: Restriction vs. Facilitation</h2>
+      
+      <div class="philosophy-compare reveal">
+        <div class="philosophy-card restrictive">
+          <h3 style="color: var(--accent4);">❌ FERA Approach (Old)</h3>
+          <p><strong>"Everything is prohibited unless explicitly permitted."</strong></p>
+          <ul>
+            <li>Forex transactions = <strong>criminal offences</strong></li>
+            <li>Guilty until proven innocent</li>
+            <li>Punishment: <strong>imprisonment</strong> (up to 7 years)</li>
+            <li>ED had <strong>arbitrary arrest powers</strong></li>
+            <li>Burden of proof on the <strong>accused</strong></li>
+            <li>Mindset: forex is scarce, hoard it</li>
+          </ul>
+        </div>
+        <div class="philosophy-card facilitative">
+          <h3 style="color: var(--accent2);">✓ FEMA Approach (New)</h3>
+          <p><strong>"Everything is permitted unless specifically prohibited or regulated."</strong></p>
+          <ul>
+            <li>Forex violations = <strong>civil contraventions</strong></li>
+            <li>Innocent until proven guilty</li>
+            <li>Penalty: <strong>monetary fines</strong> (up to 3× amount)</li>
+            <li>No arbitrary arrests</li>
+            <li>Burden of proof on the <strong>department</strong></li>
+            <li>Mindset: facilitate trade, manage risks</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Interactive Spectrum -->
+      <div class="spectrum-container reveal">
+        <div class="diagram-title">🎛️ Interactive — Where does FEMA sit on the regulation spectrum?</div>
+        <p style="font-size: 0.88rem; color: var(--text-muted);">
+          Drag the slider to see how different regulatory approaches compare. FEMA sits closer to 
+          the "facilitation" end while maintaining necessary controls for stability.
+        </p>
+        <div class="slider-group">
+          <label>Regulation Intensity: <span id="spectrumValue" style="color: var(--accent); font-weight: 700;">Balanced Management</span></label>
+          <input type="range" min="0" max="100" value="65" id="spectrumSlider">
+        </div>
+        <div class="spectrum-bar">
+          <div class="spectrum-marker" id="spectrumMarker" style="left: 65%;"></div>
+        </div>
+        <div class="spectrum-label-left">
+          <span>🔒 Total Control<br><small>e.g. North Korea</small></span>
+          <span>🔐 Heavy Regulation<br><small>e.g. FERA India</small></span>
+          <span>⚖️ Managed Openness<br><small>e.g. FEMA India</small></span>
+          <span>🔓 Free Capital Flow<br><small>e.g. UK, Singapore</small></span>
+        </div>
+        <div class="spectrum-output" id="spectrumOutput">
+          <strong>FEMA (India)</strong> — Managed openness with controls for stability. Current account is largely free; 
+          capital account is regulated but progressively liberalized.
+        </div>
+      </div>
+
+      <!-- Objectives of FEMA -->
+      <h2 class="reveal">Core Objectives of FEMA</h2>
+      <p class="reveal">
+        The Preamble of FEMA itself declares its purpose. Let's break it down:
+      </p>
+      
+      <blockquote class="reveal">
+        "An Act to consolidate and amend the law relating to foreign exchange with the objective of 
+        <strong>facilitating external trade and payments</strong> and for promoting the <strong>orderly development 
+        and maintenance of foreign exchange market</strong> in India."
+      </blockquote>
+
+      <div class="objective-grid reveal">
+        <div class="obj-card">
+          <div class="obj-icon">🌐</div>
+          <h4>Facilitate External Trade</h4>
+          <p>Make it easy for Indian businesses to import materials, export goods, and engage in international commerce without unnecessary bureaucratic hurdles.</p>
+        </div>
+        <div class="obj-card">
+          <div class="obj-icon">💳</div>
+          <h4>Facilitate Payments</h4>
+          <p>Enable smooth cross-border payments — for services, royalties, dividends, travel, education, medical treatment, and more.</p>
+        </div>
+        <div class="obj-card">
+          <div class="obj-icon">📊</div>
+          <h4>Orderly Forex Market</h4>
+          <p>Develop a well-functioning forex market where the rupee's value is determined by market forces (within managed boundaries).</p>
+        </div>
+        <div class="obj-card">
+          <div class="obj-icon">🛡️</div>
+          <h4>Maintain Stability</h4>
+          <p>Prevent disorderly conditions — like sudden capital flight or speculative attacks — that could destabilize the rupee and the economy.</p>
+        </div>
+        <div class="obj-card">
+          <div class="obj-icon">🔄</div>
+          <h4>Current Account Convertibility</h4>
+          <p>India committed to full current account convertibility under IMF Article VIII. FEMA implements this — all legitimate current account transactions are freely permitted.</p>
+        </div>
+        <div class="obj-card">
+          <div class="obj-icon">📈</div>
+          <h4>Progressive Capital Account Liberalization</h4>
+          <p>Gradually open capital account transactions (investments, borrowings) as the economy matures and forex reserves grow — but maintain safeguards.</p>
+        </div>
+      </div>
+
+      <!-- The Balance -->
+      <h2 class="reveal">The Balancing Act</h2>
+      <p class="reveal">
+        FEMA's genius lies in its <strong>balance</strong>. It doesn't throw the doors wide open 
+        (that could cause instability), nor does it keep them shut (that would stifle growth). 
+        Instead, it sets up a system of <strong>managed openness</strong>:
+      </p>
+
+      <div class="diagram-container reveal">
+        <div class="diagram-title">⚖️ FEMA's Balancing Framework</div>
+        <svg viewBox="0 0 700 320" class="diagram-svg">
+          <!-- Balance beam -->
+          <line x1="350" y1="30" x2="350" y2="100" stroke="#30363d" stroke-width="3"/>
+          <polygon points="340,100 360,100 350,30" fill="none" stroke="#58a6ff" stroke-width="2"/>
+          
+          <!-- Beam -->
+          <line x1="100" y1="100" x2="600" y2="100" stroke="#58a6ff" stroke-width="3"/>
+          
+          <!-- Left pan - Openness -->
+          <line x1="150" y1="100" x2="150" y2="140" stroke="#3fb950" stroke-width="2"/>
+          <rect x="60" y="140" width="180" height="160" rx="10" fill="none" stroke="#3fb950" stroke-width="2"/>
+          <text x="150" y="168" text-anchor="middle" fill="#3fb950" font-size="14" font-weight="700">OPENNESS</text>
+          <text x="150" y="192" text-anchor="middle" fill="#8b949e" font-size="11">✓ Free current account</text>
+          <text x="150" y="212" text-anchor="middle" fill="#8b949e" font-size="11">✓ Automatic route for FDI</text>
+          <text x="150" y="232" text-anchor="middle" fill="#8b949e" font-size="11">✓ LRS for individuals</text>
+          <text x="150" y="252" text-anchor="middle" fill="#8b949e" font-size="11">✓ ECBs with easy norms</text>
+          <text x="150" y="272" text-anchor="middle" fill="#8b949e" font-size="11">✓ Civil (not criminal) penalties</text>
+          <text x="150" y="292" text-anchor="middle" fill="#8b949e" font-size="11">✓ Compounding available</text>
+          
+          <!-- Right pan - Controls -->
+          <line x1="550" y1="100" x2="550" y2="140" stroke="#d29922" stroke-width="2"/>
+          <rect x="460" y="140" width="180" height="160" rx="10" fill="none" stroke="#d29922" stroke-width="2"/>
+          <text x="550" y="168" text-anchor="middle" fill="#d29922" font-size="14" font-weight="700">CONTROLS</text>
+          <text x="550" y="192" text-anchor="middle" fill="#8b949e" font-size="11">⚠ Capital account regulated</text>
+          <text x="550" y="212" text-anchor="middle" fill="#8b949e" font-size="11">⚠ Sectoral caps on FDI</text>
+          <text x="550" y="232" text-anchor="middle" fill="#8b949e" font-size="11">⚠ Only authorized persons</text>
+          <text x="550" y="252" text-anchor="middle" fill="#8b949e" font-size="11">⚠ KYC & documentation</text>
+          <text x="550" y="272" text-anchor="middle" fill="#8b949e" font-size="11">⚠ Reporting requirements</text>
+          <text x="550" y="292" text-anchor="middle" fill="#8b949e" font-size="11">⚠ ED enforcement powers</text>
+          
+          <!-- Center label -->
+          <text x="350" y="22" text-anchor="middle" fill="#58a6ff" font-size="13" font-weight="700">FEMA BALANCE</text>
+        </svg>
+      </div>
+
+      <!-- Key Principles -->
+      <h2 class="reveal">Key Approach Principles</h2>
+      
+      <div class="accordion reveal">
+        <div class="accordion-item open">
+          <button class="accordion-header">
+            1. Presumption of Permissibility
+            <span class="chevron">▼</span>
+          </button>
+          <div class="accordion-body">
+            <p>For <strong>current account transactions</strong> (day-to-day cross-border payments like imports, travel, education), 
+            the default is <strong>"permitted"</strong>. You don't need special permission to send money abroad for legitimate current 
+            account purposes. Only specific prohibitions/restrictions are listed.</p>
+            <p>Think of it like: <em>"The door is open. We've only put up a few 'No Entry' signs on specific paths."</em></p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-header">
+            2. Regulated but Progressive Capital Account
+            <span class="chevron">▼</span>
+          </button>
+          <div class="accordion-body">
+            <p>For <strong>capital account transactions</strong> (investments, borrowings, property), the approach is more cautious. 
+            These are permitted only as specified by RBI/Government. But the range of what's permitted has been 
+            <strong>steadily expanding</strong> over the years.</p>
+            <p><em>"The door is partially open. We control how wide it opens, and we're gradually opening it wider."</em></p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-header">
+            3. Authorized Channels Only
+            <span class="chevron">▼</span>
+          </button>
+          <div class="accordion-body">
+            <p>All forex transactions must go through <strong>authorized persons</strong> (mostly banks licensed by RBI). 
+            This ensures traceability, compliance, and that proper KYC/AML checks are done.</p>
+            <p>This is the "plumbing" of FEMA — even if a transaction is permitted, it must flow through the right pipes.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-header">
+            4. Civil Consequences, Not Criminal
+            <span class="chevron">▼</span>
+          </button>
+          <div class="accordion-body">
+            <p>Unlike FERA which could put you in jail, FEMA treats violations as <strong>civil wrongs</strong>. 
+            The punishment is monetary — penalty up to 3 times the sum involved. This doesn't mean violations 
+            are taken lightly, but it removes the stigma and harshness of criminal prosecution for forex missteps.</p>
+            <div class="callout warn">
+              <span class="callout-icon">⚠️</span>
+              <div class="callout-body">
+                <strong>Exception:</strong> If a FEMA contravention also involves money laundering (PMLA), the consequences 
+                become much more serious — including criminal prosecution. FEMA itself is civil; the intersection 
+                with PMLA can bring criminal consequences.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-header">
+            5. RBI as the Primary Regulator
+            <span class="chevron">▼</span>
+          </button>
+          <div class="accordion-body">
+            <p>The <strong>Reserve Bank of India</strong> is the day-to-day administrator of FEMA. It issues regulations 
+            (called "FEMA Regulations"), circulars, master directions, and processes applications. The Central 
+            Government makes broader policy decisions (like FDI policy, current account restriction rules), 
+            but RBI handles the operational machinery.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Real World Impact -->
+      <h2 class="reveal">Real-World Impact</h2>
+      
+      <div class="stat-row reveal">
+        <div class="stat-item">
+          <div class="stat-num counter" data-target="688" data-prefix="$" data-suffix="B">0</div>
+          <div class="stat-label">India's Forex Reserves (approx. 2024)</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num counter" data-target="250" data-prefix="$" data-suffix="K">0</div>
+          <div class="stat-label">LRS Limit per Person/Year</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num counter" data-target="100" data-suffix="%">0</div>
+          <div class="stat-label">FDI Allowed in Many Sectors</div>
+        </div>
+      </div>
+
+      <p class="reveal">
+        The shift from FERA to FEMA has been transformative. India went from a forex-starved economy to one of 
+        the world's largest holders of foreign exchange reserves. Companies like Coca-Cola (which had left India 
+        under FERA in 1977) came back. FDI inflows surged. Indians can now freely invest abroad, travel, pay for 
+        education overseas, and buy foreign goods — things that were heavily restricted or impossible under FERA.
+      </p>
+
+      <!-- Quiz -->
+      <div class="quiz-box reveal">
+        <div class="quiz-q">🧠 Test Your Understanding: What is the default position for current account transactions under FEMA?</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" data-correct="false">Prohibited unless RBI gives specific permission</button>
+          <button class="quiz-opt" data-correct="true">Permitted unless specifically prohibited or restricted</button>
+          <button class="quiz-opt" data-correct="false">Only allowed through government approval route</button>
+          <button class="quiz-opt" data-correct="false">Allowed only for amounts below $10,000</button>
+        </div>
+        <div class="quiz-feedback" 
+          data-correct="Exactly! FEMA's facilitative approach means current account transactions are generally freely permitted. Only specific categories are prohibited or restricted by the Central Government." 
+          data-wrong="Under FEMA, current account transactions follow a 'negative list' approach — everything is allowed except what's specifically prohibited or restricted.">
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <div class="page-nav reveal">
+        <a href="../index.html">
+          <span class="nav-dir">← Previous</span>
+          <span class="nav-title">Home / Overview</span>
+        </a>
+        <a href="../02-scope-applicability/index.html">
+          <span class="nav-dir">Next →</span>
+          <span class="nav-title">Scope & Applicability</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <p>FEMA Act 1999 — Interactive Explainer · <a href="../index.html">Back to Home</a></p>
+  </footer>
+
+  <script src="../js/common.js"></script>
+  <script>
+    // Spectrum slider
+    const slider = document.getElementById('spectrumSlider');
+    const marker = document.getElementById('spectrumMarker');
+    const output = document.getElementById('spectrumOutput');
+    const specVal = document.getElementById('spectrumValue');
+
+    const labels = [
+      { max: 15, name: 'Total Capital Controls', desc: 'Complete state control of all forex. No private forex transactions allowed. Only state banks can hold or deal in forex. Example: North Korea, Cuba.' },
+      { max: 30, name: 'Heavy Regulation (FERA-style)', desc: 'Forex transactions heavily restricted. Criminal penalties for violations. Prior permission needed for almost everything. Designed for forex conservation in scarcity.' },
+      { max: 50, name: 'Moderate Regulation', desc: 'Current account mostly free, but capital account heavily restricted. Emerging market approach with selective opening.' },
+      { max: 70, name: 'Managed Openness (FEMA)', desc: 'India\'s current position. Current account fully convertible. Capital account progressively liberalized but regulated. Civil penalties. Facilitation focus with stability safeguards.' },
+      { max: 85, name: 'Largely Open', desc: 'Most transactions freely permitted with minimal restrictions. Light reporting requirements. Few capital controls. Example: Australia, Japan.' },
+      { max: 100, name: 'Full Capital Account Convertibility', desc: 'Complete freedom to move money in and out with no restrictions. Example: UK, Singapore, Hong Kong. Requires very deep, liquid financial markets and strong institutions.' },
+    ];
+
+    function updateSpectrum(val) {
+      marker.style.left = val + '%';
+      const label = labels.find(l => val <= l.max);
+      specVal.textContent = label.name;
+      output.innerHTML = `<strong>${label.name}</strong> — ${label.desc}`;
+    }
+
+    slider.addEventListener('input', () => updateSpectrum(parseInt(slider.value)));
+    updateSpectrum(65);
+  </script>
+</body>
+</html>

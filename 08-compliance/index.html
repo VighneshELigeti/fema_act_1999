@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compliance Framework — FEMA Act 1999</title>
+  <link rel="stylesheet" href="../css/common.css">
+  <style>
+    .comp-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+    .comp-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      border-top: 4px solid var(--accent);
+    }
+    .comp-card .comp-icon { font-size: 1.5rem; margin-bottom: 0.3rem; }
+    .comp-card h4 { margin: 0.3rem 0; }
+    .comp-card p { font-size: 0.88rem; color: var(--text-muted); }
+    .filing-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      font-size: 0.85rem;
+    }
+    .filing-table th, .filing-table td {
+      padding: 0.6rem 0.8rem;
+      border: 1px solid var(--border);
+      text-align: left;
+    }
+    .filing-table th {
+      background: rgba(88,166,255,0.05);
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .filing-table tr:hover { background: rgba(88,166,255,0.03); }
+    .annual-timeline {
+      position: relative;
+      margin: 2rem 0;
+      padding-left: 2rem;
+    }
+    .annual-timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: var(--accent);
+      border-radius: 999px;
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 1.5rem;
+      padding-left: 1rem;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -2.35rem;
+      top: 0.3rem;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid var(--bg);
+    }
+    .timeline-item .tl-date {
+      font-size: 0.75rem;
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .timeline-item h4 { margin: 0.2rem 0; font-size: 0.95rem; }
+    .timeline-item p { margin: 0; font-size: 0.85rem; color: var(--text-muted); }
+  </style>
+</head>
+<body>
+  <div class="reading-progress"><div class="fill"></div></div>
+  <nav class="topnav">
+    <a href="../index.html" class="logo">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10A15.3 15.3 0 0 1 12 2z"/></svg>
+      FEMA Act 1999
+    </a>
+    <div class="nav-links">
+      <a href="../07-export-import/index.html">← Prev</a>
+      <a href="../09-contraventions/index.html">Next →</a>
+      <button class="theme-toggle">☀️</button>
+    </div>
+  </nav>
+  <div style="height:60px;"></div>
+  <div class="container"><div class="breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><span>Chapter 08: Compliance Framework</span></div></div>
+
+  <section class="section">
+    <div class="container">
+      <div class="reveal">
+        <span class="tag tag-green">Chapter 08</span>
+        <h1>Compliance Framework</h1>
+        <p style="font-size:1.1rem;color:var(--text-muted);max-width:700px;">
+          FEMA compliance is an ongoing obligation — it's not just about getting the initial transaction right, but about filing returns, maintaining records, and ensuring continuous adherence to regulations.
+        </p>
+      </div>
+
+      <!-- Three Pillars -->
+      <h2 class="reveal">Three Pillars of FEMA Compliance</h2>
+      <div class="comp-grid reveal">
+        <div class="comp-card">
+          <div class="comp-icon">📝</div>
+          <h4>Reporting & Filing</h4>
+          <p>Every significant forex transaction must be reported to RBI through AD banks using prescribed forms and within prescribed timelines. Late or non-filings attract penalties.</p>
+        </div>
+        <div class="comp-card">
+          <div class="comp-icon">📂</div>
+          <h4>Record Keeping</h4>
+          <p>All documents related to forex transactions must be maintained for a minimum of <strong>5 years</strong>. This includes contracts, invoices, bank certificates, forms, approvals, and correspondence.</p>
+        </div>
+        <div class="comp-card">
+          <div class="comp-icon">✅</div>
+          <h4>Ongoing Conditions</h4>
+          <p>Many FEMA permissions come with conditions (pricing guidelines, sectoral caps, end-use restrictions). Compliance means not just the initial transaction but ongoing adherence to all conditions.</p>
+        </div>
+      </div>
+
+      <!-- Key Filings Table -->
+      <h2 class="reveal">Key FEMA Filings & Forms</h2>
+      <div style="overflow-x:auto;" class="reveal">
+        <table class="filing-table">
+          <thead>
+            <tr><th>Form / Report</th><th>Purpose</th><th>Filed With</th><th>Timeline</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>FC-GPR</strong></td><td>FDI — Allotment of shares to non-residents</td><td>RBI via AD bank</td><td>Within 30 days of allotment</td></tr>
+            <tr><td><strong>FC-TRS</strong></td><td>FDI — Transfer of shares from/to non-residents</td><td>RBI via AD bank</td><td>Within 60 days of transfer</td></tr>
+            <tr><td><strong>FLA Return</strong></td><td>Foreign Liabilities & Assets — Annual survey</td><td>RBI directly (online)</td><td>By July 15 every year</td></tr>
+            <tr><td><strong>APR (Annual Performance Report)</strong></td><td>ODI — Performance of overseas JV/WOS</td><td>RBI via AD bank</td><td>By December 31 (for March-ended FY)</td></tr>
+            <tr><td><strong>ECB-2 Return</strong></td><td>ECB — Monthly reporting of drawdown, utilization</td><td>RBI via AD bank</td><td>Within 7 days of close of month</td></tr>
+            <tr><td><strong>GR/SDF Form</strong></td><td>Export of goods declaration</td><td>Customs/AD bank</td><td>At time of export</td></tr>
+            <tr><td><strong>SOFTEX</strong></td><td>Software/IT service export declaration</td><td>STPI/SEZ</td><td>Within 30 days of invoice</td></tr>
+            <tr><td><strong>BEF (Bill of Entry)</strong></td><td>Evidence of import</td><td>AD bank</td><td>Within prescribed time of import</td></tr>
+            <tr><td><strong>Form ODI (Part I, II, III)</strong></td><td>Overseas investment reporting</td><td>RBI via AD bank</td><td>Part I: before investment; Part II: annually; Part III: disinvestment</td></tr>
+            <tr><td><strong>LRS Declaration</strong></td><td>Remittance under Liberalised Remittance Scheme</td><td>AD bank</td><td>At time of remittance (Form A2)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Annual Compliance Calendar -->
+      <h2 class="reveal">Annual FEMA Compliance Calendar</h2>
+      <div class="annual-timeline reveal">
+        <div class="timeline-item">
+          <div class="tl-date">April–June</div>
+          <h4>Begin FY Compliance</h4>
+          <p>Review outstanding EDPMS/IDPMS caution listings. Plan LRS utilization for the year. Check any pending FC-GPR/FC-TRS filings from prior year.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="tl-date">July 15</div>
+          <h4>FLA Return Due</h4>
+          <p>All Indian companies that have received FDI and/or have overseas investments must file Foreign Liabilities and Assets Return with RBI. This is a census survey — mandatory, not optional.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="tl-date">September 30</div>
+          <h4>Annual Return on Foreign Assets (ARFA)</h4>
+          <p>Under Income Tax (Black Money Act) — declare foreign assets. Overlaps with FEMA reporting requirements. Cross-reference your FEMA filings.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="tl-date">December 31</div>
+          <h4>APR Due for ODI</h4>
+          <p>Annual Performance Report for overseas JVs/WOS must be filed with RBI by Dec 31 for the preceding March-ended FY. Includes financial statements of the overseas entity.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="tl-date">Monthly</div>
+          <h4>ECB-2 Returns</h4>
+          <p>If you have active ECBs, monthly ECB-2 returns must be filed within 7 days of month-end. Covers drawdown, utilization, outstanding balance, repayment details.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="tl-date">Ongoing</div>
+          <h4>EDPMS/IDPMS Monitoring</h4>
+          <p>RBI's electronic platforms (Export Data Processing and Monitoring System / Import Data Processing and Monitoring System) track every export/import transaction. Outstanding entries get flagged and may trigger ED action.</p>
+        </div>
+      </div>
+
+      <!-- Compounding -->
+      <h2 class="reveal">Compounding — The "Settlement" Route</h2>
+      <div class="callout reveal">
+        <span class="callout-icon">🤝</span>
+        <div class="callout-body">
+          <strong>What is compounding?</strong> Compounding under Section 15 is FEMA's "settlement" mechanism. If you've committed a FEMA contravention, instead of going through the full adjudication process (which can take years), you can apply for compounding — admit the violation, pay a compounding fee, and close the matter. It's like paying a fine to settle. RBI compounds most contraventions (up to ₹5 crore penalty); ED compounds the rest.
+        </div>
+      </div>
+
+      <div class="accordion reveal">
+        <div class="acc-item">
+          <button class="acc-trigger">When should you compound?</button>
+          <div class="acc-content"><p>When you discover a FEMA contravention (through internal audit, external compliance review, or notice from RBI/ED). Early compounding = lower penalty, faster closure. It's voluntary — you don't have to wait for ED to come knocking. Many companies proactively compound technical violations found during due diligence (M&A, IPO prep).</p></div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-trigger">Compounding fee calculation</button>
+          <div class="acc-content"><p>RBI's Compounding Guidelines specify a matrix based on: (1) Amount involved, (2) Duration of contravention, (3) Nature of violation (technical vs deliberate), (4) Whether voluntary or detected. Typical fees range from ₹10,000 to several lakhs. The fee is NOT the same as the penalty under Section 13 — compounding fees are generally much lower than adjudication penalties.</p></div>
+        </div>
+        <div class="acc-item">
+          <button class="acc-trigger">What CANNOT be compounded?</button>
+          <div class="acc-content"><p>Repeat violations (second or subsequent contravention of the same nature within 3 years), contraventions involving money laundering suspicion, violations where ED has already initiated adjudication proceedings. Also, some specific violations may be excluded from compounding per RBI circular.</p></div>
+        </div>
+      </div>
+
+      <!-- Quiz -->
+      <div class="quiz-box reveal">
+        <div class="quiz-q">🧠 The FLA Return must be filed by:</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" data-correct="false">March 31</button>
+          <button class="quiz-opt" data-correct="true">July 15</button>
+          <button class="quiz-opt" data-correct="false">September 30</button>
+          <button class="quiz-opt" data-correct="false">December 31</button>
+        </div>
+        <div class="quiz-feedback" 
+          data-correct="Correct! The Foreign Liabilities and Assets (FLA) Return is due by July 15 every year for all Indian companies that have received FDI or made overseas investments." 
+          data-wrong="FLA Return deadline is July 15. This is an RBI census survey filed directly on RBI's website by all companies with foreign liabilities or assets.">
+        </div>
+      </div>
+
+      <div class="page-nav reveal">
+        <a href="../07-export-import/index.html"><span class="nav-dir">← Previous</span><span class="nav-title">Export & Import Regulations</span></a>
+        <a href="../09-contraventions/index.html"><span class="nav-dir">Next →</span><span class="nav-title">Contraventions & Penalties</span></a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer"><p>FEMA Act 1999 — Interactive Explainer · <a href="../index.html">Back to Home</a></p></footer>
+  <script src="../js/common.js"></script>
+</body>
+</html>

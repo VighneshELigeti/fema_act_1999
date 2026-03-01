@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FEMA Act 1999 — Interactive Explainer</title>
+  <link rel="stylesheet" href="css/common.css">
+  <style>
+    /* Hero animated background particles */
+    .hero-particles { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+    .hero-particles .particle {
+      position: absolute;
+      border-radius: 50%;
+      background: var(--accent);
+      opacity: 0.08;
+      animation: floatUp linear infinite;
+    }
+    @keyframes floatUp {
+      0%   { transform: translateY(100vh) scale(0); opacity: 0; }
+      10%  { opacity: 0.08; }
+      90%  { opacity: 0.08; }
+      100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+    }
+    /* India map outline glow */
+    .india-map { max-width: 220px; margin: 0 auto 2rem; opacity: 0.15; }
+    .india-map svg { width: 100%; height: auto; }
+    
+    /* Section headers */
+    .section-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .section-header .tag { margin-bottom: 0.75rem; }
+    .section-header p { max-width: 600px; margin: 0.5rem auto 0; color: var(--text-muted); }
+    
+    /* Animated overview diagram */
+    .overview-diagram {
+      background: var(--bg-interactive);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      margin: 2rem 0;
+      min-height: 500px;
+      position: relative;
+    }
+    .overview-node {
+      position: absolute;
+      background: var(--bg-card);
+      border: 2px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 0.6rem 1rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s var(--ease-out);
+      white-space: nowrap;
+      z-index: 2;
+    }
+    .overview-node:hover, .overview-node.active {
+      border-color: var(--accent);
+      transform: scale(1.08);
+      box-shadow: 0 4px 20px rgba(88,166,255,0.15);
+      z-index: 3;
+    }
+    .overview-node.center-node {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+      font-size: 1rem;
+      padding: 1rem 1.5rem;
+    }
+    .overview-canvas { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+    
+    /* Quick stats section */
+    .quick-facts {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+    .fact-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 1.25rem;
+      text-align: center;
+      transition: border-color 0.3s;
+    }
+    .fact-card:hover { border-color: var(--accent); }
+    .fact-card .fact-icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+    .fact-card .fact-value { font-size: 1.6rem; font-weight: 800; color: var(--accent); }
+    .fact-card .fact-label { font-size: 0.78rem; color: var(--text-muted); margin-top: 0.25rem; }
+    
+    /* Topic section cards */
+    .topic-section { margin: 3rem 0; }
+    .topic-section .section-tag {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+    }
+    
+    /* Reading progress */
+    .reading-progress {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      z-index: 1001;
+    }
+    .reading-progress .fill {
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent5), var(--accent3));
+      width: 0;
+      transition: width 0.1s linear;
+    }
+  </style>
+</head>
+<body>
+  <!-- Reading Progress -->
+  <div class="reading-progress"><div class="fill"></div></div>
+
+  <!-- Top Navigation -->
+  <nav class="topnav">
+    <a href="index.html" class="logo">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="10"/>
+        <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10A15.3 15.3 0 0 1 12 2z"/>
+      </svg>
+      FEMA Act 1999
+    </a>
+    <div class="nav-links">
+      <a href="#overview">Overview</a>
+      <a href="#topics">Topics</a>
+      <a href="#architecture">Architecture</a>
+      <button class="theme-toggle">☀️</button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="top">
+    <div class="hero-particles" id="heroParticles"></div>
+    <div class="badge">
+      <span class="dot"></span>
+      Interactive Explainer
+    </div>
+    <h1>Foreign Exchange<br>Management Act, 1999</h1>
+    <p class="subtitle">
+      India's primary law governing foreign exchange and cross-border transactions.
+      From facilitation to enforcement — explore every concept visually and interactively.
+    </p>
+    <div style="display:flex; gap:1rem; flex-wrap:wrap; justify-content:center;">
+      <a href="#topics" style="display:inline-flex; align-items:center; gap:0.5rem; padding:0.75rem 1.5rem; background:var(--accent); color:#fff; border-radius:var(--radius-sm); font-weight:600; font-size:0.92rem; transition:all 0.3s;">
+        Explore Topics ↓
+      </a>
+      <a href="#overview" style="display:inline-flex; align-items:center; gap:0.5rem; padding:0.75rem 1.5rem; background:var(--bg-card); border:1px solid var(--border); color:var(--text); border-radius:var(--radius-sm); font-weight:600; font-size:0.92rem; transition:all 0.3s;">
+        Quick Overview
+      </a>
+    </div>
+  </section>
+
+  <!-- Quick Overview Section -->
+  <section class="section" id="overview">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="tag tag-blue">Overview</span>
+        <h2>What is FEMA?</h2>
+        <p>FEMA replaced the older, restrictive FERA regime in 1999 to facilitate external trade 
+           and promote orderly development of India's forex market.</p>
+      </div>
+
+      <div class="callout reveal">
+        <span class="callout-icon">💡</span>
+        <div class="callout-body">
+          <strong>Key Shift:</strong> FEMA treats most forex violations as <strong>civil contraventions</strong> 
+          (with monetary penalties), unlike FERA which treated them as <strong>criminal offences</strong> 
+          (with imprisonment). This was a fundamental philosophy change from "regulate and restrict" to 
+          "facilitate and manage."
+        </div>
+      </div>
+
+      <!-- Quick Facts -->
+      <div class="quick-facts reveal">
+        <div class="fact-card">
+          <div class="fact-icon">📜</div>
+          <div class="fact-value">1999</div>
+          <div class="fact-label">Year Enacted</div>
+        </div>
+        <div class="fact-card">
+          <div class="fact-icon">📅</div>
+          <div class="fact-value">June 1, 2000</div>
+          <div class="fact-label">Came into Force</div>
+        </div>
+        <div class="fact-card">
+          <div class="fact-icon">📋</div>
+          <div class="fact-value counter" data-target="49" data-suffix=" Sections">0</div>
+          <div class="fact-label">In the Act</div>
+        </div>
+        <div class="fact-card">
+          <div class="fact-icon">🏛️</div>
+          <div class="fact-value">RBI</div>
+          <div class="fact-label">Primary Regulator</div>
+        </div>
+        <div class="fact-card">
+          <div class="fact-icon">🔄</div>
+          <div class="fact-value">FERA</div>
+          <div class="fact-label">Replaced</div>
+        </div>
+        <div class="fact-card">
+          <div class="fact-icon">⚖️</div>
+          <div class="fact-value">Civil</div>
+          <div class="fact-label">Nature of Contraventions</div>
+        </div>
+      </div>
+
+      <!-- Interactive FEMA Ecosystem Diagram -->
+      <div class="diagram-container reveal">
+        <div class="diagram-title">🌐 FEMA Ecosystem — Interactive Map (hover to explore)</div>
+        <div class="overview-diagram" id="ecosystemDiagram">
+          <canvas class="overview-canvas" id="ecosystemCanvas"></canvas>
+        </div>
+      </div>
+
+      <!-- Timeline -->
+      <h3 class="reveal" style="margin-bottom: 1rem;">Historical Timeline</h3>
+      <div class="timeline reveal">
+        <div class="timeline-item">
+          <span class="tl-year">1947</span>
+          <div class="tl-title">Foreign Exchange Regulation Act (FERA)</div>
+          <div class="tl-desc">India's first comprehensive forex law. Very restrictive — treated most violations as criminal offences. Forex was scarce post-independence.</div>
+        </div>
+        <div class="timeline-item">
+          <span class="tl-year">1973</span>
+          <div class="tl-title">FERA Strengthened</div>
+          <div class="tl-desc">Major amendments made FERA even more draconian. Companies like Coca-Cola and IBM left India rather than comply with harsh regulations.</div>
+        </div>
+        <div class="timeline-item">
+          <span class="tl-year">1991</span>
+          <div class="tl-title">Economic Liberalization</div>
+          <div class="tl-desc">Balance of Payments crisis → LPG reforms. India opened its economy, making strict FERA outdated and counter-productive.</div>
+        </div>
+        <div class="timeline-item">
+          <span class="tl-year">1993</span>
+          <div class="tl-title">FERA Amended</div>
+          <div class="tl-desc">Partial relaxation of FERA provisions to align with liberalization. But the fundamental approach was still restrictive.</div>
+        </div>
+        <div class="timeline-item">
+          <span class="tl-year">1997</span>
+          <div class="tl-title">Tarapore Committee</div>
+          <div class="tl-desc">Recommended capital account convertibility and a modern forex management framework, paving the way for FEMA.</div>
+        </div>
+        <div class="timeline-item">
+          <span class="tl-year">1999</span>
+          <div class="tl-title">FEMA Enacted</div>
+          <div class="tl-desc">Parliament passes the Foreign Exchange Management Act (Act No. 42 of 1999). A paradigm shift from conservation to management of forex.</div>
+        </div>
+        <div class="timeline-item">
+          <span class="tl-year">June 1, 2000</span>
+          <div class="tl-title">FEMA Comes into Force</div>
+          <div class="tl-desc">FEMA officially replaces FERA. All forex transactions in India now governed under the new facilitative regime.</div>
+        </div>
+        <div class="timeline-item">
+          <span class="tl-year">2004</span>
+          <div class="tl-title">LRS Introduced</div>
+          <div class="tl-desc">Liberalized Remittance Scheme allows residents to freely remit up to $25,000 (later raised to $250,000) per year.</div>
+        </div>
+        <div class="timeline-item">
+          <span class="tl-year">2015–2019</span>
+          <div class="tl-title">Major Rule Overhauls</div>
+          <div class="tl-desc">New FDI rules, ODI regulations, ECB norms revised. FEMA regulations continuously updated by RBI to keep pace with global trends.</div>
+        </div>
+        <div class="timeline-item">
+          <span class="tl-year">2022–2024</span>
+          <div class="tl-title">Overseas Investment Rules & Digital</div>
+          <div class="tl-desc">Comprehensive new Overseas Investment Rules 2022. TCS on LRS. Digital forex and fintech considerations evolve.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Study Map — All Topics -->
+  <section class="section" id="topics" style="background: var(--bg-card);">
+    <div class="container-wide">
+      <div class="section-header reveal">
+        <span class="tag tag-green">Study Map</span>
+        <h2>Complete FEMA Study Guide</h2>
+        <p>14 comprehensive chapters covering every aspect of the Foreign Exchange Management Act.</p>
+      </div>
+
+      <div class="cards-grid">
+        <!-- 1 -->
+        <a href="01-objectives-approach/index.html" class="card reveal">
+          <div class="card-icon">🎯</div>
+          <div class="card-num">Chapter 01</div>
+          <h3>Objectives & Approach</h3>
+          <p>Facilitation vs. criminalization philosophy. Why India moved from strict controls to managed openness.</p>
+        </a>
+        <!-- 2 -->
+        <a href="02-scope-applicability/index.html" class="card reveal">
+          <div class="card-icon">🔍</div>
+          <div class="card-num">Chapter 02</div>
+          <h3>Scope & Applicability</h3>
+          <p>Who and what FEMA covers. Persons, entities, transactions, and the critical concept of residential status.</p>
+        </a>
+        <!-- 3 -->
+        <a href="03-key-definitions/index.html" class="card reveal">
+          <div class="card-icon">📖</div>
+          <div class="card-num">Chapter 03</div>
+          <h3>Key Definitions</h3>
+          <p>High-yield definitions: person resident in India, foreign exchange, authorized person, current vs. capital account.</p>
+        </a>
+        <!-- 4 -->
+        <a href="04-regulatory-architecture/index.html" class="card reveal">
+          <div class="card-icon">🏛️</div>
+          <div class="card-num">Chapter 04</div>
+          <h3>Regulatory Architecture</h3>
+          <p>Who does what: RBI, Central Government, Enforcement Directorate, Adjudicating Authority, Appellate Tribunal.</p>
+        </a>
+        <!-- 5 -->
+        <a href="05-current-account/index.html" class="card reveal">
+          <div class="card-icon">💳</div>
+          <div class="card-num">Chapter 05</div>
+          <h3>Current Account Transactions</h3>
+          <p>Day-to-day cross-border payments: travel, education, imports, subscriptions, remittances, and restrictions.</p>
+        </a>
+        <!-- 6 -->
+        <a href="06-capital-account/index.html" class="card reveal">
+          <div class="card-icon">📊</div>
+          <div class="card-num">Chapter 06</div>
+          <h3>Capital Account Transactions</h3>
+          <p>FDI, ODI, ECBs, immovable property, guarantees, derivatives — ownership and claims across borders.</p>
+        </a>
+        <!-- 7 -->
+        <a href="07-export-import/index.html" class="card reveal">
+          <div class="card-icon">🚢</div>
+          <div class="card-num">Chapter 07</div>
+          <h3>Export/Import & Repatriation</h3>
+          <p>Routing receipts, authorized channels, timelines, realization requirements, and RBI directions.</p>
+        </a>
+        <!-- 8 -->
+        <a href="08-compliance/index.html" class="card reveal">
+          <div class="card-icon">✅</div>
+          <div class="card-num">Chapter 08</div>
+          <h3>Compliance Mechanics</h3>
+          <p>Permissions vs. automatic routes, reporting, record retention, audits, and RBI portal operations.</p>
+        </a>
+        <!-- 9 -->
+        <a href="09-contraventions/index.html" class="card reveal">
+          <div class="card-icon">⚠️</div>
+          <div class="card-num">Chapter 09</div>
+          <h3>Contraventions & Consequences</h3>
+          <p>What counts as a violation, penalty calculations, confiscation mechanisms, and enforcement powers.</p>
+        </a>
+        <!-- 10 -->
+        <a href="10-adjudication-appeals/index.html" class="card reveal">
+          <div class="card-icon">⚖️</div>
+          <div class="card-num">Chapter 10</div>
+          <h3>Adjudication, Appeals & Compounding</h3>
+          <p>The full process: notice → hearing → order → appeal ladder → compounding of contraventions.</p>
+        </a>
+        <!-- 11 -->
+        <a href="11-interfaces/index.html" class="card reveal">
+          <div class="card-icon">🔗</div>
+          <div class="card-num">Chapter 11</div>
+          <h3>Interfaces with Other Regimes</h3>
+          <p>How FEMA interacts with FDI Policy, Companies Act, SEBI, Customs, PMLA, and Income Tax Act.</p>
+        </a>
+        <!-- 12 -->
+        <a href="12-lrs/index.html" class="card reveal">
+          <div class="card-icon">💸</div>
+          <div class="card-num">Chapter 12</div>
+          <h3>Liberalized Remittance Scheme</h3>
+          <p>The $250,000 per year facility: who can use it, what it covers, TCS implications, and reporting.</p>
+        </a>
+        <!-- 13 -->
+        <a href="13-fema-vs-fera/index.html" class="card reveal">
+          <div class="card-icon">🔀</div>
+          <div class="card-num">Chapter 13</div>
+          <h3>FEMA vs FERA Comparison</h3>
+          <p>A detailed head-to-head of the old restrictive regime and the new facilitative framework.</p>
+        </a>
+        <!-- 14 -->
+        <a href="14-amendments/index.html" class="card reveal">
+          <div class="card-icon">📝</div>
+          <div class="card-num">Chapter 14</div>
+          <h3>Miscellaneous & Recent Amendments</h3>
+          <p>Power of Central Govt, RBI directions, exemptions, SEZs, digital forex, and recent changes.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Architecture Overview -->
+  <section class="section" id="architecture">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="tag tag-purple">Architecture</span>
+        <h2>FEMA Regulatory Framework</h2>
+        <p>An interactive view of how different bodies work together to regulate forex in India.</p>
+      </div>
+
+      <!-- Interactive SVG Architecture -->
+      <div class="diagram-container reveal">
+        <div class="diagram-title">⚡ Regulatory Hierarchy — Click any node to learn more</div>
+        <svg viewBox="0 0 800 600" class="diagram-svg" id="archDiagram">
+          <!-- Central Government -->
+          <g class="arch-node" data-info="Makes rules under FEMA, restricts current account transactions, controls FDI policy jointly with DPIIT">
+            <rect x="300" y="20" width="200" height="56" rx="10" fill="#1c2333" stroke="#d29922" stroke-width="2.5"/>
+            <text x="400" y="45" text-anchor="middle" fill="#d29922" font-size="11" font-weight="700">PARLIAMENT</text>
+            <text x="400" y="62" text-anchor="middle" fill="#8b949e" font-size="10">Enacts FEMA legislation</text>
+          </g>
+          
+          <!-- Arrow down -->
+          <line x1="400" y1="76" x2="400" y2="110" stroke="#30363d" stroke-width="2"/>
+          <polygon points="394,108 406,108 400,118" fill="#30363d"/>
+          
+          <!-- Central Govt -->
+          <g class="arch-node" data-info="Can prescribe rules for current account restrictions, capital account regulations with RBI">
+            <rect x="280" y="120" width="240" height="56" rx="10" fill="#1c2333" stroke="#58a6ff" stroke-width="2.5"/>
+            <text x="400" y="145" text-anchor="middle" fill="#58a6ff" font-size="12" font-weight="700">CENTRAL GOVERNMENT</text>
+            <text x="400" y="162" text-anchor="middle" fill="#8b949e" font-size="10">Rules & Policy Levers</text>
+          </g>
+          
+          <!-- Arrows down to RBI and ED -->
+          <line x1="340" y1="176" x2="200" y2="230" stroke="#30363d" stroke-width="2"/>
+          <polygon points="195,225 205,225 200,235" fill="#30363d"/>
+          <line x1="460" y1="176" x2="600" y2="230" stroke="#30363d" stroke-width="2"/>
+          <polygon points="595,225 605,225 600,235" fill="#30363d"/>
+          <line x1="400" y1="176" x2="400" y2="230" stroke="#30363d" stroke-width="2"/>
+          <polygon points="394,228 406,228 400,238" fill="#30363d"/>
+          
+          <!-- RBI -->
+          <g class="arch-node" data-info="Issues regulations/directions, grants permissions, licenses authorized dealers, oversees reporting, manages forex reserves">
+            <rect x="80" y="240" width="240" height="70" rx="10" fill="#1c2333" stroke="#3fb950" stroke-width="2.5"/>
+            <text x="200" y="265" text-anchor="middle" fill="#3fb950" font-size="12" font-weight="700">RESERVE BANK OF INDIA</text>
+            <text x="200" y="282" text-anchor="middle" fill="#8b949e" font-size="10">Regulations • Permissions</text>
+            <text x="200" y="298" text-anchor="middle" fill="#8b949e" font-size="10">Authorized Dealers • Reporting</text>
+          </g>
+          
+          <!-- DPIIT/FDI -->
+          <g class="arch-node" data-info="Department for Promotion of Industry and Internal Trade manages FDI Policy, sectoral caps, and approval routes">
+            <rect x="290" y="240" width="220" height="56" rx="10" fill="#1c2333" stroke="#bc8cff" stroke-width="2.5"/>
+            <text x="400" y="262" text-anchor="middle" fill="#bc8cff" font-size="11" font-weight="700">DPIIT / FDI POLICY</text>
+            <text x="400" y="280" text-anchor="middle" fill="#8b949e" font-size="10">Sectoral Caps & Conditions</text>
+          </g>
+          
+          <!-- ED -->
+          <g class="arch-node" data-info="Investigates FEMA contraventions, issues show cause notices, attaches property, enforces penalty orders">
+            <rect x="480" y="240" width="240" height="70" rx="10" fill="#1c2333" stroke="#f85149" stroke-width="2.5"/>
+            <text x="600" y="265" text-anchor="middle" fill="#f85149" font-size="12" font-weight="700">ENFORCEMENT DIRECTORATE</text>
+            <text x="600" y="282" text-anchor="middle" fill="#8b949e" font-size="10">Investigation • SCN</text>
+            <text x="600" y="298" text-anchor="middle" fill="#8b949e" font-size="10">Property Attachment</text>
+          </g>
+          
+          <!-- Arrows down from RBI -->
+          <line x1="200" y1="310" x2="200" y2="370" stroke="#30363d" stroke-width="2"/>
+          <polygon points="194,368 206,368 200,378" fill="#30363d"/>
+          
+          <!-- Authorized Dealers -->
+          <g class="arch-node" data-info="Banks, money changers, offshore banking units licensed by RBI to deal in forex. They are the frontline gatekeepers.">
+            <rect x="60" y="380" width="280" height="56" rx="10" fill="#1c2333" stroke="#39d353" stroke-width="2"/>
+            <text x="200" y="402" text-anchor="middle" fill="#39d353" font-size="11" font-weight="700">AUTHORIZED PERSONS</text>
+            <text x="200" y="420" text-anchor="middle" fill="#8b949e" font-size="10">AD Banks • Money Changers • OBUs</text>
+          </g>
+          
+          <!-- Arrows down from ED -->
+          <line x1="600" y1="310" x2="600" y2="370" stroke="#30363d" stroke-width="2"/>
+          <polygon points="594,368 606,368 600,378" fill="#30363d"/>
+          
+          <!-- Adjudicating Authority -->
+          <g class="arch-node" data-info="Special Director (Appeals) hears appeals against AD orders. Adjudicating Authority hears contravention cases (penalty up to 3× amount involved).">
+            <rect x="460" y="380" width="280" height="56" rx="10" fill="#1c2333" stroke="#d29922" stroke-width="2"/>
+            <text x="600" y="402" text-anchor="middle" fill="#d29922" font-size="11" font-weight="700">ADJUDICATING AUTHORITY</text>
+            <text x="600" y="420" text-anchor="middle" fill="#8b949e" font-size="10">Hearings • Penalty Orders</text>
+          </g>
+          
+          <!-- Arrows to Appellate Tribunal -->
+          <line x1="600" y1="436" x2="600" y2="480" stroke="#30363d" stroke-width="2"/>
+          <polygon points="594,478 606,478 600,488" fill="#30363d"/>
+          
+          <!-- Appellate Tribunal -->
+          <g class="arch-node" data-info="Appellate Tribunal for Foreign Exchange (ATFE) hears appeals from Adjudicating Authority and Special Director (Appeals).">
+            <rect x="440" y="490" width="320" height="56" rx="10" fill="#1c2333" stroke="#58a6ff" stroke-width="2"/>
+            <text x="600" y="512" text-anchor="middle" fill="#58a6ff" font-size="11" font-weight="700">APPELLATE TRIBUNAL (ATFE)</text>
+            <text x="600" y="530" text-anchor="middle" fill="#8b949e" font-size="10">Appeals from AA / Special Director</text>
+          </g>
+          
+          <!-- High Court -->
+          <line x1="600" y1="546" x2="400" y2="570" stroke="#30363d" stroke-width="2" stroke-dasharray="6,4"/>
+          <g class="arch-node" data-info="High Court hears appeals from ATFE on questions of law only.">
+            <rect x="260" y="560" width="280" height="40" rx="8" fill="#1c2333" stroke="#30363d" stroke-width="1.5"/>
+            <text x="400" y="585" text-anchor="middle" fill="#8b949e" font-size="10">HIGH COURT (on questions of law)</text>
+          </g>
+          
+          <!-- Persons/entities at bottom-left -->
+          <line x1="200" y1="436" x2="200" y2="480" stroke="#30363d" stroke-width="2"/>
+          <polygon points="194,478 206,478 200,488" fill="#30363d"/>
+          <g class="arch-node" data-info="All persons resident in India and outside India who deal in forex or own foreign securities/immovable property abroad.">
+            <rect x="40" y="490" width="320" height="56" rx="10" fill="#1c2333" stroke="#8b949e" stroke-width="2"/>
+            <text x="200" y="512" text-anchor="middle" fill="#e6edf3" font-size="11" font-weight="700">PERSONS & ENTITIES</text>
+            <text x="200" y="530" text-anchor="middle" fill="#8b949e" font-size="10">Residents • NRIs • Foreign Companies</text>
+          </g>
+        </svg>
+        
+        <!-- Info panel -->
+        <div id="archInfo" style="margin-top: 1rem; padding: 1rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 0.9rem; color: var(--text-muted); min-height: 50px;">
+          👆 Click on any node in the diagram above to see details about that regulatory body.
+        </div>
+      </div>
+
+      <!-- FEMA Structure - Act Layout -->
+      <h3 class="reveal" style="margin-top: 2rem;">Structure of the Act</h3>
+      <p class="reveal" style="color: var(--text-muted); font-size: 0.92rem;">
+        FEMA has 49 sections organized into 7 chapters, supported by numerous Rules (by Central Government) 
+        and Regulations/Directions (by RBI).
+      </p>
+      
+      <div class="accordion reveal">
+        <div class="accordion-item">
+          <button class="accordion-header">
+            Chapter I — Preliminary (Sec. 1–2)
+            <span class="chevron">▼</span>
+          </button>
+          <div class="accordion-body">
+            <p>Contains the short title, extent, commencement, and definitions. Section 2 alone has 28+ definitions that form the foundation of the entire regulatory framework.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-header">
+            Chapter II — Regulation and Management of Foreign Exchange (Sec. 3–9)
+            <span class="chevron">▼</span>
+          </button>
+          <div class="accordion-body">
+            <p>The heart of the Act. Section 3 prohibits dealing in forex except through authorized persons. Sections 4 & 5 govern current and capital account transactions. Sections 6–9 cover export/import of currency, realization of foreign exchange, and exemptions.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-header">
+            Chapter III — Authorized Person (Sec. 10–12)
+            <span class="chevron">▼</span>
+          </button>
+          <div class="accordion-body">
+            <p>Who can deal in forex? Only authorized persons (AD Category I, II, III banks, Full Fledged Money Changers, etc.) licensed by the RBI. Covers licensing, revocation, duties, and obligations.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-header">
+            Chapter IV — Contravention and Penalties (Sec. 13–15)
+            <span class="chevron">▼</span>
+          </button>
+          <div class="accordion-body">
+            <p>Civil contravention framework. Penalty up to 3× the sum involved or ₹2 lakh (whichever is more). Continuing default: up to ₹5,000 per day. Power to compound contraventions.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-header">
+            Chapter V — Adjudication and Appeal (Sec. 16–35)
+            <span class="chevron">▼</span>
+          </button>
+          <div class="accordion-body">
+            <p>The largest chapter. Covers: Adjudicating Authority appointment and powers, appeal to Special Director (Appeals), Appellate Tribunal composition and procedure, appeal to High Court, enforcement of orders, and recovery of penalties.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-header">
+            Chapter VI — Directorate of Enforcement (Sec. 36–38)
+            <span class="chevron">▼</span>
+          </button>
+          <div class="accordion-body">
+            <p>Empowers the Directorate of Enforcement (ED) to investigate contraventions, search premises, seize documents, and arrest in extraordinary cases. The ED is the enforcement arm of FEMA.</p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <button class="accordion-header">
+            Chapter VII — Miscellaneous (Sec. 39–49)
+            <span class="chevron">▼</span>
+          </button>
+          <div class="accordion-body">
+            <p>Power to make rules/regulations, exemptions, application of other laws, bar of legal proceedings, protection of officers acting in good faith, and transitional provisions from FERA to FEMA.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quiz -->
+      <div class="quiz-box reveal">
+        <div class="quiz-q">🧠 Quick Check: What is the fundamental nature of violations under FEMA?</div>
+        <div class="quiz-options">
+          <button class="quiz-opt" data-correct="false">Criminal offences punishable with imprisonment</button>
+          <button class="quiz-opt" data-correct="true">Civil contraventions with monetary penalties</button>
+          <button class="quiz-opt" data-correct="false">Regulatory warnings without any financial consequences</button>
+          <button class="quiz-opt" data-correct="false">Both criminal and civil, depending on the amount involved</button>
+        </div>
+        <div class="quiz-feedback" data-correct="Well done! FEMA treats violations as civil contraventions (not criminal offences), with penalties typically up to 3× the amount involved." data-wrong="The correct answer is civil contraventions. This was the major shift from FERA (criminal) to FEMA (civil)."></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <p>FEMA Act 1999 — Interactive Explainer</p>
+      <p style="margin-top: 0.5rem;">Built for educational purposes. Not legal advice.</p>
+    </div>
+  </footer>
+
+  <script src="js/common.js"></script>
+  <script>
+    // Hero particles
+    (function() {
+      const container = document.getElementById('heroParticles');
+      if (!container) return;
+      for (let i = 0; i < 20; i++) {
+        const p = document.createElement('div');
+        p.className = 'particle';
+        const size = Math.random() * 60 + 10;
+        p.style.width = size + 'px';
+        p.style.height = size + 'px';
+        p.style.left = Math.random() * 100 + '%';
+        p.style.animationDuration = (Math.random() * 15 + 10) + 's';
+        p.style.animationDelay = (Math.random() * 10) + 's';
+        container.appendChild(p);
+      }
+    })();
+
+    // Ecosystem interactive diagram
+    (function() {
+      const diagram = document.getElementById('ecosystemDiagram');
+      const canvas = document.getElementById('ecosystemCanvas');
+      if (!diagram || !canvas) return;
+
+      const nodes = [
+        { label: '🏛️ Parliament', x: 0.5, y: 0.03, color: '#d29922' },
+        { label: '🇮🇳 Central Govt', x: 0.22, y: 0.18, color: '#58a6ff' },
+        { label: '💱 FEMA', x: 0.5, y: 0.4, color: '#58a6ff', center: true },
+        { label: '🏦 RBI', x: 0.15, y: 0.42, color: '#3fb950' },
+        { label: '🔍 ED', x: 0.82, y: 0.42, color: '#f85149' },
+        { label: '⚖️ Adjudicating Auth', x: 0.82, y: 0.65, color: '#d29922' },
+        { label: '🏧 Authorized Dealers', x: 0.15, y: 0.65, color: '#39d353' },
+        { label: '💼 Current A/c Txns', x: 0.32, y: 0.75, color: '#bc8cff' },
+        { label: '📈 Capital A/c Txns', x: 0.68, y: 0.75, color: '#bc8cff' },
+        { label: '👤 Residents', x: 0.22, y: 0.92, color: '#8b949e' },
+        { label: '🌍 Non-Residents', x: 0.78, y: 0.92, color: '#8b949e' },
+        { label: '📋 DPIIT/FDI Policy', x: 0.78, y: 0.18, color: '#bc8cff' },
+      ];
+
+      const connections = [
+        [0, 2], [1, 2], [2, 3], [2, 4], [3, 6], [4, 5], [2, 7], [2, 8],
+        [6, 9], [6, 10], [7, 9], [8, 10], [11, 2], [1, 3], [1, 11]
+      ];
+
+      function render() {
+        const w = diagram.clientWidth;
+        const h = diagram.clientHeight || 500;
+        canvas.width = w;
+        canvas.height = h;
+        const ctx = canvas.getContext('2d');
+        ctx.clearRect(0, 0, w, h);
+
+        // Draw connections
+        connections.forEach(([a, b]) => {
+          const ax = nodes[a].x * w, ay = nodes[a].y * h + 20;
+          const bx = nodes[b].x * w, by = nodes[b].y * h + 20;
+          ctx.beginPath();
+          ctx.moveTo(ax, ay);
+          ctx.lineTo(bx, by);
+          ctx.strokeStyle = 'rgba(48,54,61,0.6)';
+          ctx.lineWidth = 1.5;
+          ctx.stroke();
+        });
+
+        // Place nodes
+        diagram.querySelectorAll('.overview-node').forEach(n => n.remove());
+        nodes.forEach((node, i) => {
+          const el = document.createElement('div');
+          el.className = 'overview-node' + (node.center ? ' center-node' : '');
+          el.textContent = node.label;
+          el.style.left = (node.x * 100) + '%';
+          el.style.top = (node.y * 100) + '%';
+          el.style.transform = 'translate(-50%, -50%)';
+          el.style.borderColor = node.color;
+          el.style.color = node.color;
+          if (node.center) el.style.color = '#fff';
+          diagram.appendChild(el);
+        });
+      }
+
+      render();
+      window.addEventListener('resize', render);
+    })();
+
+    // Architecture diagram interactivity
+    document.querySelectorAll('#archDiagram .arch-node').forEach(node => {
+      node.style.cursor = 'pointer';
+      node.addEventListener('click', () => {
+        const info = node.getAttribute('data-info');
+        document.getElementById('archInfo').innerHTML = '📌 ' + info;
+      });
+      node.addEventListener('mouseenter', () => {
+        node.querySelector('rect').style.filter = 'brightness(1.3)';
+      });
+      node.addEventListener('mouseleave', () => {
+        node.querySelector('rect').style.filter = '';
+      });
+    });
+  </script>
+</body>
+</html>
